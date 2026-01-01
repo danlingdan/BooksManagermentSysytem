@@ -12,6 +12,9 @@ namespace BooksManagermentSysytem
         [STAThread]
         static void Main()
         {
+            // 在 .NET Framework 4.8 中，DPI感知通过app.manifest和app.config配置
+            // 无需在代码中调用API
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             

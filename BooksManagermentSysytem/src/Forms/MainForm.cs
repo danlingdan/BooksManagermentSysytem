@@ -94,7 +94,7 @@ namespace BooksManagermentSysytem.Forms
         // 读者服务菜单
         private void menuReaderQuery_Click(object sender, EventArgs e)
         {
-            ShowContent("读者信息查询", "ReaderInfo");
+            ShowContent("个人信息", "PersonalInfo");
         }
 
         private void menuBorrowBook_Click(object sender, EventArgs e)
@@ -245,6 +245,10 @@ namespace BooksManagermentSysytem.Forms
         {
             switch (controlType)
             {
+                case "PersonalInfo":
+                    return new Controls.PersonalInfoControl();
+                case "MyFines":
+                    return new Controls.MyFinesControl();
                 case "BookSearch":
                     return new Controls.BookSearchControl();
                 case "BorrowBook":
@@ -257,6 +261,8 @@ namespace BooksManagermentSysytem.Forms
                     return new Controls.ReaderManagementControl();
                 case "FineManagement":
                     return new Controls.FineManagementControl();
+                case "BorrowStats":
+                    return new Controls.LibrarianDashboardControl();
                 case "CategoryManagement":
                     return new Controls.CategoryManagementControl();
                 case "LocationManagement":
@@ -267,6 +273,10 @@ namespace BooksManagermentSysytem.Forms
                     return new Controls.BookItemControl();
                 case "CardManagement":
                     return new Controls.CardManagementControl();
+                case "UserManagement":
+                    return new Controls.UserManagementControl();
+                case "SystemLog":
+                    return new Controls.SystemLogControl();
                 default:
                     return null;
             }
