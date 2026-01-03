@@ -24,38 +24,38 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.lblKeyword = new System.Windows.Forms.Label();
-            this.txtKeyword = new System.Windows.Forms.TextBox();
-            this.lblStatusFilter = new System.Windows.Forms.Label();
-            this.cboStatusFilter = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.cboStatusFilter = new System.Windows.Forms.ComboBox();
+            this.lblStatusFilter = new System.Windows.Forms.Label();
+            this.txtKeyword = new System.Windows.Forms.TextBox();
+            this.lblKeyword = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvBookItems = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblBarcode = new System.Windows.Forms.Label();
-            this.txtBarcode = new System.Windows.Forms.TextBox();
-            this.lblBibliography = new System.Windows.Forms.Label();
-            this.txtBibliography = new System.Windows.Forms.TextBox();
-            this.btnSelectBibliography = new System.Windows.Forms.Button();
-            this.lblBibInfo = new System.Windows.Forms.Label();
-            this.lblLocation = new System.Windows.Forms.Label();
-            this.cboLocation = new System.Windows.Forms.ComboBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cboStatus = new System.Windows.Forms.ComboBox();
-            this.lblAcquisitionDate = new System.Windows.Forms.Label();
-            this.dtpAcquisitionDate = new System.Windows.Forms.DateTimePicker();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.numPrice = new System.Windows.Forms.NumericUpDown();
-            this.lblCondition = new System.Windows.Forms.Label();
-            this.cboCondition = new System.Windows.Forms.ComboBox();
-            this.lblNote = new System.Windows.Forms.Label();
-            this.txtNote = new System.Windows.Forms.TextBox();
             this.panelButtons = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.lblNote = new System.Windows.Forms.Label();
+            this.cboCondition = new System.Windows.Forms.ComboBox();
+            this.lblCondition = new System.Windows.Forms.Label();
+            this.numPrice = new System.Windows.Forms.NumericUpDown();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.dtpAcquisitionDate = new System.Windows.Forms.DateTimePicker();
+            this.lblAcquisitionDate = new System.Windows.Forms.Label();
+            this.cboStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.cboLocation = new System.Windows.Forms.ComboBox();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.lblBibInfo = new System.Windows.Forms.Label();
+            this.btnSelectBibliography = new System.Windows.Forms.Button();
+            this.txtBibliography = new System.Windows.Forms.TextBox();
+            this.lblBibliography = new System.Windows.Forms.Label();
+            this.txtBarcode = new System.Windows.Forms.TextBox();
+            this.lblBarcode = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -63,8 +63,8 @@ namespace BooksManagermentSysytem.Controls
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookItems)).BeginInit();
             this.panelDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.panelButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSearch
@@ -80,36 +80,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Location = new System.Drawing.Point(0, 0);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(950, 45);
-            // 
-            // lblKeyword
-            // 
-            this.lblKeyword.AutoSize = true;
-            this.lblKeyword.Location = new System.Drawing.Point(15, 13);
-            this.lblKeyword.Text = "搜索：";
-            // 
-            // txtKeyword
-            // 
-            this.txtKeyword.Location = new System.Drawing.Point(60, 10);
-            this.txtKeyword.Size = new System.Drawing.Size(180, 23);
-            // 
-            // lblStatusFilter
-            // 
-            this.lblStatusFilter.AutoSize = true;
-            this.lblStatusFilter.Location = new System.Drawing.Point(255, 13);
-            this.lblStatusFilter.Text = "状态：";
-            // 
-            // cboStatusFilter
-            // 
-            this.cboStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStatusFilter.Location = new System.Drawing.Point(300, 10);
-            this.cboStatusFilter.Size = new System.Drawing.Size(120, 25);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(435, 8);
-            this.btnSearch.Size = new System.Drawing.Size(70, 28);
-            this.btnSearch.Text = "搜索";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.panelSearch.TabIndex = 1;
             // 
             // btnNew
             // 
@@ -117,17 +88,60 @@ namespace BooksManagermentSysytem.Controls
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.ForeColor = System.Drawing.Color.White;
             this.btnNew.Location = new System.Drawing.Point(520, 8);
+            this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(90, 28);
+            this.btnNew.TabIndex = 0;
             this.btnNew.Text = "新增馆藏";
+            this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(435, 8);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(70, 28);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // cboStatusFilter
+            // 
+            this.cboStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStatusFilter.Location = new System.Drawing.Point(300, 10);
+            this.cboStatusFilter.Name = "cboStatusFilter";
+            this.cboStatusFilter.Size = new System.Drawing.Size(120, 32);
+            this.cboStatusFilter.TabIndex = 2;
+            // 
+            // lblStatusFilter
+            // 
+            this.lblStatusFilter.AutoSize = true;
+            this.lblStatusFilter.Location = new System.Drawing.Point(255, 13);
+            this.lblStatusFilter.Name = "lblStatusFilter";
+            this.lblStatusFilter.Size = new System.Drawing.Size(64, 24);
+            this.lblStatusFilter.TabIndex = 3;
+            this.lblStatusFilter.Text = "状态：";
+            // 
+            // txtKeyword
+            // 
+            this.txtKeyword.Location = new System.Drawing.Point(60, 10);
+            this.txtKeyword.Name = "txtKeyword";
+            this.txtKeyword.Size = new System.Drawing.Size(180, 30);
+            this.txtKeyword.TabIndex = 4;
+            // 
+            // lblKeyword
+            // 
+            this.lblKeyword.AutoSize = true;
+            this.lblKeyword.Location = new System.Drawing.Point(15, 13);
+            this.lblKeyword.Name = "lblKeyword";
+            this.lblKeyword.Size = new System.Drawing.Size(64, 24);
+            this.lblKeyword.TabIndex = 5;
+            this.lblKeyword.Text = "搜索：";
             // 
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.Location = new System.Drawing.Point(0, 45);
             this.splitContainer.Name = "splitContainer";
-            this.splitContainer.Size = new System.Drawing.Size(950, 505);
-            this.splitContainer.SplitterDistance = 500;
             // 
             // splitContainer.Panel1
             // 
@@ -136,6 +150,9 @@ namespace BooksManagermentSysytem.Controls
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.panelDetails);
+            this.splitContainer.Size = new System.Drawing.Size(950, 505);
+            this.splitContainer.SplitterDistance = 500;
+            this.splitContainer.TabIndex = 0;
             // 
             // dgvBookItems
             // 
@@ -143,10 +160,16 @@ namespace BooksManagermentSysytem.Controls
             this.dgvBookItems.AllowUserToDeleteRows = false;
             this.dgvBookItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBookItems.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBookItems.ColumnHeadersHeight = 40;
             this.dgvBookItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBookItems.Location = new System.Drawing.Point(0, 0);
+            this.dgvBookItems.Name = "dgvBookItems";
             this.dgvBookItems.ReadOnly = true;
             this.dgvBookItems.RowHeadersVisible = false;
+            this.dgvBookItems.RowHeadersWidth = 62;
             this.dgvBookItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBookItems.Size = new System.Drawing.Size(500, 505);
+            this.dgvBookItems.TabIndex = 0;
             this.dgvBookItems.SelectionChanged += new System.EventHandler(this.dgvBookItems_SelectionChanged);
             // 
             // panelDetails
@@ -172,122 +195,10 @@ namespace BooksManagermentSysytem.Controls
             this.panelDetails.Controls.Add(this.lblBarcode);
             this.panelDetails.Controls.Add(this.lblTitle);
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(10, 10);
-            this.lblTitle.Text = "馆藏详情";
-            // 
-            // lblBarcode
-            // 
-            this.lblBarcode.AutoSize = true;
-            this.lblBarcode.Location = new System.Drawing.Point(10, 45);
-            this.lblBarcode.Text = "馆藏条码：";
-            // 
-            // txtBarcode
-            // 
-            this.txtBarcode.Location = new System.Drawing.Point(80, 42);
-            this.txtBarcode.Size = new System.Drawing.Size(180, 23);
-            // 
-            // lblBibliography
-            // 
-            this.lblBibliography.AutoSize = true;
-            this.lblBibliography.Location = new System.Drawing.Point(10, 80);
-            this.lblBibliography.Text = "书目ID：";
-            // 
-            // txtBibliography
-            // 
-            this.txtBibliography.Location = new System.Drawing.Point(80, 77);
-            this.txtBibliography.Size = new System.Drawing.Size(100, 23);
-            // 
-            // btnSelectBibliography
-            // 
-            this.btnSelectBibliography.Location = new System.Drawing.Point(190, 75);
-            this.btnSelectBibliography.Size = new System.Drawing.Size(70, 28);
-            this.btnSelectBibliography.Text = "选择...";
-            this.btnSelectBibliography.Click += new System.EventHandler(this.btnSelectBibliography_Click);
-            // 
-            // lblBibInfo
-            // 
-            this.lblBibInfo.ForeColor = System.Drawing.Color.Gray;
-            this.lblBibInfo.Location = new System.Drawing.Point(10, 110);
-            this.lblBibInfo.Size = new System.Drawing.Size(400, 20);
-            this.lblBibInfo.Text = "书目信息：未选择";
-            // 
-            // lblLocation
-            // 
-            this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(10, 140);
-            this.lblLocation.Text = "存放位置：";
-            // 
-            // cboLocation
-            // 
-            this.cboLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLocation.Location = new System.Drawing.Point(80, 137);
-            this.cboLocation.Size = new System.Drawing.Size(180, 25);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(10, 175);
-            this.lblStatus.Text = "当前状态：";
-            // 
-            // cboStatus
-            // 
-            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStatus.Location = new System.Drawing.Point(80, 172);
-            this.cboStatus.Size = new System.Drawing.Size(120, 25);
-            // 
-            // lblAcquisitionDate
-            // 
-            this.lblAcquisitionDate.AutoSize = true;
-            this.lblAcquisitionDate.Location = new System.Drawing.Point(210, 175);
-            this.lblAcquisitionDate.Text = "入库日期：";
-            // 
-            // dtpAcquisitionDate
-            // 
-            this.dtpAcquisitionDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpAcquisitionDate.Location = new System.Drawing.Point(280, 172);
-            this.dtpAcquisitionDate.Size = new System.Drawing.Size(110, 23);
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(10, 210);
-            this.lblPrice.Text = "实际价格：";
-            // 
-            // numPrice
-            // 
-            this.numPrice.DecimalPlaces = 2;
-            this.numPrice.Location = new System.Drawing.Point(80, 207);
-            this.numPrice.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
-            this.numPrice.Size = new System.Drawing.Size(100, 23);
-            // 
-            // lblCondition
-            // 
-            this.lblCondition.AutoSize = true;
-            this.lblCondition.Location = new System.Drawing.Point(200, 210);
-            this.lblCondition.Text = "物理状态：";
-            // 
-            // cboCondition
-            // 
-            this.cboCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCondition.Location = new System.Drawing.Point(270, 207);
-            this.cboCondition.Size = new System.Drawing.Size(120, 25);
-            // 
-            // lblNote
-            // 
-            this.lblNote.AutoSize = true;
-            this.lblNote.Location = new System.Drawing.Point(10, 250);
-            this.lblNote.Text = "备注：";
-            // 
-            // txtNote
-            // 
-            this.txtNote.Location = new System.Drawing.Point(80, 247);
-            this.txtNote.Multiline = true;
-            this.txtNote.Size = new System.Drawing.Size(310, 60);
+            this.panelDetails.Location = new System.Drawing.Point(0, 0);
+            this.panelDetails.Name = "panelDetails";
+            this.panelDetails.Size = new System.Drawing.Size(446, 505);
+            this.panelDetails.TabIndex = 0;
             // 
             // panelButtons
             // 
@@ -295,17 +206,18 @@ namespace BooksManagermentSysytem.Controls
             this.panelButtons.Controls.Add(this.btnDelete);
             this.panelButtons.Controls.Add(this.btnSave);
             this.panelButtons.Location = new System.Drawing.Point(10, 320);
+            this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(400, 40);
+            this.panelButtons.TabIndex = 0;
             // 
-            // btnSave
+            // btnCancel
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(70, 5);
-            this.btnSave.Size = new System.Drawing.Size(90, 30);
-            this.btnSave.Text = "保存";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnCancel.Location = new System.Drawing.Point(270, 5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(90, 30);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnDelete
             // 
@@ -313,16 +225,192 @@ namespace BooksManagermentSysytem.Controls
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(170, 5);
+            this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 30);
+            this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnCancel
+            // btnSave
             // 
-            this.btnCancel.Location = new System.Drawing.Point(270, 5);
-            this.btnCancel.Size = new System.Drawing.Size(90, 30);
-            this.btnCancel.Text = "取消";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(70, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(90, 30);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "保存";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtNote
+            // 
+            this.txtNote.Location = new System.Drawing.Point(80, 247);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(310, 60);
+            this.txtNote.TabIndex = 1;
+            // 
+            // lblNote
+            // 
+            this.lblNote.AutoSize = true;
+            this.lblNote.Location = new System.Drawing.Point(10, 250);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(64, 24);
+            this.lblNote.TabIndex = 2;
+            this.lblNote.Text = "备注：";
+            // 
+            // cboCondition
+            // 
+            this.cboCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCondition.Location = new System.Drawing.Point(270, 207);
+            this.cboCondition.Name = "cboCondition";
+            this.cboCondition.Size = new System.Drawing.Size(120, 32);
+            this.cboCondition.TabIndex = 3;
+            // 
+            // lblCondition
+            // 
+            this.lblCondition.AutoSize = true;
+            this.lblCondition.Location = new System.Drawing.Point(200, 210);
+            this.lblCondition.Name = "lblCondition";
+            this.lblCondition.Size = new System.Drawing.Size(100, 24);
+            this.lblCondition.TabIndex = 4;
+            this.lblCondition.Text = "物理状态：";
+            // 
+            // numPrice
+            // 
+            this.numPrice.DecimalPlaces = 2;
+            this.numPrice.Location = new System.Drawing.Point(80, 207);
+            this.numPrice.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numPrice.Name = "numPrice";
+            this.numPrice.Size = new System.Drawing.Size(100, 30);
+            this.numPrice.TabIndex = 5;
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(10, 210);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(100, 24);
+            this.lblPrice.TabIndex = 6;
+            this.lblPrice.Text = "实际价格：";
+            // 
+            // dtpAcquisitionDate
+            // 
+            this.dtpAcquisitionDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpAcquisitionDate.Location = new System.Drawing.Point(280, 172);
+            this.dtpAcquisitionDate.Name = "dtpAcquisitionDate";
+            this.dtpAcquisitionDate.Size = new System.Drawing.Size(110, 30);
+            this.dtpAcquisitionDate.TabIndex = 7;
+            // 
+            // lblAcquisitionDate
+            // 
+            this.lblAcquisitionDate.AutoSize = true;
+            this.lblAcquisitionDate.Location = new System.Drawing.Point(210, 175);
+            this.lblAcquisitionDate.Name = "lblAcquisitionDate";
+            this.lblAcquisitionDate.Size = new System.Drawing.Size(100, 24);
+            this.lblAcquisitionDate.TabIndex = 8;
+            this.lblAcquisitionDate.Text = "入库日期：";
+            // 
+            // cboStatus
+            // 
+            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStatus.Location = new System.Drawing.Point(80, 172);
+            this.cboStatus.Name = "cboStatus";
+            this.cboStatus.Size = new System.Drawing.Size(120, 32);
+            this.cboStatus.TabIndex = 9;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(10, 175);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(100, 24);
+            this.lblStatus.TabIndex = 10;
+            this.lblStatus.Text = "当前状态：";
+            // 
+            // cboLocation
+            // 
+            this.cboLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLocation.Location = new System.Drawing.Point(80, 137);
+            this.cboLocation.Name = "cboLocation";
+            this.cboLocation.Size = new System.Drawing.Size(180, 32);
+            this.cboLocation.TabIndex = 11;
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Location = new System.Drawing.Point(10, 140);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(100, 24);
+            this.lblLocation.TabIndex = 12;
+            this.lblLocation.Text = "存放位置：";
+            // 
+            // lblBibInfo
+            // 
+            this.lblBibInfo.ForeColor = System.Drawing.Color.Gray;
+            this.lblBibInfo.Location = new System.Drawing.Point(10, 110);
+            this.lblBibInfo.Name = "lblBibInfo";
+            this.lblBibInfo.Size = new System.Drawing.Size(400, 20);
+            this.lblBibInfo.TabIndex = 13;
+            this.lblBibInfo.Text = "书目信息：未选择";
+            // 
+            // btnSelectBibliography
+            // 
+            this.btnSelectBibliography.Location = new System.Drawing.Point(190, 75);
+            this.btnSelectBibliography.Name = "btnSelectBibliography";
+            this.btnSelectBibliography.Size = new System.Drawing.Size(70, 28);
+            this.btnSelectBibliography.TabIndex = 14;
+            this.btnSelectBibliography.Text = "选择...";
+            this.btnSelectBibliography.Click += new System.EventHandler(this.btnSelectBibliography_Click);
+            // 
+            // txtBibliography
+            // 
+            this.txtBibliography.Location = new System.Drawing.Point(80, 77);
+            this.txtBibliography.Name = "txtBibliography";
+            this.txtBibliography.Size = new System.Drawing.Size(100, 30);
+            this.txtBibliography.TabIndex = 15;
+            // 
+            // lblBibliography
+            // 
+            this.lblBibliography.AutoSize = true;
+            this.lblBibliography.Location = new System.Drawing.Point(10, 80);
+            this.lblBibliography.Name = "lblBibliography";
+            this.lblBibliography.Size = new System.Drawing.Size(83, 24);
+            this.lblBibliography.TabIndex = 16;
+            this.lblBibliography.Text = "书目ID：";
+            // 
+            // txtBarcode
+            // 
+            this.txtBarcode.Location = new System.Drawing.Point(80, 42);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(180, 30);
+            this.txtBarcode.TabIndex = 17;
+            // 
+            // lblBarcode
+            // 
+            this.lblBarcode.AutoSize = true;
+            this.lblBarcode.Location = new System.Drawing.Point(10, 45);
+            this.lblBarcode.Name = "lblBarcode";
+            this.lblBarcode.Size = new System.Drawing.Size(100, 24);
+            this.lblBarcode.TabIndex = 18;
+            this.lblBarcode.Text = "馆藏条码：";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(10, 10);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(92, 27);
+            this.lblTitle.TabIndex = 19;
+            this.lblTitle.Text = "馆藏详情";
             // 
             // BookItemControl
             // 
@@ -330,6 +418,7 @@ namespace BooksManagermentSysytem.Controls
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panelSearch);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.Name = "BookItemControl";
             this.Size = new System.Drawing.Size(950, 550);
             this.Load += new System.EventHandler(this.BookItemControl_Load);
             this.panelSearch.ResumeLayout(false);
@@ -341,9 +430,10 @@ namespace BooksManagermentSysytem.Controls
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookItems)).EndInit();
             this.panelDetails.ResumeLayout(false);
             this.panelDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             this.panelButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelSearch;

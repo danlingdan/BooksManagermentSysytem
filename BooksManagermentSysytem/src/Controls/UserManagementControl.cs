@@ -24,42 +24,42 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lblRoleFilter = new System.Windows.Forms.Label();
-            this.cboRoleFilter = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.cboRoleFilter = new System.Windows.Forms.ComboBox();
+            this.lblRoleFilter = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lblDisplayName = new System.Windows.Forms.Label();
-            this.txtDisplayName = new System.Windows.Forms.TextBox();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.cboRole = new System.Windows.Forms.ComboBox();
-            this.lblCardID = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
-            this.btnSelectCard = new System.Windows.Forms.Button();
-            this.lblCardInfo = new System.Windows.Forms.Label();
-            this.lblWindowsAccount = new System.Windows.Forms.Label();
-            this.txtWindowsAccount = new System.Windows.Forms.TextBox();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.lblPasswordNote = new System.Windows.Forms.Label();
-            this.lblIsActive = new System.Windows.Forms.Label();
-            this.chkIsActive = new System.Windows.Forms.CheckBox();
-            this.lblCreatedTime = new System.Windows.Forms.Label();
-            this.lblCreatedTimeValue = new System.Windows.Forms.Label();
-            this.lblLastLogin = new System.Windows.Forms.Label();
-            this.lblLastLoginValue = new System.Windows.Forms.Label();
             this.panelButtons = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnResetPassword = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnResetPassword = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblLastLoginValue = new System.Windows.Forms.Label();
+            this.lblLastLogin = new System.Windows.Forms.Label();
+            this.lblCreatedTimeValue = new System.Windows.Forms.Label();
+            this.lblCreatedTime = new System.Windows.Forms.Label();
+            this.chkIsActive = new System.Windows.Forms.CheckBox();
+            this.lblIsActive = new System.Windows.Forms.Label();
+            this.lblPasswordNote = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.txtWindowsAccount = new System.Windows.Forms.TextBox();
+            this.lblWindowsAccount = new System.Windows.Forms.Label();
+            this.lblCardInfo = new System.Windows.Forms.Label();
+            this.btnSelectCard = new System.Windows.Forms.Button();
+            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.lblCardID = new System.Windows.Forms.Label();
+            this.cboRole = new System.Windows.Forms.ComboBox();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.txtDisplayName = new System.Windows.Forms.TextBox();
+            this.lblDisplayName = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -80,57 +80,83 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.txtSearch);
             this.panelSearch.Controls.Add(this.lblSearch);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSearch.Size = new System.Drawing.Size(950, 45);
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(15, 13);
-            this.lblSearch.Text = "搜索用户：";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(85, 10);
-            this.txtSearch.Size = new System.Drawing.Size(180, 23);
-            // 
-            // lblRoleFilter
-            // 
-            this.lblRoleFilter.AutoSize = true;
-            this.lblRoleFilter.Location = new System.Drawing.Point(280, 13);
-            this.lblRoleFilter.Text = "角色：";
-            // 
-            // cboRoleFilter
-            // 
-            this.cboRoleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRoleFilter.Location = new System.Drawing.Point(320, 10);
-            this.cboRoleFilter.Size = new System.Drawing.Size(120, 25);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(455, 8);
-            this.btnSearch.Size = new System.Drawing.Size(70, 28);
-            this.btnSearch.Text = "搜索";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.panelSearch.Location = new System.Drawing.Point(0, 0);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(1425, 68);
+            this.panelSearch.TabIndex = 1;
             // 
             // btnNew
             // 
             this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.ForeColor = System.Drawing.Color.White;
-            this.btnNew.Location = new System.Drawing.Point(540, 8);
-            this.btnNew.Size = new System.Drawing.Size(90, 28);
+            this.btnNew.Location = new System.Drawing.Point(810, 12);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(135, 42);
+            this.btnNew.TabIndex = 0;
             this.btnNew.Text = "新建用户";
+            this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(682, 12);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(105, 42);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // cboRoleFilter
+            // 
+            this.cboRoleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboRoleFilter.Location = new System.Drawing.Point(480, 15);
+            this.cboRoleFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboRoleFilter.Name = "cboRoleFilter";
+            this.cboRoleFilter.Size = new System.Drawing.Size(178, 32);
+            this.cboRoleFilter.TabIndex = 2;
+            // 
+            // lblRoleFilter
+            // 
+            this.lblRoleFilter.AutoSize = true;
+            this.lblRoleFilter.Location = new System.Drawing.Point(420, 20);
+            this.lblRoleFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRoleFilter.Name = "lblRoleFilter";
+            this.lblRoleFilter.Size = new System.Drawing.Size(64, 24);
+            this.lblRoleFilter.TabIndex = 3;
+            this.lblRoleFilter.Text = "角色：";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(128, 15);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(268, 30);
+            this.txtSearch.TabIndex = 4;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(22, 20);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(100, 24);
+            this.lblSearch.TabIndex = 5;
+            this.lblSearch.Text = "搜索用户：";
             // 
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.Location = new System.Drawing.Point(0, 45);
-            this.splitContainer.Size = new System.Drawing.Size(950, 505);
-            this.splitContainer.SplitterDistance = 500;
+            this.splitContainer.Location = new System.Drawing.Point(0, 68);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
             // 
@@ -139,6 +165,10 @@ namespace BooksManagermentSysytem.Controls
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.panelDetails);
+            this.splitContainer.Size = new System.Drawing.Size(1425, 757);
+            this.splitContainer.SplitterDistance = 750;
+            this.splitContainer.SplitterWidth = 6;
+            this.splitContainer.TabIndex = 0;
             // 
             // dgvUsers
             // 
@@ -146,10 +176,17 @@ namespace BooksManagermentSysytem.Controls
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvUsers.BackgroundColor = System.Drawing.Color.White;
+            this.dgvUsers.ColumnHeadersHeight = 40;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUsers.Location = new System.Drawing.Point(0, 0);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersVisible = false;
+            this.dgvUsers.RowHeadersWidth = 62;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsers.Size = new System.Drawing.Size(750, 757);
+            this.dgvUsers.TabIndex = 0;
             this.dgvUsers.SelectionChanged += new System.EventHandler(this.dgvUsers_SelectionChanged);
             // 
             // panelDetails
@@ -178,139 +215,11 @@ namespace BooksManagermentSysytem.Controls
             this.panelDetails.Controls.Add(this.lblUsername);
             this.panelDetails.Controls.Add(this.lblTitle);
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(10, 10);
-            this.lblTitle.Text = "用户详情";
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(10, 45);
-            this.lblUsername.Text = "用户名：";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Location = new System.Drawing.Point(100, 42);
-            this.txtUsername.Size = new System.Drawing.Size(150, 23);
-            // 
-            // lblDisplayName
-            // 
-            this.lblDisplayName.AutoSize = true;
-            this.lblDisplayName.Location = new System.Drawing.Point(10, 80);
-            this.lblDisplayName.Text = "显示名称：";
-            // 
-            // txtDisplayName
-            // 
-            this.txtDisplayName.Location = new System.Drawing.Point(100, 77);
-            this.txtDisplayName.Size = new System.Drawing.Size(200, 23);
-            // 
-            // lblRole
-            // 
-            this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(10, 115);
-            this.lblRole.Text = "用户角色：";
-            // 
-            // cboRole
-            // 
-            this.cboRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRole.Location = new System.Drawing.Point(100, 112);
-            this.cboRole.Size = new System.Drawing.Size(150, 25);
-            this.cboRole.SelectedIndexChanged += new System.EventHandler(this.cboRole_SelectedIndexChanged);
-            // 
-            // lblCardID
-            // 
-            this.lblCardID.AutoSize = true;
-            this.lblCardID.Location = new System.Drawing.Point(10, 150);
-            this.lblCardID.Text = "借书证号：";
-            // 
-            // txtCardID
-            // 
-            this.txtCardID.Location = new System.Drawing.Point(100, 147);
-            this.txtCardID.Size = new System.Drawing.Size(150, 23);
-            // 
-            // btnSelectCard
-            // 
-            this.btnSelectCard.Location = new System.Drawing.Point(260, 145);
-            this.btnSelectCard.Size = new System.Drawing.Size(70, 28);
-            this.btnSelectCard.Text = "选择...";
-            this.btnSelectCard.Click += new System.EventHandler(this.btnSelectCard_Click);
-            // 
-            // lblCardInfo
-            // 
-            this.lblCardInfo.ForeColor = System.Drawing.Color.Gray;
-            this.lblCardInfo.Location = new System.Drawing.Point(100, 175);
-            this.lblCardInfo.Size = new System.Drawing.Size(330, 20);
-            this.lblCardInfo.Text = "（读者角色需绑定借书证）";
-            // 
-            // lblWindowsAccount
-            // 
-            this.lblWindowsAccount.AutoSize = true;
-            this.lblWindowsAccount.Location = new System.Drawing.Point(10, 205);
-            this.lblWindowsAccount.Text = "Windows账户：";
-            // 
-            // txtWindowsAccount
-            // 
-            this.txtWindowsAccount.Location = new System.Drawing.Point(100, 202);
-            this.txtWindowsAccount.Size = new System.Drawing.Size(300, 23);
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(10, 240);
-            this.lblPassword.Text = "密码：";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(100, 237);
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(200, 23);
-            // 
-            // lblPasswordNote
-            // 
-            this.lblPasswordNote.ForeColor = System.Drawing.Color.Gray;
-            this.lblPasswordNote.Location = new System.Drawing.Point(100, 265);
-            this.lblPasswordNote.Size = new System.Drawing.Size(330, 20);
-            this.lblPasswordNote.Text = "（新建时必填，编辑时留空表示不修改）";
-            // 
-            // lblIsActive
-            // 
-            this.lblIsActive.AutoSize = true;
-            this.lblIsActive.Location = new System.Drawing.Point(10, 295);
-            this.lblIsActive.Text = "账户状态：";
-            // 
-            // chkIsActive
-            // 
-            this.chkIsActive.AutoSize = true;
-            this.chkIsActive.Location = new System.Drawing.Point(100, 295);
-            this.chkIsActive.Text = "启用";
-            // 
-            // lblCreatedTime
-            // 
-            this.lblCreatedTime.AutoSize = true;
-            this.lblCreatedTime.Location = new System.Drawing.Point(10, 330);
-            this.lblCreatedTime.Text = "创建时间：";
-            // 
-            // lblCreatedTimeValue
-            // 
-            this.lblCreatedTimeValue.AutoSize = true;
-            this.lblCreatedTimeValue.Location = new System.Drawing.Point(100, 330);
-            this.lblCreatedTimeValue.Text = "-";
-            // 
-            // lblLastLogin
-            // 
-            this.lblLastLogin.AutoSize = true;
-            this.lblLastLogin.Location = new System.Drawing.Point(10, 355);
-            this.lblLastLogin.Text = "最后登录：";
-            // 
-            // lblLastLoginValue
-            // 
-            this.lblLastLoginValue.AutoSize = true;
-            this.lblLastLoginValue.Location = new System.Drawing.Point(100, 355);
-            this.lblLastLoginValue.Text = "-";
+            this.panelDetails.Location = new System.Drawing.Point(0, 0);
+            this.panelDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelDetails.Name = "panelDetails";
+            this.panelDetails.Size = new System.Drawing.Size(669, 757);
+            this.panelDetails.TabIndex = 0;
             // 
             // panelButtons
             // 
@@ -318,53 +227,288 @@ namespace BooksManagermentSysytem.Controls
             this.panelButtons.Controls.Add(this.btnDelete);
             this.panelButtons.Controls.Add(this.btnResetPassword);
             this.panelButtons.Controls.Add(this.btnSave);
-            this.panelButtons.Location = new System.Drawing.Point(10, 390);
-            this.panelButtons.Size = new System.Drawing.Size(430, 40);
+            this.panelButtons.Location = new System.Drawing.Point(15, 585);
+            this.panelButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelButtons.Name = "panelButtons";
+            this.panelButtons.Size = new System.Drawing.Size(645, 60);
+            this.panelButtons.TabIndex = 0;
             // 
-            // btnSave
+            // btnCancel
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(0, 5);
-            this.btnSave.Size = new System.Drawing.Size(90, 30);
-            this.btnSave.Text = "保存";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnResetPassword
-            // 
-            this.btnResetPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(0)))));
-            this.btnResetPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetPassword.ForeColor = System.Drawing.Color.White;
-            this.btnResetPassword.Location = new System.Drawing.Point(100, 5);
-            this.btnResetPassword.Size = new System.Drawing.Size(100, 30);
-            this.btnResetPassword.Text = "重置密码";
-            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
+            this.btnCancel.Location = new System.Drawing.Point(465, 8);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(135, 45);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(210, 5);
-            this.btnDelete.Size = new System.Drawing.Size(90, 30);
+            this.btnDelete.Location = new System.Drawing.Point(315, 8);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(135, 45);
+            this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnCancel
+            // btnResetPassword
             // 
-            this.btnCancel.Location = new System.Drawing.Point(310, 5);
-            this.btnCancel.Size = new System.Drawing.Size(90, 30);
-            this.btnCancel.Text = "取消";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnResetPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(0)))));
+            this.btnResetPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetPassword.ForeColor = System.Drawing.Color.White;
+            this.btnResetPassword.Location = new System.Drawing.Point(150, 8);
+            this.btnResetPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnResetPassword.Name = "btnResetPassword";
+            this.btnResetPassword.Size = new System.Drawing.Size(150, 45);
+            this.btnResetPassword.TabIndex = 2;
+            this.btnResetPassword.Text = "重置密码";
+            this.btnResetPassword.UseVisualStyleBackColor = false;
+            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(0, 8);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(135, 45);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "保存";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // lblLastLoginValue
+            // 
+            this.lblLastLoginValue.AutoSize = true;
+            this.lblLastLoginValue.Location = new System.Drawing.Point(150, 532);
+            this.lblLastLoginValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLastLoginValue.Name = "lblLastLoginValue";
+            this.lblLastLoginValue.Size = new System.Drawing.Size(18, 24);
+            this.lblLastLoginValue.TabIndex = 1;
+            this.lblLastLoginValue.Text = "-";
+            // 
+            // lblLastLogin
+            // 
+            this.lblLastLogin.AutoSize = true;
+            this.lblLastLogin.Location = new System.Drawing.Point(15, 532);
+            this.lblLastLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLastLogin.Name = "lblLastLogin";
+            this.lblLastLogin.Size = new System.Drawing.Size(100, 24);
+            this.lblLastLogin.TabIndex = 2;
+            this.lblLastLogin.Text = "最后登录：";
+            // 
+            // lblCreatedTimeValue
+            // 
+            this.lblCreatedTimeValue.AutoSize = true;
+            this.lblCreatedTimeValue.Location = new System.Drawing.Point(150, 495);
+            this.lblCreatedTimeValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCreatedTimeValue.Name = "lblCreatedTimeValue";
+            this.lblCreatedTimeValue.Size = new System.Drawing.Size(18, 24);
+            this.lblCreatedTimeValue.TabIndex = 3;
+            this.lblCreatedTimeValue.Text = "-";
+            // 
+            // lblCreatedTime
+            // 
+            this.lblCreatedTime.AutoSize = true;
+            this.lblCreatedTime.Location = new System.Drawing.Point(15, 495);
+            this.lblCreatedTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCreatedTime.Name = "lblCreatedTime";
+            this.lblCreatedTime.Size = new System.Drawing.Size(100, 24);
+            this.lblCreatedTime.TabIndex = 4;
+            this.lblCreatedTime.Text = "创建时间：";
+            // 
+            // chkIsActive
+            // 
+            this.chkIsActive.AutoSize = true;
+            this.chkIsActive.Location = new System.Drawing.Point(150, 442);
+            this.chkIsActive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkIsActive.Name = "chkIsActive";
+            this.chkIsActive.Size = new System.Drawing.Size(72, 28);
+            this.chkIsActive.TabIndex = 5;
+            this.chkIsActive.Text = "启用";
+            // 
+            // lblIsActive
+            // 
+            this.lblIsActive.AutoSize = true;
+            this.lblIsActive.Location = new System.Drawing.Point(15, 442);
+            this.lblIsActive.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIsActive.Name = "lblIsActive";
+            this.lblIsActive.Size = new System.Drawing.Size(100, 24);
+            this.lblIsActive.TabIndex = 6;
+            this.lblIsActive.Text = "账户状态：";
+            // 
+            // lblPasswordNote
+            // 
+            this.lblPasswordNote.ForeColor = System.Drawing.Color.Gray;
+            this.lblPasswordNote.Location = new System.Drawing.Point(150, 398);
+            this.lblPasswordNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPasswordNote.Name = "lblPasswordNote";
+            this.lblPasswordNote.Size = new System.Drawing.Size(495, 30);
+            this.lblPasswordNote.TabIndex = 7;
+            this.lblPasswordNote.Text = "（新建时必填，编辑时留空表示不修改）";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(150, 356);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(298, 30);
+            this.txtPassword.TabIndex = 8;
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(15, 360);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(64, 24);
+            this.lblPassword.TabIndex = 9;
+            this.lblPassword.Text = "密码：";
+            // 
+            // txtWindowsAccount
+            // 
+            this.txtWindowsAccount.Location = new System.Drawing.Point(150, 303);
+            this.txtWindowsAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtWindowsAccount.Name = "txtWindowsAccount";
+            this.txtWindowsAccount.Size = new System.Drawing.Size(448, 30);
+            this.txtWindowsAccount.TabIndex = 10;
+            // 
+            // lblWindowsAccount
+            // 
+            this.lblWindowsAccount.AutoSize = true;
+            this.lblWindowsAccount.Location = new System.Drawing.Point(15, 308);
+            this.lblWindowsAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWindowsAccount.Name = "lblWindowsAccount";
+            this.lblWindowsAccount.Size = new System.Drawing.Size(143, 24);
+            this.lblWindowsAccount.TabIndex = 11;
+            this.lblWindowsAccount.Text = "Windows账户：";
+            // 
+            // lblCardInfo
+            // 
+            this.lblCardInfo.ForeColor = System.Drawing.Color.Gray;
+            this.lblCardInfo.Location = new System.Drawing.Point(150, 262);
+            this.lblCardInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardInfo.Name = "lblCardInfo";
+            this.lblCardInfo.Size = new System.Drawing.Size(495, 30);
+            this.lblCardInfo.TabIndex = 12;
+            this.lblCardInfo.Text = "（读者角色需绑定借书证）";
+            // 
+            // btnSelectCard
+            // 
+            this.btnSelectCard.Location = new System.Drawing.Point(390, 218);
+            this.btnSelectCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSelectCard.Name = "btnSelectCard";
+            this.btnSelectCard.Size = new System.Drawing.Size(105, 42);
+            this.btnSelectCard.TabIndex = 13;
+            this.btnSelectCard.Text = "选择...";
+            this.btnSelectCard.Click += new System.EventHandler(this.btnSelectCard_Click);
+            // 
+            // txtCardID
+            // 
+            this.txtCardID.Location = new System.Drawing.Point(150, 220);
+            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardID.Name = "txtCardID";
+            this.txtCardID.Size = new System.Drawing.Size(223, 30);
+            this.txtCardID.TabIndex = 14;
+            // 
+            // lblCardID
+            // 
+            this.lblCardID.AutoSize = true;
+            this.lblCardID.Location = new System.Drawing.Point(15, 225);
+            this.lblCardID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardID.Name = "lblCardID";
+            this.lblCardID.Size = new System.Drawing.Size(100, 24);
+            this.lblCardID.TabIndex = 15;
+            this.lblCardID.Text = "借书证号：";
+            // 
+            // cboRole
+            // 
+            this.cboRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboRole.Location = new System.Drawing.Point(150, 168);
+            this.cboRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboRole.Name = "cboRole";
+            this.cboRole.Size = new System.Drawing.Size(223, 32);
+            this.cboRole.TabIndex = 16;
+            this.cboRole.SelectedIndexChanged += new System.EventHandler(this.cboRole_SelectedIndexChanged);
+            // 
+            // lblRole
+            // 
+            this.lblRole.AutoSize = true;
+            this.lblRole.Location = new System.Drawing.Point(15, 172);
+            this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(100, 24);
+            this.lblRole.TabIndex = 17;
+            this.lblRole.Text = "用户角色：";
+            // 
+            // txtDisplayName
+            // 
+            this.txtDisplayName.Location = new System.Drawing.Point(150, 116);
+            this.txtDisplayName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDisplayName.Name = "txtDisplayName";
+            this.txtDisplayName.Size = new System.Drawing.Size(298, 30);
+            this.txtDisplayName.TabIndex = 18;
+            // 
+            // lblDisplayName
+            // 
+            this.lblDisplayName.AutoSize = true;
+            this.lblDisplayName.Location = new System.Drawing.Point(15, 120);
+            this.lblDisplayName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDisplayName.Name = "lblDisplayName";
+            this.lblDisplayName.Size = new System.Drawing.Size(100, 24);
+            this.lblDisplayName.TabIndex = 19;
+            this.lblDisplayName.Text = "显示名称：";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(150, 63);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(223, 30);
+            this.txtUsername.TabIndex = 20;
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(15, 68);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(82, 24);
+            this.lblUsername.TabIndex = 21;
+            this.lblUsername.Text = "用户名：";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(15, 15);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(92, 27);
+            this.lblTitle.TabIndex = 22;
+            this.lblTitle.Text = "用户详情";
             // 
             // UserManagementControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panelSearch);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(950, 550);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "UserManagementControl";
+            this.Size = new System.Drawing.Size(1425, 825);
             this.Load += new System.EventHandler(this.UserManagementControl_Load);
             this.panelSearch.ResumeLayout(false);
             this.panelSearch.PerformLayout();
@@ -377,6 +521,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelDetails.PerformLayout();
             this.panelButtons.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelSearch;

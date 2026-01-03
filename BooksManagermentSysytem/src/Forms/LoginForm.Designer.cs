@@ -45,6 +45,7 @@ namespace BooksManagermentSysytem.Forms
             this.panelMain.Controls.Add(this.lblUsername);
             this.panelMain.Controls.Add(this.lblTitle);
             this.panelMain.Location = new System.Drawing.Point(100, 50);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(400, 380);
             this.panelMain.TabIndex = 0;
@@ -54,6 +55,7 @@ namespace BooksManagermentSysytem.Forms
             this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.lblTitle.Location = new System.Drawing.Point(0, 20);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(400, 40);
             this.lblTitle.TabIndex = 0;
@@ -65,6 +67,7 @@ namespace BooksManagermentSysytem.Forms
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
             this.lblUsername.Location = new System.Drawing.Point(50, 80);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(0);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(65, 20);
             this.lblUsername.TabIndex = 1;
@@ -74,6 +77,7 @@ namespace BooksManagermentSysytem.Forms
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F);
             this.txtUsername.Location = new System.Drawing.Point(50, 105);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(0);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(300, 27);
             this.txtUsername.TabIndex = 2;
@@ -83,6 +87,7 @@ namespace BooksManagermentSysytem.Forms
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
             this.lblPassword.Location = new System.Drawing.Point(50, 145);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(0);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(51, 20);
             this.lblPassword.TabIndex = 3;
@@ -92,6 +97,7 @@ namespace BooksManagermentSysytem.Forms
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F);
             this.txtPassword.Location = new System.Drawing.Point(50, 170);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(0);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(300, 27);
@@ -105,6 +111,7 @@ namespace BooksManagermentSysytem.Forms
             this.btnLogin.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(50, 235);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(0);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(300, 40);
             this.btnLogin.TabIndex = 6;
@@ -120,6 +127,7 @@ namespace BooksManagermentSysytem.Forms
             this.btnWindowsLogin.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
             this.btnWindowsLogin.ForeColor = System.Drawing.Color.White;
             this.btnWindowsLogin.Location = new System.Drawing.Point(50, 285);
+            this.btnWindowsLogin.Margin = new System.Windows.Forms.Padding(0);
             this.btnWindowsLogin.Name = "btnWindowsLogin";
             this.btnWindowsLogin.Size = new System.Drawing.Size(300, 35);
             this.btnWindowsLogin.TabIndex = 7;
@@ -135,6 +143,7 @@ namespace BooksManagermentSysytem.Forms
             this.btnRegister.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
             this.btnRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnRegister.Location = new System.Drawing.Point(50, 330);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(0);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(300, 35);
             this.btnRegister.TabIndex = 8;
@@ -147,6 +156,7 @@ namespace BooksManagermentSysytem.Forms
             this.chkRememberUsername.AutoSize = true;
             this.chkRememberUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.chkRememberUsername.Location = new System.Drawing.Point(50, 205);
+            this.chkRememberUsername.Margin = new System.Windows.Forms.Padding(0);
             this.chkRememberUsername.Name = "chkRememberUsername";
             this.chkRememberUsername.Size = new System.Drawing.Size(98, 21);
             this.chkRememberUsername.TabIndex = 5;
@@ -158,6 +168,7 @@ namespace BooksManagermentSysytem.Forms
             this.lblMessage.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
             this.lblMessage.Location = new System.Drawing.Point(50, 55);
+            this.lblMessage.Margin = new System.Windows.Forms.Padding(0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(300, 20);
             this.lblMessage.TabIndex = 9;
@@ -166,8 +177,8 @@ namespace BooksManagermentSysytem.Forms
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.ClientSize = new System.Drawing.Size(600, 480);
             this.Controls.Add(this.panelMain);

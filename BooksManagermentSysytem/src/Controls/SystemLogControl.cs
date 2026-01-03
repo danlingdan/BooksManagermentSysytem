@@ -19,26 +19,26 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelFilter = new System.Windows.Forms.Panel();
-            this.lblDateRange = new System.Windows.Forms.Label();
-            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
-            this.lblTo = new System.Windows.Forms.Label();
-            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
-            this.lblTargetType = new System.Windows.Forms.Label();
-            this.cboTargetType = new System.Windows.Forms.ComboBox();
-            this.lblActionType = new System.Windows.Forms.Label();
-            this.cboActionType = new System.Windows.Forms.ComboBox();
-            this.lblOperator = new System.Windows.Forms.Label();
-            this.txtOperator = new System.Windows.Forms.TextBox();
-            this.btnFilter = new System.Windows.Forms.Button();
             this.btnClearFilter = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.txtOperator = new System.Windows.Forms.TextBox();
+            this.lblOperator = new System.Windows.Forms.Label();
+            this.cboActionType = new System.Windows.Forms.ComboBox();
+            this.lblActionType = new System.Windows.Forms.Label();
+            this.cboTargetType = new System.Windows.Forms.ComboBox();
+            this.lblTargetType = new System.Windows.Forms.Label();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.lblTo = new System.Windows.Forms.Label();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDateRange = new System.Windows.Forms.Label();
             this.dgvLogs = new System.Windows.Forms.DataGridView();
             this.panelStats = new System.Windows.Forms.Panel();
-            this.lblTotalCount = new System.Windows.Forms.Label();
             this.lblStats = new System.Windows.Forms.Label();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             this.panelFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogs)).BeginInit();
@@ -52,33 +52,48 @@ namespace BooksManagermentSysytem.Controls
             this.panelHeader.Controls.Add(this.btnRefresh);
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Size = new System.Drawing.Size(950, 50);
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(20, 12);
-            this.lblTitle.Size = new System.Drawing.Size(200, 28);
-            this.lblTitle.Text = "📋 系统操作日志";
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Location = new System.Drawing.Point(780, 10);
-            this.btnRefresh.Size = new System.Drawing.Size(70, 30);
-            this.btnRefresh.Text = "刷新";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1425, 75);
+            this.panelHeader.TabIndex = 3;
             // 
             // btnExport
             // 
             this.btnExport.BackColor = System.Drawing.Color.White;
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Location = new System.Drawing.Point(860, 10);
-            this.btnExport.Size = new System.Drawing.Size(70, 30);
+            this.btnExport.Location = new System.Drawing.Point(1290, 15);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(105, 45);
+            this.btnExport.TabIndex = 0;
             this.btnExport.Text = "导出";
+            this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Location = new System.Drawing.Point(1170, 15);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(105, 45);
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.Text = "刷新";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(30, 18);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(300, 42);
+            this.lblTitle.TabIndex = 2;
+            this.lblTitle.Text = "📋 系统操作日志";
             // 
             // panelFilter
             // 
@@ -96,84 +111,129 @@ namespace BooksManagermentSysytem.Controls
             this.panelFilter.Controls.Add(this.dtpStartDate);
             this.panelFilter.Controls.Add(this.lblDateRange);
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilter.Location = new System.Drawing.Point(0, 50);
-            this.panelFilter.Size = new System.Drawing.Size(950, 80);
+            this.panelFilter.Location = new System.Drawing.Point(0, 75);
+            this.panelFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelFilter.Name = "panelFilter";
+            this.panelFilter.Size = new System.Drawing.Size(1425, 120);
+            this.panelFilter.TabIndex = 2;
             // 
-            // lblDateRange
+            // btnClearFilter
             // 
-            this.lblDateRange.AutoSize = true;
-            this.lblDateRange.Location = new System.Drawing.Point(15, 15);
-            this.lblDateRange.Text = "日期范围：";
-            // 
-            // dtpStartDate
-            // 
-            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStartDate.Location = new System.Drawing.Point(85, 12);
-            this.dtpStartDate.Size = new System.Drawing.Size(110, 23);
-            // 
-            // lblTo
-            // 
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(200, 15);
-            this.lblTo.Text = "至";
-            // 
-            // dtpEndDate
-            // 
-            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEndDate.Location = new System.Drawing.Point(220, 12);
-            this.dtpEndDate.Size = new System.Drawing.Size(110, 23);
-            // 
-            // lblTargetType
-            // 
-            this.lblTargetType.AutoSize = true;
-            this.lblTargetType.Location = new System.Drawing.Point(350, 15);
-            this.lblTargetType.Text = "对象类型：";
-            // 
-            // cboTargetType
-            // 
-            this.cboTargetType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTargetType.Location = new System.Drawing.Point(420, 12);
-            this.cboTargetType.Size = new System.Drawing.Size(140, 25);
-            // 
-            // lblActionType
-            // 
-            this.lblActionType.AutoSize = true;
-            this.lblActionType.Location = new System.Drawing.Point(580, 15);
-            this.lblActionType.Text = "操作类型：";
-            // 
-            // cboActionType
-            // 
-            this.cboActionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboActionType.Location = new System.Drawing.Point(650, 12);
-            this.cboActionType.Size = new System.Drawing.Size(120, 25);
-            // 
-            // lblOperator
-            // 
-            this.lblOperator.AutoSize = true;
-            this.lblOperator.Location = new System.Drawing.Point(15, 50);
-            this.lblOperator.Text = "操作员：";
-            // 
-            // txtOperator
-            // 
-            this.txtOperator.Location = new System.Drawing.Point(85, 47);
-            this.txtOperator.Size = new System.Drawing.Size(150, 23);
+            this.btnClearFilter.Location = new System.Drawing.Point(495, 68);
+            this.btnClearFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearFilter.Name = "btnClearFilter";
+            this.btnClearFilter.Size = new System.Drawing.Size(135, 42);
+            this.btnClearFilter.TabIndex = 0;
+            this.btnClearFilter.Text = "清除筛选";
+            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
             // btnFilter
             // 
             this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFilter.ForeColor = System.Drawing.Color.White;
-            this.btnFilter.Location = new System.Drawing.Point(250, 45);
-            this.btnFilter.Size = new System.Drawing.Size(70, 28);
+            this.btnFilter.Location = new System.Drawing.Point(375, 68);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(105, 42);
+            this.btnFilter.TabIndex = 1;
             this.btnFilter.Text = "筛选";
+            this.btnFilter.UseVisualStyleBackColor = false;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
-            // btnClearFilter
+            // txtOperator
             // 
-            this.btnClearFilter.Location = new System.Drawing.Point(330, 45);
-            this.btnClearFilter.Size = new System.Drawing.Size(90, 28);
-            this.btnClearFilter.Text = "清除筛选";
-            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
+            this.txtOperator.Location = new System.Drawing.Point(128, 70);
+            this.txtOperator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOperator.Name = "txtOperator";
+            this.txtOperator.Size = new System.Drawing.Size(223, 30);
+            this.txtOperator.TabIndex = 2;
+            // 
+            // lblOperator
+            // 
+            this.lblOperator.AutoSize = true;
+            this.lblOperator.Location = new System.Drawing.Point(22, 75);
+            this.lblOperator.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOperator.Name = "lblOperator";
+            this.lblOperator.Size = new System.Drawing.Size(82, 24);
+            this.lblOperator.TabIndex = 3;
+            this.lblOperator.Text = "操作员：";
+            // 
+            // cboActionType
+            // 
+            this.cboActionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboActionType.Location = new System.Drawing.Point(975, 18);
+            this.cboActionType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboActionType.Name = "cboActionType";
+            this.cboActionType.Size = new System.Drawing.Size(178, 32);
+            this.cboActionType.TabIndex = 4;
+            // 
+            // lblActionType
+            // 
+            this.lblActionType.AutoSize = true;
+            this.lblActionType.Location = new System.Drawing.Point(870, 22);
+            this.lblActionType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblActionType.Name = "lblActionType";
+            this.lblActionType.Size = new System.Drawing.Size(100, 24);
+            this.lblActionType.TabIndex = 5;
+            this.lblActionType.Text = "操作类型：";
+            // 
+            // cboTargetType
+            // 
+            this.cboTargetType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTargetType.Location = new System.Drawing.Point(630, 18);
+            this.cboTargetType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTargetType.Name = "cboTargetType";
+            this.cboTargetType.Size = new System.Drawing.Size(208, 32);
+            this.cboTargetType.TabIndex = 6;
+            // 
+            // lblTargetType
+            // 
+            this.lblTargetType.AutoSize = true;
+            this.lblTargetType.Location = new System.Drawing.Point(525, 22);
+            this.lblTargetType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTargetType.Name = "lblTargetType";
+            this.lblTargetType.Size = new System.Drawing.Size(100, 24);
+            this.lblTargetType.TabIndex = 7;
+            this.lblTargetType.Text = "对象类型：";
+            // 
+            // dtpEndDate
+            // 
+            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEndDate.Location = new System.Drawing.Point(330, 18);
+            this.dtpEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(163, 30);
+            this.dtpEndDate.TabIndex = 8;
+            // 
+            // lblTo
+            // 
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(300, 22);
+            this.lblTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(28, 24);
+            this.lblTo.TabIndex = 9;
+            this.lblTo.Text = "至";
+            // 
+            // dtpStartDate
+            // 
+            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStartDate.Location = new System.Drawing.Point(128, 18);
+            this.dtpStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(163, 30);
+            this.dtpStartDate.TabIndex = 10;
+            // 
+            // lblDateRange
+            // 
+            this.lblDateRange.AutoSize = true;
+            this.lblDateRange.Location = new System.Drawing.Point(22, 22);
+            this.lblDateRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDateRange.Name = "lblDateRange";
+            this.lblDateRange.Size = new System.Drawing.Size(100, 24);
+            this.lblDateRange.TabIndex = 11;
+            this.lblDateRange.Text = "日期范围：";
             // 
             // dgvLogs
             // 
@@ -181,12 +241,17 @@ namespace BooksManagermentSysytem.Controls
             this.dgvLogs.AllowUserToDeleteRows = false;
             this.dgvLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLogs.BackgroundColor = System.Drawing.Color.White;
+            this.dgvLogs.ColumnHeadersHeight = 40;
             this.dgvLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLogs.Location = new System.Drawing.Point(0, 130);
+            this.dgvLogs.Location = new System.Drawing.Point(0, 195);
+            this.dgvLogs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLogs.Name = "dgvLogs";
             this.dgvLogs.ReadOnly = true;
             this.dgvLogs.RowHeadersVisible = false;
+            this.dgvLogs.RowHeadersWidth = 62;
             this.dgvLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLogs.Size = new System.Drawing.Size(950, 380);
+            this.dgvLogs.Size = new System.Drawing.Size(1425, 570);
+            this.dgvLogs.TabIndex = 0;
             // 
             // panelStats
             // 
@@ -194,32 +259,48 @@ namespace BooksManagermentSysytem.Controls
             this.panelStats.Controls.Add(this.lblStats);
             this.panelStats.Controls.Add(this.lblTotalCount);
             this.panelStats.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelStats.Location = new System.Drawing.Point(0, 510);
-            this.panelStats.Size = new System.Drawing.Size(950, 40);
-            // 
-            // lblTotalCount
-            // 
-            this.lblTotalCount.AutoSize = true;
-            this.lblTotalCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblTotalCount.Location = new System.Drawing.Point(15, 12);
-            this.lblTotalCount.Text = "总记录数：0";
+            this.panelStats.Location = new System.Drawing.Point(0, 765);
+            this.panelStats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStats.Name = "panelStats";
+            this.panelStats.Size = new System.Drawing.Size(1425, 60);
+            this.panelStats.TabIndex = 1;
             // 
             // lblStats
             // 
             this.lblStats.AutoSize = true;
             this.lblStats.ForeColor = System.Drawing.Color.Gray;
-            this.lblStats.Location = new System.Drawing.Point(150, 12);
+            this.lblStats.Location = new System.Drawing.Point(225, 18);
+            this.lblStats.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStats.Name = "lblStats";
+            this.lblStats.Size = new System.Drawing.Size(223, 24);
+            this.lblStats.TabIndex = 0;
             this.lblStats.Text = "提示：日志记录保留180天";
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTotalCount.Location = new System.Drawing.Point(22, 18);
+            this.lblTotalCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(113, 25);
+            this.lblTotalCount.TabIndex = 1;
+            this.lblTotalCount.Text = "总记录数：0";
             // 
             // SystemLogControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dgvLogs);
             this.Controls.Add(this.panelStats);
             this.Controls.Add(this.panelFilter);
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(950, 550);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "SystemLogControl";
+            this.Size = new System.Drawing.Size(1425, 825);
             this.Load += new System.EventHandler(this.SystemLogControl_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelFilter.ResumeLayout(false);
@@ -228,6 +309,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelStats.ResumeLayout(false);
             this.panelStats.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelHeader;

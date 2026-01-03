@@ -23,19 +23,19 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.lblCardID = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cboStatus = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnShowAll = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.cboStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.lblCardID = new System.Windows.Forms.Label();
             this.dgvFines = new System.Windows.Forms.DataGridView();
             this.panelSummary = new System.Windows.Forms.Panel();
-            this.lblTotalUnpaid = new System.Windows.Forms.Label();
             this.lblTotalPaid = new System.Windows.Forms.Label();
+            this.lblTotalUnpaid = new System.Windows.Forms.Label();
             this.panelActions = new System.Windows.Forms.Panel();
-            this.btnMarkPaid = new System.Windows.Forms.Button();
             this.btnPrintNotice = new System.Windows.Forms.Button();
+            this.btnMarkPaid = new System.Windows.Forms.Button();
             this.panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFines)).BeginInit();
             this.panelSummary.SuspendLayout();
@@ -52,48 +52,76 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.txtCardID);
             this.panelSearch.Controls.Add(this.lblCardID);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSearch.Size = new System.Drawing.Size(900, 50);
+            this.panelSearch.Location = new System.Drawing.Point(0, 0);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(1350, 75);
+            this.panelSearch.TabIndex = 3;
             // 
-            // lblCardID
+            // btnShowAll
             // 
-            this.lblCardID.AutoSize = true;
-            this.lblCardID.Location = new System.Drawing.Point(20, 15);
-            this.lblCardID.Text = "借书证号：";
-            // 
-            // txtCardID
-            // 
-            this.txtCardID.Location = new System.Drawing.Point(90, 12);
-            this.txtCardID.Size = new System.Drawing.Size(150, 23);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(260, 15);
-            this.lblStatus.Text = "状态：";
-            // 
-            // cboStatus
-            // 
-            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStatus.Items.AddRange(new object[] { "全部", "未支付", "已支付" });
-            this.cboStatus.Location = new System.Drawing.Point(305, 12);
-            this.cboStatus.Size = new System.Drawing.Size(100, 25);
+            this.btnShowAll.Location = new System.Drawing.Point(765, 15);
+            this.btnShowAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowAll.Name = "btnShowAll";
+            this.btnShowAll.Size = new System.Drawing.Size(150, 42);
+            this.btnShowAll.TabIndex = 0;
+            this.btnShowAll.Text = "显示全部未付";
+            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(420, 10);
-            this.btnSearch.Size = new System.Drawing.Size(80, 28);
+            this.btnSearch.Location = new System.Drawing.Point(630, 15);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(120, 42);
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // btnShowAll
+            // cboStatus
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(510, 10);
-            this.btnShowAll.Size = new System.Drawing.Size(100, 28);
-            this.btnShowAll.Text = "显示全部未付";
-            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
+            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStatus.Items.AddRange(new object[] {
+            "全部",
+            "未支付",
+            "已支付"});
+            this.cboStatus.Location = new System.Drawing.Point(458, 18);
+            this.cboStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStatus.Name = "cboStatus";
+            this.cboStatus.Size = new System.Drawing.Size(148, 32);
+            this.cboStatus.TabIndex = 2;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(390, 22);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(64, 24);
+            this.lblStatus.TabIndex = 3;
+            this.lblStatus.Text = "状态：";
+            // 
+            // txtCardID
+            // 
+            this.txtCardID.Location = new System.Drawing.Point(135, 18);
+            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardID.Name = "txtCardID";
+            this.txtCardID.Size = new System.Drawing.Size(223, 30);
+            this.txtCardID.TabIndex = 4;
+            // 
+            // lblCardID
+            // 
+            this.lblCardID.AutoSize = true;
+            this.lblCardID.Location = new System.Drawing.Point(30, 22);
+            this.lblCardID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardID.Name = "lblCardID";
+            this.lblCardID.Size = new System.Drawing.Size(100, 24);
+            this.lblCardID.TabIndex = 5;
+            this.lblCardID.Text = "借书证号：";
             // 
             // dgvFines
             // 
@@ -101,11 +129,17 @@ namespace BooksManagermentSysytem.Controls
             this.dgvFines.AllowUserToDeleteRows = false;
             this.dgvFines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvFines.BackgroundColor = System.Drawing.Color.White;
+            this.dgvFines.ColumnHeadersHeight = 40;
             this.dgvFines.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvFines.Location = new System.Drawing.Point(0, 50);
+            this.dgvFines.Location = new System.Drawing.Point(0, 75);
+            this.dgvFines.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvFines.Name = "dgvFines";
             this.dgvFines.ReadOnly = true;
             this.dgvFines.RowHeadersVisible = false;
+            this.dgvFines.RowHeadersWidth = 62;
             this.dgvFines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvFines.Size = new System.Drawing.Size(1350, 585);
+            this.dgvFines.TabIndex = 0;
             // 
             // panelSummary
             // 
@@ -113,24 +147,33 @@ namespace BooksManagermentSysytem.Controls
             this.panelSummary.Controls.Add(this.lblTotalPaid);
             this.panelSummary.Controls.Add(this.lblTotalUnpaid);
             this.panelSummary.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelSummary.Location = new System.Drawing.Point(0, 440);
-            this.panelSummary.Size = new System.Drawing.Size(900, 40);
-            // 
-            // lblTotalUnpaid
-            // 
-            this.lblTotalUnpaid.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblTotalUnpaid.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalUnpaid.Location = new System.Drawing.Point(20, 10);
-            this.lblTotalUnpaid.Size = new System.Drawing.Size(250, 22);
-            this.lblTotalUnpaid.Text = "未支付总额：¥0.00";
+            this.panelSummary.Location = new System.Drawing.Point(0, 660);
+            this.panelSummary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSummary.Name = "panelSummary";
+            this.panelSummary.Size = new System.Drawing.Size(1350, 60);
+            this.panelSummary.TabIndex = 1;
             // 
             // lblTotalPaid
             // 
             this.lblTotalPaid.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
             this.lblTotalPaid.ForeColor = System.Drawing.Color.Green;
-            this.lblTotalPaid.Location = new System.Drawing.Point(300, 10);
-            this.lblTotalPaid.Size = new System.Drawing.Size(250, 22);
+            this.lblTotalPaid.Location = new System.Drawing.Point(450, 15);
+            this.lblTotalPaid.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalPaid.Name = "lblTotalPaid";
+            this.lblTotalPaid.Size = new System.Drawing.Size(375, 33);
+            this.lblTotalPaid.TabIndex = 0;
             this.lblTotalPaid.Text = "已支付总额：¥0.00";
+            // 
+            // lblTotalUnpaid
+            // 
+            this.lblTotalUnpaid.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTotalUnpaid.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalUnpaid.Location = new System.Drawing.Point(30, 15);
+            this.lblTotalUnpaid.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalUnpaid.Name = "lblTotalUnpaid";
+            this.lblTotalUnpaid.Size = new System.Drawing.Size(375, 33);
+            this.lblTotalUnpaid.TabIndex = 1;
+            this.lblTotalUnpaid.Text = "未支付总额：¥0.00";
             // 
             // panelActions
             // 
@@ -138,8 +181,21 @@ namespace BooksManagermentSysytem.Controls
             this.panelActions.Controls.Add(this.btnPrintNotice);
             this.panelActions.Controls.Add(this.btnMarkPaid);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(0, 480);
-            this.panelActions.Size = new System.Drawing.Size(900, 50);
+            this.panelActions.Location = new System.Drawing.Point(0, 720);
+            this.panelActions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelActions.Name = "panelActions";
+            this.panelActions.Size = new System.Drawing.Size(1350, 75);
+            this.panelActions.TabIndex = 2;
+            // 
+            // btnPrintNotice
+            // 
+            this.btnPrintNotice.Location = new System.Drawing.Point(690, 15);
+            this.btnPrintNotice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrintNotice.Name = "btnPrintNotice";
+            this.btnPrintNotice.Size = new System.Drawing.Size(180, 48);
+            this.btnPrintNotice.TabIndex = 0;
+            this.btnPrintNotice.Text = "打印催缴通知";
+            this.btnPrintNotice.Click += new System.EventHandler(this.btnPrintNotice_Click);
             // 
             // btnMarkPaid
             // 
@@ -147,27 +203,29 @@ namespace BooksManagermentSysytem.Controls
             this.btnMarkPaid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMarkPaid.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnMarkPaid.ForeColor = System.Drawing.Color.White;
-            this.btnMarkPaid.Location = new System.Drawing.Point(300, 8);
-            this.btnMarkPaid.Size = new System.Drawing.Size(140, 35);
+            this.btnMarkPaid.Location = new System.Drawing.Point(450, 12);
+            this.btnMarkPaid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMarkPaid.Name = "btnMarkPaid";
+            this.btnMarkPaid.Size = new System.Drawing.Size(210, 52);
+            this.btnMarkPaid.TabIndex = 1;
             this.btnMarkPaid.Text = "标记为已支付";
+            this.btnMarkPaid.UseVisualStyleBackColor = false;
             this.btnMarkPaid.Click += new System.EventHandler(this.btnMarkPaid_Click);
-            // 
-            // btnPrintNotice
-            // 
-            this.btnPrintNotice.Location = new System.Drawing.Point(460, 10);
-            this.btnPrintNotice.Size = new System.Drawing.Size(120, 32);
-            this.btnPrintNotice.Text = "打印催缴通知";
-            this.btnPrintNotice.Click += new System.EventHandler(this.btnPrintNotice_Click);
             // 
             // FineManagementControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.dgvFines);
-            this.Controls.Add(this.panelSummary);
-            this.Controls.Add(this.panelActions);
             this.Controls.Add(this.panelSearch);
+            this.Controls.Add(this.panelActions);
+            this.Controls.Add(this.panelSummary);
+            this.Controls.Add(this.dgvFines);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(900, 530);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "FineManagementControl";
+            this.Size = new System.Drawing.Size(1350, 795);
             this.Load += new System.EventHandler(this.FineManagementControl_Load);
             this.panelSearch.ResumeLayout(false);
             this.panelSearch.PerformLayout();
@@ -175,6 +233,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelSummary.ResumeLayout(false);
             this.panelActions.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelSearch;

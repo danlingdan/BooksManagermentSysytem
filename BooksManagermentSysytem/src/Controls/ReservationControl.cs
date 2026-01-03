@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
@@ -28,37 +29,37 @@ namespace BooksManagermentSysytem.Controls
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabNewReservation = new System.Windows.Forms.TabPage();
-            this.tabMyReservations = new System.Windows.Forms.TabPage();
-            this.panelReader = new System.Windows.Forms.Panel();
-            this.lblCardID = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
-            this.btnLoadReader = new System.Windows.Forms.Button();
-            this.lblReaderInfo = new System.Windows.Forms.Label();
-            this.panelSearch = new System.Windows.Forms.Panel();
-            this.lblSearchTitle = new System.Windows.Forms.Label();
-            this.lblKeyword = new System.Windows.Forms.Label();
-            this.txtKeyword = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.dgvSearchResults = new System.Windows.Forms.DataGridView();
-            this.btnAddToReservation = new System.Windows.Forms.Button();
             this.panelSelected = new System.Windows.Forms.Panel();
-            this.lblSelectedTitle = new System.Windows.Forms.Label();
-            this.dgvSelectedBooks = new System.Windows.Forms.DataGridView();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnConfirmReservation = new System.Windows.Forms.Button();
             this.lblRules = new System.Windows.Forms.Label();
+            this.btnConfirmReservation = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.dgvSelectedBooks = new System.Windows.Forms.DataGridView();
+            this.lblSelectedTitle = new System.Windows.Forms.Label();
+            this.panelSearch = new System.Windows.Forms.Panel();
+            this.btnAddToReservation = new System.Windows.Forms.Button();
+            this.dgvSearchResults = new System.Windows.Forms.DataGridView();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtKeyword = new System.Windows.Forms.TextBox();
+            this.lblKeyword = new System.Windows.Forms.Label();
+            this.lblSearchTitle = new System.Windows.Forms.Label();
+            this.panelReader = new System.Windows.Forms.Panel();
             this.lblMessage = new System.Windows.Forms.Label();
-            this.dgvMyReservations = new System.Windows.Forms.DataGridView();
-            this.btnCancelReservation = new System.Windows.Forms.Button();
+            this.lblReaderInfo = new System.Windows.Forms.Label();
+            this.btnLoadReader = new System.Windows.Forms.Button();
+            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.lblCardID = new System.Windows.Forms.Label();
+            this.tabMyReservations = new System.Windows.Forms.TabPage();
             this.btnRefreshReservations = new System.Windows.Forms.Button();
+            this.btnCancelReservation = new System.Windows.Forms.Button();
+            this.dgvMyReservations = new System.Windows.Forms.DataGridView();
             this.tabControl.SuspendLayout();
             this.tabNewReservation.SuspendLayout();
-            this.tabMyReservations.SuspendLayout();
-            this.panelReader.SuspendLayout();
-            this.panelSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSearchResults)).BeginInit();
             this.panelSelected.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedBooks)).BeginInit();
+            this.panelSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearchResults)).BeginInit();
+            this.panelReader.SuspendLayout();
+            this.tabMyReservations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyReservations)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,72 +69,101 @@ namespace BooksManagermentSysytem.Controls
             this.tabControl.Controls.Add(this.tabMyReservations);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Size = new System.Drawing.Size(900, 550);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1350, 825);
+            this.tabControl.TabIndex = 0;
             // 
             // tabNewReservation
             // 
             this.tabNewReservation.Controls.Add(this.panelSelected);
             this.tabNewReservation.Controls.Add(this.panelSearch);
             this.tabNewReservation.Controls.Add(this.panelReader);
-            this.tabNewReservation.Location = new System.Drawing.Point(4, 26);
+            this.tabNewReservation.Location = new System.Drawing.Point(4, 33);
+            this.tabNewReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabNewReservation.Name = "tabNewReservation";
-            this.tabNewReservation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNewReservation.Size = new System.Drawing.Size(892, 520);
+            this.tabNewReservation.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabNewReservation.Size = new System.Drawing.Size(1342, 788);
+            this.tabNewReservation.TabIndex = 0;
             this.tabNewReservation.Text = "新建预约";
             // 
-            // tabMyReservations
+            // panelSelected
             // 
-            this.tabMyReservations.Controls.Add(this.btnRefreshReservations);
-            this.tabMyReservations.Controls.Add(this.btnCancelReservation);
-            this.tabMyReservations.Controls.Add(this.dgvMyReservations);
-            this.tabMyReservations.Location = new System.Drawing.Point(4, 26);
-            this.tabMyReservations.Name = "tabMyReservations";
-            this.tabMyReservations.Size = new System.Drawing.Size(892, 520);
-            this.tabMyReservations.Text = "我的预约";
+            this.panelSelected.Controls.Add(this.lblRules);
+            this.panelSelected.Controls.Add(this.btnConfirmReservation);
+            this.panelSelected.Controls.Add(this.btnRemove);
+            this.panelSelected.Controls.Add(this.dgvSelectedBooks);
+            this.panelSelected.Controls.Add(this.lblSelectedTitle);
+            this.panelSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSelected.Location = new System.Drawing.Point(4, 394);
+            this.panelSelected.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSelected.Name = "panelSelected";
+            this.panelSelected.Size = new System.Drawing.Size(1334, 390);
+            this.panelSelected.TabIndex = 0;
             // 
-            // panelReader
+            // lblRules
             // 
-            this.panelReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.panelReader.Controls.Add(this.lblMessage);
-            this.panelReader.Controls.Add(this.lblReaderInfo);
-            this.panelReader.Controls.Add(this.btnLoadReader);
-            this.panelReader.Controls.Add(this.txtCardID);
-            this.panelReader.Controls.Add(this.lblCardID);
-            this.panelReader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelReader.Location = new System.Drawing.Point(3, 3);
-            this.panelReader.Size = new System.Drawing.Size(886, 60);
+            this.lblRules.ForeColor = System.Drawing.Color.Gray;
+            this.lblRules.Location = new System.Drawing.Point(15, 330);
+            this.lblRules.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRules.Name = "lblRules";
+            this.lblRules.Size = new System.Drawing.Size(1050, 38);
+            this.lblRules.TabIndex = 0;
+            this.lblRules.Text = "预约规则：最多预约3本，最多2个分类，预约后需在3天内取书，否则自动取消。有未完成预约时不能再次预约。";
             // 
-            // lblCardID
+            // btnConfirmReservation
             // 
-            this.lblCardID.AutoSize = true;
-            this.lblCardID.Location = new System.Drawing.Point(15, 20);
-            this.lblCardID.Text = "借书证号：";
+            this.btnConfirmReservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConfirmReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmReservation.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnConfirmReservation.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmReservation.Location = new System.Drawing.Point(525, 255);
+            this.btnConfirmReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfirmReservation.Name = "btnConfirmReservation";
+            this.btnConfirmReservation.Size = new System.Drawing.Size(225, 57);
+            this.btnConfirmReservation.TabIndex = 1;
+            this.btnConfirmReservation.Text = "确认预约";
+            this.btnConfirmReservation.UseVisualStyleBackColor = false;
+            this.btnConfirmReservation.Click += new System.EventHandler(this.btnConfirmReservation_Click);
             // 
-            // txtCardID
+            // btnRemove
             // 
-            this.txtCardID.Location = new System.Drawing.Point(85, 17);
-            this.txtCardID.Size = new System.Drawing.Size(160, 23);
+            this.btnRemove.Location = new System.Drawing.Point(1200, 52);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(112, 42);
+            this.btnRemove.TabIndex = 2;
+            this.btnRemove.Text = "移除";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // btnLoadReader
+            // dgvSelectedBooks
             // 
-            this.btnLoadReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnLoadReader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadReader.ForeColor = System.Drawing.Color.White;
-            this.btnLoadReader.Location = new System.Drawing.Point(255, 15);
-            this.btnLoadReader.Size = new System.Drawing.Size(70, 28);
-            this.btnLoadReader.Text = "查询";
-            this.btnLoadReader.Click += new System.EventHandler(this.btnLoadReader_Click);
+            this.dgvSelectedBooks.AllowUserToAddRows = false;
+            this.dgvSelectedBooks.AllowUserToDeleteRows = false;
+            this.dgvSelectedBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSelectedBooks.BackgroundColor = System.Drawing.Color.White;
+            this.dgvSelectedBooks.ColumnHeadersHeight = 40;
+            this.dgvSelectedBooks.Location = new System.Drawing.Point(15, 52);
+            this.dgvSelectedBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSelectedBooks.Name = "dgvSelectedBooks";
+            this.dgvSelectedBooks.ReadOnly = true;
+            this.dgvSelectedBooks.RowHeadersVisible = false;
+            this.dgvSelectedBooks.RowHeadersWidth = 62;
+            this.dgvSelectedBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSelectedBooks.Size = new System.Drawing.Size(1170, 180);
+            this.dgvSelectedBooks.TabIndex = 3;
             // 
-            // lblReaderInfo
+            // lblSelectedTitle
             // 
-            this.lblReaderInfo.Location = new System.Drawing.Point(340, 18);
-            this.lblReaderInfo.Size = new System.Drawing.Size(350, 25);
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(700, 18);
-            this.lblMessage.Size = new System.Drawing.Size(180, 25);
+            this.lblSelectedTitle.AutoSize = true;
+            this.lblSelectedTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblSelectedTitle.Location = new System.Drawing.Point(15, 12);
+            this.lblSelectedTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSelectedTitle.Name = "lblSelectedTitle";
+            this.lblSelectedTitle.Size = new System.Drawing.Size(156, 25);
+            this.lblSelectedTitle.TabIndex = 4;
+            this.lblSelectedTitle.Text = "已选择的预约书籍";
             // 
             // panelSearch
             // 
@@ -144,33 +174,25 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.lblKeyword);
             this.panelSearch.Controls.Add(this.lblSearchTitle);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSearch.Location = new System.Drawing.Point(3, 63);
-            this.panelSearch.Size = new System.Drawing.Size(886, 200);
+            this.panelSearch.Location = new System.Drawing.Point(4, 94);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(1334, 300);
+            this.panelSearch.TabIndex = 1;
             // 
-            // lblSearchTitle
+            // btnAddToReservation
             // 
-            this.lblSearchTitle.AutoSize = true;
-            this.lblSearchTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblSearchTitle.Location = new System.Drawing.Point(10, 8);
-            this.lblSearchTitle.Text = "搜索图书";
-            // 
-            // lblKeyword
-            // 
-            this.lblKeyword.AutoSize = true;
-            this.lblKeyword.Location = new System.Drawing.Point(10, 38);
-            this.lblKeyword.Text = "关键词：";
-            // 
-            // txtKeyword
-            // 
-            this.txtKeyword.Location = new System.Drawing.Point(70, 35);
-            this.txtKeyword.Size = new System.Drawing.Size(200, 23);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(280, 33);
-            this.btnSearch.Size = new System.Drawing.Size(70, 28);
-            this.btnSearch.Text = "搜索";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnAddToReservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
+            this.btnAddToReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddToReservation.ForeColor = System.Drawing.Color.White;
+            this.btnAddToReservation.Location = new System.Drawing.Point(1200, 98);
+            this.btnAddToReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddToReservation.Name = "btnAddToReservation";
+            this.btnAddToReservation.Size = new System.Drawing.Size(112, 45);
+            this.btnAddToReservation.TabIndex = 0;
+            this.btnAddToReservation.Text = "添加";
+            this.btnAddToReservation.UseVisualStyleBackColor = false;
+            this.btnAddToReservation.Click += new System.EventHandler(this.btnAddToReservation_Click);
             // 
             // dgvSearchResults
             // 
@@ -178,76 +200,153 @@ namespace BooksManagermentSysytem.Controls
             this.dgvSearchResults.AllowUserToDeleteRows = false;
             this.dgvSearchResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSearchResults.BackgroundColor = System.Drawing.Color.White;
-            this.dgvSearchResults.Location = new System.Drawing.Point(10, 65);
+            this.dgvSearchResults.ColumnHeadersHeight = 40;
+            this.dgvSearchResults.Location = new System.Drawing.Point(15, 98);
+            this.dgvSearchResults.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSearchResults.Name = "dgvSearchResults";
             this.dgvSearchResults.ReadOnly = true;
             this.dgvSearchResults.RowHeadersVisible = false;
+            this.dgvSearchResults.RowHeadersWidth = 62;
             this.dgvSearchResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSearchResults.Size = new System.Drawing.Size(780, 125);
+            this.dgvSearchResults.Size = new System.Drawing.Size(1170, 188);
+            this.dgvSearchResults.TabIndex = 1;
             // 
-            // btnAddToReservation
+            // btnSearch
             // 
-            this.btnAddToReservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
-            this.btnAddToReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddToReservation.ForeColor = System.Drawing.Color.White;
-            this.btnAddToReservation.Location = new System.Drawing.Point(800, 65);
-            this.btnAddToReservation.Size = new System.Drawing.Size(75, 30);
-            this.btnAddToReservation.Text = "添加";
-            this.btnAddToReservation.Click += new System.EventHandler(this.btnAddToReservation_Click);
+            this.btnSearch.Location = new System.Drawing.Point(420, 50);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(105, 42);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // panelSelected
+            // txtKeyword
             // 
-            this.panelSelected.Controls.Add(this.lblRules);
-            this.panelSelected.Controls.Add(this.btnConfirmReservation);
-            this.panelSelected.Controls.Add(this.btnRemove);
-            this.panelSelected.Controls.Add(this.dgvSelectedBooks);
-            this.panelSelected.Controls.Add(this.lblSelectedTitle);
-            this.panelSelected.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSelected.Location = new System.Drawing.Point(3, 263);
-            this.panelSelected.Size = new System.Drawing.Size(886, 254);
+            this.txtKeyword.Location = new System.Drawing.Point(105, 52);
+            this.txtKeyword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKeyword.Name = "txtKeyword";
+            this.txtKeyword.Size = new System.Drawing.Size(298, 30);
+            this.txtKeyword.TabIndex = 3;
             // 
-            // lblSelectedTitle
+            // lblKeyword
             // 
-            this.lblSelectedTitle.AutoSize = true;
-            this.lblSelectedTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblSelectedTitle.Location = new System.Drawing.Point(10, 8);
-            this.lblSelectedTitle.Text = "已选择的预约书籍";
+            this.lblKeyword.AutoSize = true;
+            this.lblKeyword.Location = new System.Drawing.Point(15, 57);
+            this.lblKeyword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblKeyword.Name = "lblKeyword";
+            this.lblKeyword.Size = new System.Drawing.Size(82, 24);
+            this.lblKeyword.TabIndex = 4;
+            this.lblKeyword.Text = "关键词：";
             // 
-            // dgvSelectedBooks
+            // lblSearchTitle
             // 
-            this.dgvSelectedBooks.AllowUserToAddRows = false;
-            this.dgvSelectedBooks.AllowUserToDeleteRows = false;
-            this.dgvSelectedBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSelectedBooks.BackgroundColor = System.Drawing.Color.White;
-            this.dgvSelectedBooks.Location = new System.Drawing.Point(10, 35);
-            this.dgvSelectedBooks.ReadOnly = true;
-            this.dgvSelectedBooks.RowHeadersVisible = false;
-            this.dgvSelectedBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelectedBooks.Size = new System.Drawing.Size(780, 120);
+            this.lblSearchTitle.AutoSize = true;
+            this.lblSearchTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblSearchTitle.Location = new System.Drawing.Point(15, 12);
+            this.lblSearchTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSearchTitle.Name = "lblSearchTitle";
+            this.lblSearchTitle.Size = new System.Drawing.Size(84, 25);
+            this.lblSearchTitle.TabIndex = 5;
+            this.lblSearchTitle.Text = "搜索图书";
             // 
-            // btnRemove
+            // panelReader
             // 
-            this.btnRemove.Location = new System.Drawing.Point(800, 35);
-            this.btnRemove.Size = new System.Drawing.Size(75, 28);
-            this.btnRemove.Text = "移除";
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.panelReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.panelReader.Controls.Add(this.lblMessage);
+            this.panelReader.Controls.Add(this.lblReaderInfo);
+            this.panelReader.Controls.Add(this.btnLoadReader);
+            this.panelReader.Controls.Add(this.txtCardID);
+            this.panelReader.Controls.Add(this.lblCardID);
+            this.panelReader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelReader.Location = new System.Drawing.Point(4, 4);
+            this.panelReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReader.Name = "panelReader";
+            this.panelReader.Size = new System.Drawing.Size(1334, 90);
+            this.panelReader.TabIndex = 2;
             // 
-            // btnConfirmReservation
+            // lblMessage
             // 
-            this.btnConfirmReservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnConfirmReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmReservation.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmReservation.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmReservation.Location = new System.Drawing.Point(350, 170);
-            this.btnConfirmReservation.Size = new System.Drawing.Size(150, 38);
-            this.btnConfirmReservation.Text = "确认预约";
-            this.btnConfirmReservation.Click += new System.EventHandler(this.btnConfirmReservation_Click);
+            this.lblMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblMessage.Location = new System.Drawing.Point(1050, 27);
+            this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(270, 38);
+            this.lblMessage.TabIndex = 0;
             // 
-            // lblRules
+            // lblReaderInfo
             // 
-            this.lblRules.ForeColor = System.Drawing.Color.Gray;
-            this.lblRules.Location = new System.Drawing.Point(10, 220);
-            this.lblRules.Size = new System.Drawing.Size(700, 25);
-            this.lblRules.Text = "预约规则：最多预约3本，最多2个分类，预约后需在3天内取书，否则自动取消。有未完成预约时不能再次预约。";
+            this.lblReaderInfo.Location = new System.Drawing.Point(510, 27);
+            this.lblReaderInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderInfo.Name = "lblReaderInfo";
+            this.lblReaderInfo.Size = new System.Drawing.Size(525, 38);
+            this.lblReaderInfo.TabIndex = 1;
+            // 
+            // btnLoadReader
+            // 
+            this.btnLoadReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnLoadReader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadReader.ForeColor = System.Drawing.Color.White;
+            this.btnLoadReader.Location = new System.Drawing.Point(382, 22);
+            this.btnLoadReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLoadReader.Name = "btnLoadReader";
+            this.btnLoadReader.Size = new System.Drawing.Size(105, 42);
+            this.btnLoadReader.TabIndex = 2;
+            this.btnLoadReader.Text = "查询";
+            this.btnLoadReader.UseVisualStyleBackColor = false;
+            this.btnLoadReader.Click += new System.EventHandler(this.btnLoadReader_Click);
+            // 
+            // txtCardID
+            // 
+            this.txtCardID.Location = new System.Drawing.Point(128, 26);
+            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardID.Name = "txtCardID";
+            this.txtCardID.Size = new System.Drawing.Size(238, 30);
+            this.txtCardID.TabIndex = 3;
+            // 
+            // lblCardID
+            // 
+            this.lblCardID.AutoSize = true;
+            this.lblCardID.Location = new System.Drawing.Point(22, 30);
+            this.lblCardID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardID.Name = "lblCardID";
+            this.lblCardID.Size = new System.Drawing.Size(100, 24);
+            this.lblCardID.TabIndex = 4;
+            this.lblCardID.Text = "借书证号：";
+            // 
+            // tabMyReservations
+            // 
+            this.tabMyReservations.Controls.Add(this.btnRefreshReservations);
+            this.tabMyReservations.Controls.Add(this.btnCancelReservation);
+            this.tabMyReservations.Controls.Add(this.dgvMyReservations);
+            this.tabMyReservations.Location = new System.Drawing.Point(4, 33);
+            this.tabMyReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabMyReservations.Name = "tabMyReservations";
+            this.tabMyReservations.Size = new System.Drawing.Size(1342, 788);
+            this.tabMyReservations.TabIndex = 1;
+            this.tabMyReservations.Text = "我的预约";
+            // 
+            // btnRefreshReservations
+            // 
+            this.btnRefreshReservations.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnRefreshReservations.Location = new System.Drawing.Point(705, 720);
+            this.btnRefreshReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefreshReservations.Name = "btnRefreshReservations";
+            this.btnRefreshReservations.Size = new System.Drawing.Size(150, 45);
+            this.btnRefreshReservations.TabIndex = 0;
+            this.btnRefreshReservations.Text = "刷新";
+            this.btnRefreshReservations.Click += new System.EventHandler(this.btnRefreshReservations_Click);
+            // 
+            // btnCancelReservation
+            // 
+            this.btnCancelReservation.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancelReservation.Location = new System.Drawing.Point(525, 720);
+            this.btnCancelReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelReservation.Name = "btnCancelReservation";
+            this.btnCancelReservation.Size = new System.Drawing.Size(150, 45);
+            this.btnCancelReservation.TabIndex = 1;
+            this.btnCancelReservation.Text = "取消预约";
+            this.btnCancelReservation.Click += new System.EventHandler(this.btnCancelReservation_Click);
             // 
             // dgvMyReservations
             // 
@@ -255,47 +354,44 @@ namespace BooksManagermentSysytem.Controls
             this.dgvMyReservations.AllowUserToDeleteRows = false;
             this.dgvMyReservations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMyReservations.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMyReservations.ColumnHeadersHeight = 40;
             this.dgvMyReservations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMyReservations.Location = new System.Drawing.Point(0, 0);
+            this.dgvMyReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvMyReservations.Name = "dgvMyReservations";
             this.dgvMyReservations.ReadOnly = true;
             this.dgvMyReservations.RowHeadersVisible = false;
+            this.dgvMyReservations.RowHeadersWidth = 62;
             this.dgvMyReservations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            // 
-            // btnCancelReservation
-            // 
-            this.btnCancelReservation.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCancelReservation.Location = new System.Drawing.Point(350, 480);
-            this.btnCancelReservation.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelReservation.Text = "取消预约";
-            this.btnCancelReservation.Click += new System.EventHandler(this.btnCancelReservation_Click);
-            // 
-            // btnRefreshReservations
-            // 
-            this.btnRefreshReservations.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnRefreshReservations.Location = new System.Drawing.Point(470, 480);
-            this.btnRefreshReservations.Size = new System.Drawing.Size(100, 30);
-            this.btnRefreshReservations.Text = "刷新";
-            this.btnRefreshReservations.Click += new System.EventHandler(this.btnRefreshReservations_Click);
+            this.dgvMyReservations.Size = new System.Drawing.Size(1342, 788);
+            this.dgvMyReservations.TabIndex = 2;
             // 
             // ReservationControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(900, 550);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "ReservationControl";
+            this.Size = new System.Drawing.Size(1350, 825);
             this.Load += new System.EventHandler(this.ReservationControl_Load);
             this.tabControl.ResumeLayout(false);
             this.tabNewReservation.ResumeLayout(false);
-            this.tabMyReservations.ResumeLayout(false);
-            this.panelReader.ResumeLayout(false);
-            this.panelReader.PerformLayout();
-            this.panelSearch.ResumeLayout(false);
-            this.panelSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSearchResults)).EndInit();
             this.panelSelected.ResumeLayout(false);
             this.panelSelected.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedBooks)).EndInit();
+            this.panelSearch.ResumeLayout(false);
+            this.panelSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearchResults)).EndInit();
+            this.panelReader.ResumeLayout(false);
+            this.panelReader.PerformLayout();
+            this.tabMyReservations.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyReservations)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.TabControl tabControl;

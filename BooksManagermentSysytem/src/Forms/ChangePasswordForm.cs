@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Services;
 
@@ -99,6 +100,8 @@ namespace BooksManagermentSysytem.Forms
             // ChangePasswordForm
             // 
             this.AcceptButton = this.btnOK;
+            this.AutoScaleDimensions = new SizeF(96F, 96F);
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(340, 230);
             this.Controls.Add(this.lblMessage);

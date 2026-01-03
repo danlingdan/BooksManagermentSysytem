@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
 using BooksManagermentSysytem.Models;
@@ -23,19 +24,19 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.lblCardID = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.lblReaderInfo = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.lblCardID = new System.Windows.Forms.Label();
             this.dgvBorrowedBooks = new System.Windows.Forms.DataGridView();
             this.panelReturn = new System.Windows.Forms.Panel();
-            this.lblReturnTitle = new System.Windows.Forms.Label();
-            this.lblCondition = new System.Windows.Forms.Label();
-            this.cboCondition = new System.Windows.Forms.ComboBox();
-            this.lblNote = new System.Windows.Forms.Label();
-            this.txtNote = new System.Windows.Forms.TextBox();
-            this.btnReturn = new System.Windows.Forms.Button();
             this.lblFineInfo = new System.Windows.Forms.Label();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.lblNote = new System.Windows.Forms.Label();
+            this.cboCondition = new System.Windows.Forms.ComboBox();
+            this.lblCondition = new System.Windows.Forms.Label();
+            this.lblReturnTitle = new System.Windows.Forms.Label();
             this.panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).BeginInit();
             this.panelReturn.SuspendLayout();
@@ -50,33 +51,50 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.lblCardID);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearch.Location = new System.Drawing.Point(0, 0);
-            this.panelSearch.Size = new System.Drawing.Size(900, 60);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(1350, 90);
+            this.panelSearch.TabIndex = 2;
             // 
-            // lblCardID
+            // lblReaderInfo
             // 
-            this.lblCardID.AutoSize = true;
-            this.lblCardID.Location = new System.Drawing.Point(20, 20);
-            this.lblCardID.Text = "借书证号：";
-            // 
-            // txtCardID
-            // 
-            this.txtCardID.Location = new System.Drawing.Point(90, 17);
-            this.txtCardID.Size = new System.Drawing.Size(180, 23);
+            this.lblReaderInfo.Location = new System.Drawing.Point(578, 27);
+            this.lblReaderInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderInfo.Name = "lblReaderInfo";
+            this.lblReaderInfo.Size = new System.Drawing.Size(750, 38);
+            this.lblReaderInfo.TabIndex = 0;
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(285, 15);
-            this.btnSearch.Size = new System.Drawing.Size(80, 28);
+            this.btnSearch.Location = new System.Drawing.Point(428, 22);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(120, 42);
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // lblReaderInfo
+            // txtCardID
             // 
-            this.lblReaderInfo.Location = new System.Drawing.Point(385, 18);
-            this.lblReaderInfo.Size = new System.Drawing.Size(500, 25);
+            this.txtCardID.Location = new System.Drawing.Point(135, 26);
+            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardID.Name = "txtCardID";
+            this.txtCardID.Size = new System.Drawing.Size(268, 30);
+            this.txtCardID.TabIndex = 2;
+            // 
+            // lblCardID
+            // 
+            this.lblCardID.AutoSize = true;
+            this.lblCardID.Location = new System.Drawing.Point(30, 30);
+            this.lblCardID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardID.Name = "lblCardID";
+            this.lblCardID.Size = new System.Drawing.Size(100, 24);
+            this.lblCardID.TabIndex = 3;
+            this.lblCardID.Text = "借书证号：";
             // 
             // dgvBorrowedBooks
             // 
@@ -84,12 +102,17 @@ namespace BooksManagermentSysytem.Controls
             this.dgvBorrowedBooks.AllowUserToDeleteRows = false;
             this.dgvBorrowedBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBorrowedBooks.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBorrowedBooks.ColumnHeadersHeight = 40;
             this.dgvBorrowedBooks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBorrowedBooks.Location = new System.Drawing.Point(0, 60);
+            this.dgvBorrowedBooks.Location = new System.Drawing.Point(0, 90);
+            this.dgvBorrowedBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBorrowedBooks.Name = "dgvBorrowedBooks";
             this.dgvBorrowedBooks.ReadOnly = true;
             this.dgvBorrowedBooks.RowHeadersVisible = false;
+            this.dgvBorrowedBooks.RowHeadersWidth = 62;
             this.dgvBorrowedBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBorrowedBooks.Size = new System.Drawing.Size(900, 330);
+            this.dgvBorrowedBooks.Size = new System.Drawing.Size(1350, 495);
+            this.dgvBorrowedBooks.TabIndex = 0;
             this.dgvBorrowedBooks.SelectionChanged += new System.EventHandler(this.dgvBorrowedBooks_SelectionChanged);
             // 
             // panelReturn
@@ -103,44 +126,21 @@ namespace BooksManagermentSysytem.Controls
             this.panelReturn.Controls.Add(this.lblCondition);
             this.panelReturn.Controls.Add(this.lblReturnTitle);
             this.panelReturn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelReturn.Location = new System.Drawing.Point(0, 390);
-            this.panelReturn.Size = new System.Drawing.Size(900, 130);
+            this.panelReturn.Location = new System.Drawing.Point(0, 585);
+            this.panelReturn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReturn.Name = "panelReturn";
+            this.panelReturn.Size = new System.Drawing.Size(1350, 195);
+            this.panelReturn.TabIndex = 1;
             // 
-            // lblReturnTitle
+            // lblFineInfo
             // 
-            this.lblReturnTitle.AutoSize = true;
-            this.lblReturnTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblReturnTitle.Location = new System.Drawing.Point(15, 10);
-            this.lblReturnTitle.Text = "归还操作";
-            // 
-            // lblCondition
-            // 
-            this.lblCondition.AutoSize = true;
-            this.lblCondition.Location = new System.Drawing.Point(15, 45);
-            this.lblCondition.Text = "归还状态：";
-            // 
-            // cboCondition
-            // 
-            this.cboCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCondition.Items.AddRange(new object[] {
-                "完好",
-                "轻微破损",
-                "严重破损",
-                "丢失"});
-            this.cboCondition.Location = new System.Drawing.Point(85, 42);
-            this.cboCondition.Size = new System.Drawing.Size(120, 25);
-            this.cboCondition.SelectedIndexChanged += new System.EventHandler(this.cboCondition_SelectedIndexChanged);
-            // 
-            // lblNote
-            // 
-            this.lblNote.AutoSize = true;
-            this.lblNote.Location = new System.Drawing.Point(230, 45);
-            this.lblNote.Text = "备注说明：";
-            // 
-            // txtNote
-            // 
-            this.txtNote.Location = new System.Drawing.Point(300, 42);
-            this.txtNote.Size = new System.Drawing.Size(250, 23);
+            this.lblFineInfo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblFineInfo.ForeColor = System.Drawing.Color.Red;
+            this.lblFineInfo.Location = new System.Drawing.Point(22, 128);
+            this.lblFineInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFineInfo.Name = "lblFineInfo";
+            this.lblFineInfo.Size = new System.Drawing.Size(1050, 45);
+            this.lblFineInfo.TabIndex = 0;
             // 
             // btnReturn
             // 
@@ -148,26 +148,82 @@ namespace BooksManagermentSysytem.Controls
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnReturn.ForeColor = System.Drawing.Color.White;
-            this.btnReturn.Location = new System.Drawing.Point(580, 35);
-            this.btnReturn.Size = new System.Drawing.Size(140, 40);
+            this.btnReturn.Location = new System.Drawing.Point(870, 52);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(210, 60);
+            this.btnReturn.TabIndex = 1;
             this.btnReturn.Text = "确认归还";
+            this.btnReturn.UseVisualStyleBackColor = false;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // lblFineInfo
+            // txtNote
             // 
-            this.lblFineInfo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblFineInfo.ForeColor = System.Drawing.Color.Red;
-            this.lblFineInfo.Location = new System.Drawing.Point(15, 85);
-            this.lblFineInfo.Size = new System.Drawing.Size(700, 30);
+            this.txtNote.Location = new System.Drawing.Point(450, 63);
+            this.txtNote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(373, 30);
+            this.txtNote.TabIndex = 2;
+            // 
+            // lblNote
+            // 
+            this.lblNote.AutoSize = true;
+            this.lblNote.Location = new System.Drawing.Point(345, 68);
+            this.lblNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(100, 24);
+            this.lblNote.TabIndex = 3;
+            this.lblNote.Text = "备注说明：";
+            // 
+            // cboCondition
+            // 
+            this.cboCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCondition.Items.AddRange(new object[] {
+            "完好",
+            "轻微破损",
+            "严重破损",
+            "丢失"});
+            this.cboCondition.Location = new System.Drawing.Point(128, 63);
+            this.cboCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboCondition.Name = "cboCondition";
+            this.cboCondition.Size = new System.Drawing.Size(178, 32);
+            this.cboCondition.TabIndex = 4;
+            this.cboCondition.SelectedIndexChanged += new System.EventHandler(this.cboCondition_SelectedIndexChanged);
+            // 
+            // lblCondition
+            // 
+            this.lblCondition.AutoSize = true;
+            this.lblCondition.Location = new System.Drawing.Point(22, 68);
+            this.lblCondition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCondition.Name = "lblCondition";
+            this.lblCondition.Size = new System.Drawing.Size(100, 24);
+            this.lblCondition.TabIndex = 5;
+            this.lblCondition.Text = "归还状态：";
+            // 
+            // lblReturnTitle
+            // 
+            this.lblReturnTitle.AutoSize = true;
+            this.lblReturnTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblReturnTitle.Location = new System.Drawing.Point(22, 15);
+            this.lblReturnTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReturnTitle.Name = "lblReturnTitle";
+            this.lblReturnTitle.Size = new System.Drawing.Size(92, 27);
+            this.lblReturnTitle.TabIndex = 6;
+            this.lblReturnTitle.Text = "归还操作";
             // 
             // ReturnBookControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dgvBorrowedBooks);
             this.Controls.Add(this.panelReturn);
             this.Controls.Add(this.panelSearch);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(900, 520);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "ReturnBookControl";
+            this.Size = new System.Drawing.Size(1350, 780);
             this.Load += new System.EventHandler(this.ReturnBookControl_Load);
             this.panelSearch.ResumeLayout(false);
             this.panelSearch.PerformLayout();
@@ -175,6 +231,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelReturn.ResumeLayout(false);
             this.panelReturn.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelSearch;

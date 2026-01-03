@@ -134,15 +134,21 @@
     <Compile Include="src\Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Forms\LoginForm.Designer.cs" />
+    <Compile Include="src\Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Forms\MainForm.Designer.cs" />
+    <Compile Include="src\Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Forms\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Forms\RegisterForm.Designer.cs" />
+    <Compile Include="src\Forms\RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Helpers\InputDialog.cs" />
     <Compile Include="src\Models\BusinessRules.cs" />
     <Compile Include="src\Models\Entities.cs" />
@@ -150,6 +156,7 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Services\AuthenticationService.cs" />
+    <Compile Include="src\Utils\DpiHelper.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -159,13 +166,51 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="src\Controls\BibliographyControl.resx">
+      <DependentUpon>BibliographyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\BookItemControl.resx">
+      <DependentUpon>BookItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\BookSearchControl.resx">
+      <DependentUpon>BookSearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\BorrowBookControl.resx">
+      <DependentUpon>BorrowBookControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\CategoryManagementControl.resx">
+      <DependentUpon>CategoryManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\FineManagementControl.resx">
+      <DependentUpon>FineManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\LibrarianDashboardControl.resx">
+      <DependentUpon>LibrarianDashboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\LocationManagementControl.resx">
+      <DependentUpon>LocationManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\PersonalInfoControl.resx">
+      <DependentUpon>PersonalInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\ReaderManagementControl.resx">
+      <DependentUpon>ReaderManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\ReservationControl.resx">
+      <DependentUpon>ReservationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\ReturnBookControl.resx">
+      <DependentUpon>ReturnBookControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\SystemLogControl.resx">
+      <DependentUpon>SystemLogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\UserManagementControl.resx">
+      <DependentUpon>UserManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="docs\README-高DPI支持.md" />
     <None Include="docs\个人信息和罚款功能说明.md" />
     <None Include="docs\用户管理和系统日志功能说明.md" />
-    <None Include="docs\高DPI支持-快速配置指南.md" />
-    <None Include="docs\高DPI支持配置总结.md" />
-    <None Include="docs\高DPI支持配置说明.md" />
     <None Include="LibraryDBDataSet.xsc">
       <DependentUpon>LibraryDBDataSet.xsd</DependentUpon>
     </None>

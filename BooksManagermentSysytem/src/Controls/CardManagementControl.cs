@@ -77,9 +77,9 @@ namespace BooksManagermentSysytem.Controls
             // tabCardList
             // 
             this.tabCardList.BackColor = System.Drawing.Color.White;
-            this.tabCardList.Controls.Add(this.panelSearch);
             this.tabCardList.Controls.Add(this.dgvCards);
             this.tabCardList.Controls.Add(this.panelActions);
+            this.tabCardList.Controls.Add(this.panelSearch);
             this.tabCardList.Location = new System.Drawing.Point(4, 26);
             this.tabCardList.Name = "tabCardList";
             this.tabCardList.Padding = new System.Windows.Forms.Padding(3);
@@ -165,12 +165,10 @@ namespace BooksManagermentSysytem.Controls
             this.dgvCards.BackgroundColor = System.Drawing.Color.White;
             this.dgvCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCards.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCards.Location = new System.Drawing.Point(3, 53);
             this.dgvCards.MultiSelect = false;
             this.dgvCards.ReadOnly = true;
             this.dgvCards.RowHeadersVisible = false;
             this.dgvCards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCards.Size = new System.Drawing.Size(886, 464);
             this.dgvCards.SelectionChanged += new System.EventHandler(this.dgvCards_SelectionChanged);
             // 
             // panelActions
@@ -349,10 +347,15 @@ namespace BooksManagermentSysytem.Controls
             // 
             // CardManagementControl
             // 
+            this.AutoScaleDimensions = new SizeF(96F, 96F);
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.BackColor = Color.White;
             this.Controls.Add(this.tabControl);
+            this.Font = new Font("Microsoft YaHei UI", 9F);
+            this.MinimumSize = new Size(800, 500);
             this.Name = "CardManagementControl";
-            this.Size = new System.Drawing.Size(900, 600);
-            this.Load += new System.EventHandler(this.CardManagementControl_Load);
+            this.Size = new Size(900, 600);
+            this.Load += new EventHandler(this.CardManagementControl_Load);
             this.tabControl.ResumeLayout(false);
             this.tabCardList.ResumeLayout(false);
             this.tabNewCard.ResumeLayout(false);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
@@ -26,11 +27,11 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelReader = new System.Windows.Forms.Panel();
-            this.lblReaderTitle = new System.Windows.Forms.Label();
-            this.lblCardIDInput = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
-            this.btnLoadReader = new System.Windows.Forms.Button();
             this.lblReaderInfo = new System.Windows.Forms.Label();
+            this.btnLoadReader = new System.Windows.Forms.Button();
+            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.lblCardIDInput = new System.Windows.Forms.Label();
+            this.lblReaderTitle = new System.Windows.Forms.Label();
             this.panelBooks = new System.Windows.Forms.Panel();
             this.lblBooksTitle = new System.Windows.Forms.Label();
             this.lblBarcode = new System.Windows.Forms.Label();
@@ -40,9 +41,9 @@ namespace BooksManagermentSysytem.Controls
             this.btnRemoveBook = new System.Windows.Forms.Button();
             this.lblRules = new System.Windows.Forms.Label();
             this.panelAction = new System.Windows.Forms.Panel();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.btnBorrow = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.lblMessage = new System.Windows.Forms.Label();
             this.panelReader.SuspendLayout();
             this.panelBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedBooks)).BeginInit();
@@ -59,72 +60,109 @@ namespace BooksManagermentSysytem.Controls
             this.panelReader.Controls.Add(this.lblReaderTitle);
             this.panelReader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelReader.Location = new System.Drawing.Point(0, 0);
-            this.panelReader.Size = new System.Drawing.Size(900, 80);
+            this.panelReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReader.Name = "panelReader";
+            this.panelReader.Size = new System.Drawing.Size(1350, 120);
+            this.panelReader.TabIndex = 2;
             // 
-            // lblReaderTitle
+            // lblReaderInfo
             // 
-            this.lblReaderTitle.AutoSize = true;
-            this.lblReaderTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblReaderTitle.Location = new System.Drawing.Point(15, 10);
-            this.lblReaderTitle.Text = "读者信息";
-            // 
-            // lblCardIDInput
-            // 
-            this.lblCardIDInput.AutoSize = true;
-            this.lblCardIDInput.Location = new System.Drawing.Point(15, 45);
-            this.lblCardIDInput.Text = "借书证号：";
-            // 
-            // txtCardID
-            // 
-            this.txtCardID.Location = new System.Drawing.Point(85, 42);
-            this.txtCardID.Size = new System.Drawing.Size(180, 23);
+            this.lblReaderInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblReaderInfo.Location = new System.Drawing.Point(555, 52);
+            this.lblReaderInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderInfo.Name = "lblReaderInfo";
+            this.lblReaderInfo.Size = new System.Drawing.Size(750, 60);
+            this.lblReaderInfo.TabIndex = 0;
+            this.lblReaderInfo.Text = "请输入借书证号并点击查询";
             // 
             // btnLoadReader
             // 
             this.btnLoadReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnLoadReader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadReader.ForeColor = System.Drawing.Color.White;
-            this.btnLoadReader.Location = new System.Drawing.Point(275, 40);
-            this.btnLoadReader.Size = new System.Drawing.Size(80, 28);
+            this.btnLoadReader.Location = new System.Drawing.Point(412, 60);
+            this.btnLoadReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLoadReader.Name = "btnLoadReader";
+            this.btnLoadReader.Size = new System.Drawing.Size(120, 42);
+            this.btnLoadReader.TabIndex = 1;
             this.btnLoadReader.Text = "查询";
+            this.btnLoadReader.UseVisualStyleBackColor = false;
             this.btnLoadReader.Click += new System.EventHandler(this.btnLoadReader_Click);
             // 
-            // lblReaderInfo
+            // txtCardID
             // 
-            this.lblReaderInfo.Location = new System.Drawing.Point(370, 35);
-            this.lblReaderInfo.Size = new System.Drawing.Size(500, 40);
-            this.lblReaderInfo.Text = "请输入借书证号并点击查询";
+            this.txtCardID.Location = new System.Drawing.Point(128, 63);
+            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardID.Name = "txtCardID";
+            this.txtCardID.Size = new System.Drawing.Size(268, 30);
+            this.txtCardID.TabIndex = 2;
+            // 
+            // lblCardIDInput
+            // 
+            this.lblCardIDInput.AutoSize = true;
+            this.lblCardIDInput.Location = new System.Drawing.Point(22, 68);
+            this.lblCardIDInput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardIDInput.Name = "lblCardIDInput";
+            this.lblCardIDInput.Size = new System.Drawing.Size(100, 24);
+            this.lblCardIDInput.TabIndex = 3;
+            this.lblCardIDInput.Text = "借书证号：";
+            // 
+            // lblReaderTitle
+            // 
+            this.lblReaderTitle.AutoSize = true;
+            this.lblReaderTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblReaderTitle.Location = new System.Drawing.Point(22, 15);
+            this.lblReaderTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderTitle.Name = "lblReaderTitle";
+            this.lblReaderTitle.Size = new System.Drawing.Size(92, 27);
+            this.lblReaderTitle.TabIndex = 4;
+            this.lblReaderTitle.Text = "读者信息";
             // 
             // panelBooks
             // 
-            this.panelBooks.Controls.Add(this.lblRules);
-            this.panelBooks.Controls.Add(this.btnRemoveBook);
-            this.panelBooks.Controls.Add(this.dgvSelectedBooks);
-            this.panelBooks.Controls.Add(this.btnAddBook);
-            this.panelBooks.Controls.Add(this.txtBarcode);
-            this.panelBooks.Controls.Add(this.lblBarcode);
             this.panelBooks.Controls.Add(this.lblBooksTitle);
+            this.panelBooks.Controls.Add(this.lblBarcode);
+            this.panelBooks.Controls.Add(this.txtBarcode);
+            this.panelBooks.Controls.Add(this.btnAddBook);
+            this.panelBooks.Controls.Add(this.dgvSelectedBooks);
+            this.panelBooks.Controls.Add(this.btnRemoveBook);
+            this.panelBooks.Controls.Add(this.lblRules);
             this.panelBooks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBooks.Location = new System.Drawing.Point(0, 80);
-            this.panelBooks.Size = new System.Drawing.Size(900, 400);
+            this.panelBooks.Location = new System.Drawing.Point(0, 120);
+            this.panelBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelBooks.Name = "panelBooks";
+            this.panelBooks.Padding = new System.Windows.Forms.Padding(22, 22, 22, 22);
+            this.panelBooks.Size = new System.Drawing.Size(1350, 600);
+            this.panelBooks.TabIndex = 0;
             // 
             // lblBooksTitle
             // 
             this.lblBooksTitle.AutoSize = true;
             this.lblBooksTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblBooksTitle.Location = new System.Drawing.Point(15, 10);
+            this.lblBooksTitle.Location = new System.Drawing.Point(22, 15);
+            this.lblBooksTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBooksTitle.Name = "lblBooksTitle";
+            this.lblBooksTitle.Size = new System.Drawing.Size(132, 27);
+            this.lblBooksTitle.TabIndex = 0;
             this.lblBooksTitle.Text = "添加借阅书籍";
             // 
             // lblBarcode
             // 
             this.lblBarcode.AutoSize = true;
-            this.lblBarcode.Location = new System.Drawing.Point(15, 45);
+            this.lblBarcode.Location = new System.Drawing.Point(22, 68);
+            this.lblBarcode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBarcode.Name = "lblBarcode";
+            this.lblBarcode.Size = new System.Drawing.Size(100, 24);
+            this.lblBarcode.TabIndex = 1;
             this.lblBarcode.Text = "馆藏条码：";
             // 
             // txtBarcode
             // 
-            this.txtBarcode.Location = new System.Drawing.Point(85, 42);
-            this.txtBarcode.Size = new System.Drawing.Size(180, 23);
+            this.txtBarcode.Location = new System.Drawing.Point(128, 63);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(268, 30);
+            this.txtBarcode.TabIndex = 2;
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyDown);
             // 
             // btnAddBook
@@ -132,46 +170,80 @@ namespace BooksManagermentSysytem.Controls
             this.btnAddBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
             this.btnAddBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddBook.ForeColor = System.Drawing.Color.White;
-            this.btnAddBook.Location = new System.Drawing.Point(275, 40);
-            this.btnAddBook.Size = new System.Drawing.Size(80, 28);
+            this.btnAddBook.Location = new System.Drawing.Point(412, 60);
+            this.btnAddBook.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddBook.Name = "btnAddBook";
+            this.btnAddBook.Size = new System.Drawing.Size(120, 42);
+            this.btnAddBook.TabIndex = 3;
             this.btnAddBook.Text = "添加";
+            this.btnAddBook.UseVisualStyleBackColor = false;
             this.btnAddBook.Click += new System.EventHandler(this.btnAddBook_Click);
             // 
             // dgvSelectedBooks
             // 
             this.dgvSelectedBooks.AllowUserToAddRows = false;
             this.dgvSelectedBooks.AllowUserToDeleteRows = false;
+            this.dgvSelectedBooks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSelectedBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSelectedBooks.BackgroundColor = System.Drawing.Color.White;
-            this.dgvSelectedBooks.Location = new System.Drawing.Point(15, 80);
+            this.dgvSelectedBooks.ColumnHeadersHeight = 40;
+            this.dgvSelectedBooks.Location = new System.Drawing.Point(22, 120);
+            this.dgvSelectedBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSelectedBooks.Name = "dgvSelectedBooks";
             this.dgvSelectedBooks.ReadOnly = true;
             this.dgvSelectedBooks.RowHeadersVisible = false;
+            this.dgvSelectedBooks.RowHeadersWidth = 62;
             this.dgvSelectedBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelectedBooks.Size = new System.Drawing.Size(760, 200);
+            this.dgvSelectedBooks.Size = new System.Drawing.Size(2190, 825);
+            this.dgvSelectedBooks.TabIndex = 4;
             // 
             // btnRemoveBook
             // 
-            this.btnRemoveBook.Location = new System.Drawing.Point(785, 80);
-            this.btnRemoveBook.Size = new System.Drawing.Size(80, 30);
-            this.btnRemoveBook.Text = "移除选中";
+            this.btnRemoveBook.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveBook.Location = new System.Drawing.Point(2242, 120);
+            this.btnRemoveBook.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveBook.Name = "btnRemoveBook";
+            this.btnRemoveBook.Size = new System.Drawing.Size(120, 45);
+            this.btnRemoveBook.TabIndex = 5;
+            this.btnRemoveBook.Text = "移除";
             this.btnRemoveBook.Click += new System.EventHandler(this.btnRemoveBook_Click);
             // 
             // lblRules
             // 
+            this.lblRules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRules.AutoSize = true;
             this.lblRules.ForeColor = System.Drawing.Color.Gray;
-            this.lblRules.Location = new System.Drawing.Point(15, 290);
-            this.lblRules.Size = new System.Drawing.Size(760, 40);
+            this.lblRules.Location = new System.Drawing.Point(22, 968);
+            this.lblRules.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRules.Name = "lblRules";
+            this.lblRules.Size = new System.Drawing.Size(505, 24);
+            this.lblRules.TabIndex = 6;
             this.lblRules.Text = "借阅规则：每次最多借阅 3 本书，最多 2 个分类，借期 7 天。";
             // 
             // panelAction
             // 
             this.panelAction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.panelAction.Controls.Add(this.lblMessage);
-            this.panelAction.Controls.Add(this.btnClear);
             this.panelAction.Controls.Add(this.btnBorrow);
+            this.panelAction.Controls.Add(this.btnClear);
             this.panelAction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelAction.Location = new System.Drawing.Point(0, 480);
-            this.panelAction.Size = new System.Drawing.Size(900, 60);
+            this.panelAction.Location = new System.Drawing.Point(0, 720);
+            this.panelAction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelAction.Name = "panelAction";
+            this.panelAction.Size = new System.Drawing.Size(1350, 90);
+            this.panelAction.TabIndex = 1;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblMessage.Location = new System.Drawing.Point(22, 30);
+            this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 24);
+            this.lblMessage.TabIndex = 0;
             // 
             // btnBorrow
             // 
@@ -179,32 +251,38 @@ namespace BooksManagermentSysytem.Controls
             this.btnBorrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrow.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnBorrow.ForeColor = System.Drawing.Color.White;
-            this.btnBorrow.Location = new System.Drawing.Point(300, 12);
-            this.btnBorrow.Size = new System.Drawing.Size(150, 38);
+            this.btnBorrow.Location = new System.Drawing.Point(450, 18);
+            this.btnBorrow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBorrow.Name = "btnBorrow";
+            this.btnBorrow.Size = new System.Drawing.Size(225, 57);
+            this.btnBorrow.TabIndex = 1;
             this.btnBorrow.Text = "确认借阅";
+            this.btnBorrow.UseVisualStyleBackColor = false;
             this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(470, 15);
-            this.btnClear.Size = new System.Drawing.Size(100, 32);
+            this.btnClear.Location = new System.Drawing.Point(705, 22);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(150, 48);
+            this.btnClear.TabIndex = 2;
             this.btnClear.Text = "清空重来";
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // lblMessage
-            // 
-            this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(15, 20);
-            this.lblMessage.Size = new System.Drawing.Size(270, 20);
-            // 
             // BorrowBookControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panelBooks);
             this.Controls.Add(this.panelAction);
             this.Controls.Add(this.panelReader);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(900, 540);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "BorrowBookControl";
+            this.Size = new System.Drawing.Size(1350, 810);
             this.Load += new System.EventHandler(this.BorrowBookControl_Load);
             this.panelReader.ResumeLayout(false);
             this.panelReader.PerformLayout();
@@ -212,7 +290,9 @@ namespace BooksManagermentSysytem.Controls
             this.panelBooks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedBooks)).EndInit();
             this.panelAction.ResumeLayout(false);
+            this.panelAction.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelReader;

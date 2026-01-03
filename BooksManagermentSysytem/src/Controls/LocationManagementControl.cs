@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
 using BooksManagermentSysytem.Services;
@@ -22,43 +23,44 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.lblTreeTitle = new System.Windows.Forms.Label();
             this.treeLocations = new System.Windows.Forms.TreeView();
-            this.panelDetails = new System.Windows.Forms.Panel();
-            this.lblDetailsTitle = new System.Windows.Forms.Label();
-            this.lblCode = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.lblType = new System.Windows.Forms.Label();
-            this.cboType = new System.Windows.Forms.ComboBox();
-            this.lblMaxCapacity = new System.Windows.Forms.Label();
-            this.numMaxCapacity = new System.Windows.Forms.NumericUpDown();
-            this.lblCurrentQty = new System.Windows.Forms.Label();
-            this.lblCurrentQtyValue = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cboStatus = new System.Windows.Forms.ComboBox();
-            this.panelButtons = new System.Windows.Forms.Panel();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.lblBooks = new System.Windows.Forms.Label();
+            this.lblTreeTitle = new System.Windows.Forms.Label();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
+            this.lblBooks = new System.Windows.Forms.Label();
+            this.panelButtons = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.panelDetails = new System.Windows.Forms.Panel();
+            this.cboStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblCurrentQtyValue = new System.Windows.Forms.Label();
+            this.lblCurrentQty = new System.Windows.Forms.Label();
+            this.numMaxCapacity = new System.Windows.Forms.NumericUpDown();
+            this.lblMaxCapacity = new System.Windows.Forms.Label();
+            this.cboType = new System.Windows.Forms.ComboBox();
+            this.lblType = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.lblCode = new System.Windows.Forms.Label();
+            this.lblDetailsTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
+            this.panelButtons.SuspendLayout();
             this.panelDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxCapacity)).BeginInit();
-            this.panelButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.Size = new System.Drawing.Size(900, 550);
-            this.splitContainer.SplitterDistance = 280;
+            this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
             // 
@@ -71,6 +73,20 @@ namespace BooksManagermentSysytem.Controls
             this.splitContainer.Panel2.Controls.Add(this.lblBooks);
             this.splitContainer.Panel2.Controls.Add(this.panelButtons);
             this.splitContainer.Panel2.Controls.Add(this.panelDetails);
+            this.splitContainer.Size = new System.Drawing.Size(1350, 825);
+            this.splitContainer.SplitterDistance = 420;
+            this.splitContainer.SplitterWidth = 6;
+            this.splitContainer.TabIndex = 0;
+            // 
+            // treeLocations
+            // 
+            this.treeLocations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeLocations.Location = new System.Drawing.Point(0, 45);
+            this.treeLocations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeLocations.Name = "treeLocations";
+            this.treeLocations.Size = new System.Drawing.Size(420, 780);
+            this.treeLocations.TabIndex = 0;
+            this.treeLocations.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeLocations_AfterSelect);
             // 
             // lblTreeTitle
             // 
@@ -78,15 +94,90 @@ namespace BooksManagermentSysytem.Controls
             this.lblTreeTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblTreeTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblTreeTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTreeTitle.Size = new System.Drawing.Size(280, 30);
+            this.lblTreeTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTreeTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTreeTitle.Name = "lblTreeTitle";
+            this.lblTreeTitle.Size = new System.Drawing.Size(420, 45);
+            this.lblTreeTitle.TabIndex = 1;
             this.lblTreeTitle.Text = "  库存位置";
             this.lblTreeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // treeLocations
+            // dgvBooks
             // 
-            this.treeLocations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeLocations.Location = new System.Drawing.Point(0, 30);
-            this.treeLocations.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeLocations_AfterSelect);
+            this.dgvBooks.AllowUserToAddRows = false;
+            this.dgvBooks.AllowUserToDeleteRows = false;
+            this.dgvBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBooks.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBooks.ColumnHeadersHeight = 40;
+            this.dgvBooks.Location = new System.Drawing.Point(15, 352);
+            this.dgvBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBooks.Name = "dgvBooks";
+            this.dgvBooks.ReadOnly = true;
+            this.dgvBooks.RowHeadersVisible = false;
+            this.dgvBooks.RowHeadersWidth = 62;
+            this.dgvBooks.Size = new System.Drawing.Size(885, 450);
+            this.dgvBooks.TabIndex = 0;
+            // 
+            // lblBooks
+            // 
+            this.lblBooks.AutoSize = true;
+            this.lblBooks.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblBooks.Location = new System.Drawing.Point(15, 315);
+            this.lblBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBooks.Name = "lblBooks";
+            this.lblBooks.Size = new System.Drawing.Size(138, 25);
+            this.lblBooks.TabIndex = 1;
+            this.lblBooks.Text = "该库位的馆藏：";
+            // 
+            // panelButtons
+            // 
+            this.panelButtons.Controls.Add(this.btnDelete);
+            this.panelButtons.Controls.Add(this.btnSave);
+            this.panelButtons.Controls.Add(this.btnNew);
+            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelButtons.Location = new System.Drawing.Point(0, 240);
+            this.panelButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelButtons.Name = "panelButtons";
+            this.panelButtons.Size = new System.Drawing.Size(924, 68);
+            this.panelButtons.TabIndex = 2;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(285, 12);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(120, 42);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(150, 12);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(120, 42);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "保存";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(15, 12);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(120, 42);
+            this.btnNew.TabIndex = 2;
+            this.btnNew.Text = "新建";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // panelDetails
             // 
@@ -104,162 +195,190 @@ namespace BooksManagermentSysytem.Controls
             this.panelDetails.Controls.Add(this.lblCode);
             this.panelDetails.Controls.Add(this.lblDetailsTitle);
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDetails.Size = new System.Drawing.Size(616, 160);
+            this.panelDetails.Location = new System.Drawing.Point(0, 0);
+            this.panelDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelDetails.Name = "panelDetails";
+            this.panelDetails.Size = new System.Drawing.Size(924, 240);
+            this.panelDetails.TabIndex = 3;
             // 
-            // lblDetailsTitle
+            // cboStatus
             // 
-            this.lblDetailsTitle.AutoSize = true;
-            this.lblDetailsTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblDetailsTitle.Location = new System.Drawing.Point(10, 10);
-            this.lblDetailsTitle.Text = "库位详情";
+            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStatus.Items.AddRange(new object[] {
+            "ACTIVE",
+            "INACTIVE",
+            "MAINTENANCE",
+            "FULL",
+            "ORGANIZING"});
+            this.cboStatus.Location = new System.Drawing.Point(120, 168);
+            this.cboStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStatus.Name = "cboStatus";
+            this.cboStatus.Size = new System.Drawing.Size(223, 32);
+            this.cboStatus.TabIndex = 0;
             // 
-            // lblCode
+            // lblStatus
             // 
-            this.lblCode.AutoSize = true;
-            this.lblCode.Location = new System.Drawing.Point(10, 45);
-            this.lblCode.Text = "库位编码：";
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(80, 42);
-            this.txtCode.Size = new System.Drawing.Size(150, 23);
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(250, 45);
-            this.lblName.Text = "库位名称：";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(320, 42);
-            this.txtName.Size = new System.Drawing.Size(200, 23);
-            // 
-            // lblType
-            // 
-            this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(10, 80);
-            this.lblType.Text = "库位类型：";
-            // 
-            // cboType
-            // 
-            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboType.Items.AddRange(new object[] { "REGULAR_SHELF", "HOT_ZONE", "NEW_BOOK", "REFERENCE", "JOURNAL", "RESERVATION_SHELF", "TOOL_ONLY", "REPAIR_AREA" });
-            this.cboType.Location = new System.Drawing.Point(80, 77);
-            this.cboType.Size = new System.Drawing.Size(150, 25);
-            // 
-            // lblMaxCapacity
-            // 
-            this.lblMaxCapacity.AutoSize = true;
-            this.lblMaxCapacity.Location = new System.Drawing.Point(250, 80);
-            this.lblMaxCapacity.Text = "最大容量：";
-            // 
-            // numMaxCapacity
-            // 
-            this.numMaxCapacity.Location = new System.Drawing.Point(320, 77);
-            this.numMaxCapacity.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            this.numMaxCapacity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            this.numMaxCapacity.Size = new System.Drawing.Size(80, 23);
-            this.numMaxCapacity.Value = new decimal(new int[] { 50, 0, 0, 0 });
-            // 
-            // lblCurrentQty
-            // 
-            this.lblCurrentQty.AutoSize = true;
-            this.lblCurrentQty.Location = new System.Drawing.Point(420, 80);
-            this.lblCurrentQty.Text = "当前数量：";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(15, 172);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(100, 24);
+            this.lblStatus.TabIndex = 1;
+            this.lblStatus.Text = "库位状态：";
             // 
             // lblCurrentQtyValue
             // 
             this.lblCurrentQtyValue.AutoSize = true;
             this.lblCurrentQtyValue.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblCurrentQtyValue.Location = new System.Drawing.Point(490, 80);
+            this.lblCurrentQtyValue.Location = new System.Drawing.Point(735, 120);
+            this.lblCurrentQtyValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCurrentQtyValue.Name = "lblCurrentQtyValue";
+            this.lblCurrentQtyValue.Size = new System.Drawing.Size(23, 25);
+            this.lblCurrentQtyValue.TabIndex = 2;
             this.lblCurrentQtyValue.Text = "0";
             // 
-            // lblStatus
+            // lblCurrentQty
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(10, 115);
-            this.lblStatus.Text = "库位状态：";
+            this.lblCurrentQty.AutoSize = true;
+            this.lblCurrentQty.Location = new System.Drawing.Point(630, 120);
+            this.lblCurrentQty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCurrentQty.Name = "lblCurrentQty";
+            this.lblCurrentQty.Size = new System.Drawing.Size(100, 24);
+            this.lblCurrentQty.TabIndex = 3;
+            this.lblCurrentQty.Text = "当前数量：";
             // 
-            // cboStatus
+            // numMaxCapacity
             // 
-            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStatus.Items.AddRange(new object[] { "ACTIVE", "INACTIVE", "MAINTENANCE", "FULL", "ORGANIZING" });
-            this.cboStatus.Location = new System.Drawing.Point(80, 112);
-            this.cboStatus.Size = new System.Drawing.Size(150, 25);
+            this.numMaxCapacity.Location = new System.Drawing.Point(480, 116);
+            this.numMaxCapacity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numMaxCapacity.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numMaxCapacity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMaxCapacity.Name = "numMaxCapacity";
+            this.numMaxCapacity.Size = new System.Drawing.Size(120, 30);
+            this.numMaxCapacity.TabIndex = 4;
+            this.numMaxCapacity.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
-            // panelButtons
+            // lblMaxCapacity
             // 
-            this.panelButtons.Controls.Add(this.btnDelete);
-            this.panelButtons.Controls.Add(this.btnSave);
-            this.panelButtons.Controls.Add(this.btnNew);
-            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelButtons.Location = new System.Drawing.Point(0, 160);
-            this.panelButtons.Size = new System.Drawing.Size(616, 45);
+            this.lblMaxCapacity.AutoSize = true;
+            this.lblMaxCapacity.Location = new System.Drawing.Point(375, 120);
+            this.lblMaxCapacity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaxCapacity.Name = "lblMaxCapacity";
+            this.lblMaxCapacity.Size = new System.Drawing.Size(100, 24);
+            this.lblMaxCapacity.TabIndex = 5;
+            this.lblMaxCapacity.Text = "最大容量：";
             // 
-            // btnNew
+            // cboType
             // 
-            this.btnNew.Location = new System.Drawing.Point(10, 8);
-            this.btnNew.Size = new System.Drawing.Size(80, 28);
-            this.btnNew.Text = "新建";
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.Items.AddRange(new object[] {
+            "REGULAR_SHELF",
+            "HOT_ZONE",
+            "NEW_BOOK",
+            "REFERENCE",
+            "JOURNAL",
+            "RESERVATION_SHELF",
+            "TOOL_ONLY",
+            "REPAIR_AREA"});
+            this.cboType.Location = new System.Drawing.Point(120, 116);
+            this.cboType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(223, 32);
+            this.cboType.TabIndex = 6;
             // 
-            // btnSave
+            // lblType
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(100, 8);
-            this.btnSave.Size = new System.Drawing.Size(80, 28);
-            this.btnSave.Text = "保存";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(15, 120);
+            this.lblType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(100, 24);
+            this.lblType.TabIndex = 7;
+            this.lblType.Text = "库位类型：";
             // 
-            // btnDelete
+            // txtName
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(190, 8);
-            this.btnDelete.Size = new System.Drawing.Size(80, 28);
-            this.btnDelete.Text = "删除";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.txtName.Location = new System.Drawing.Point(480, 63);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(298, 30);
+            this.txtName.TabIndex = 8;
             // 
-            // lblBooks
+            // lblName
             // 
-            this.lblBooks.AutoSize = true;
-            this.lblBooks.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblBooks.Location = new System.Drawing.Point(10, 210);
-            this.lblBooks.Text = "该库位的馆藏：";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(375, 68);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(100, 24);
+            this.lblName.TabIndex = 9;
+            this.lblName.Text = "库位名称：";
             // 
-            // dgvBooks
+            // txtCode
             // 
-            this.dgvBooks.AllowUserToAddRows = false;
-            this.dgvBooks.AllowUserToDeleteRows = false;
-            this.dgvBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBooks.BackgroundColor = System.Drawing.Color.White;
-            this.dgvBooks.Location = new System.Drawing.Point(10, 235);
-            this.dgvBooks.ReadOnly = true;
-            this.dgvBooks.RowHeadersVisible = false;
-            this.dgvBooks.Size = new System.Drawing.Size(590, 300);
+            this.txtCode.Location = new System.Drawing.Point(120, 63);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(223, 30);
+            this.txtCode.TabIndex = 10;
+            // 
+            // lblCode
+            // 
+            this.lblCode.AutoSize = true;
+            this.lblCode.Location = new System.Drawing.Point(15, 68);
+            this.lblCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(100, 24);
+            this.lblCode.TabIndex = 11;
+            this.lblCode.Text = "库位编码：";
+            // 
+            // lblDetailsTitle
+            // 
+            this.lblDetailsTitle.AutoSize = true;
+            this.lblDetailsTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblDetailsTitle.Location = new System.Drawing.Point(15, 15);
+            this.lblDetailsTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDetailsTitle.Name = "lblDetailsTitle";
+            this.lblDetailsTitle.Size = new System.Drawing.Size(92, 27);
+            this.lblDetailsTitle.TabIndex = 12;
+            this.lblDetailsTitle.Text = "库位详情";
             // 
             // LocationManagementControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(900, 550);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "LocationManagementControl";
+            this.Size = new System.Drawing.Size(1350, 825);
             this.Load += new System.EventHandler(this.LocationManagementControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
+            this.panelButtons.ResumeLayout(false);
             this.panelDetails.ResumeLayout(false);
             this.panelDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxCapacity)).EndInit();
-            this.panelButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.SplitContainer splitContainer;

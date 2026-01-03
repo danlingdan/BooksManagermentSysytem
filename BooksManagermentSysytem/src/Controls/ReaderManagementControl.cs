@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
 using BooksManagermentSysytem.Models;
@@ -19,20 +20,20 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.lblCardID = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
-            this.lblReaderName = new System.Windows.Forms.Label();
-            this.txtReaderName = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtReaderName = new System.Windows.Forms.TextBox();
+            this.lblReaderName = new System.Windows.Forms.Label();
+            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.lblCardID = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvReaders = new System.Windows.Forms.DataGridView();
             this.panelReaderInfo = new System.Windows.Forms.Panel();
-            this.lblReaderInfoTitle = new System.Windows.Forms.Label();
-            this.dgvBorrowedBooks = new System.Windows.Forms.DataGridView();
-            this.lblBorrowedTitle = new System.Windows.Forms.Label();
             this.dgvFines = new System.Windows.Forms.DataGridView();
             this.lblFinesTitle = new System.Windows.Forms.Label();
+            this.dgvBorrowedBooks = new System.Windows.Forms.DataGridView();
+            this.lblBorrowedTitle = new System.Windows.Forms.Label();
+            this.lblReaderInfoTitle = new System.Windows.Forms.Label();
             this.panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -40,8 +41,8 @@ namespace BooksManagermentSysytem.Controls
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReaders)).BeginInit();
             this.panelReaderInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFines)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSearch
@@ -55,52 +56,77 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.lblCardID);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearch.Location = new System.Drawing.Point(0, 0);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelSearch.Name = "panelSearch";
-            this.panelSearch.Size = new System.Drawing.Size(900, 50);
+            this.panelSearch.Size = new System.Drawing.Size(1350, 75);
+            this.panelSearch.TabIndex = 1;
             // 
-            // lblCardID
+            // btnClear
             // 
-            this.lblCardID.AutoSize = true;
-            this.lblCardID.Location = new System.Drawing.Point(20, 15);
-            this.lblCardID.Text = "借书证号：";
-            // 
-            // txtCardID
-            // 
-            this.txtCardID.Location = new System.Drawing.Point(90, 12);
-            this.txtCardID.Size = new System.Drawing.Size(150, 23);
-            // 
-            // lblReaderName
-            // 
-            this.lblReaderName.AutoSize = true;
-            this.lblReaderName.Location = new System.Drawing.Point(260, 15);
-            this.lblReaderName.Text = "读者姓名：";
-            // 
-            // txtReaderName
-            // 
-            this.txtReaderName.Location = new System.Drawing.Point(330, 12);
-            this.txtReaderName.Size = new System.Drawing.Size(120, 23);
+            this.btnClear.Location = new System.Drawing.Point(855, 15);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(120, 42);
+            this.btnClear.TabIndex = 0;
+            this.btnClear.Text = "清空";
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(480, 10);
-            this.btnSearch.Size = new System.Drawing.Size(80, 28);
+            this.btnSearch.Location = new System.Drawing.Point(720, 15);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(120, 42);
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // btnClear
+            // txtReaderName
             // 
-            this.btnClear.Location = new System.Drawing.Point(570, 10);
-            this.btnClear.Size = new System.Drawing.Size(80, 28);
-            this.btnClear.Text = "清空";
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.txtReaderName.Location = new System.Drawing.Point(495, 18);
+            this.txtReaderName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtReaderName.Name = "txtReaderName";
+            this.txtReaderName.Size = new System.Drawing.Size(178, 30);
+            this.txtReaderName.TabIndex = 2;
+            // 
+            // lblReaderName
+            // 
+            this.lblReaderName.AutoSize = true;
+            this.lblReaderName.Location = new System.Drawing.Point(390, 22);
+            this.lblReaderName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderName.Name = "lblReaderName";
+            this.lblReaderName.Size = new System.Drawing.Size(100, 24);
+            this.lblReaderName.TabIndex = 3;
+            this.lblReaderName.Text = "读者姓名：";
+            // 
+            // txtCardID
+            // 
+            this.txtCardID.Location = new System.Drawing.Point(135, 18);
+            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardID.Name = "txtCardID";
+            this.txtCardID.Size = new System.Drawing.Size(223, 30);
+            this.txtCardID.TabIndex = 4;
+            // 
+            // lblCardID
+            // 
+            this.lblCardID.AutoSize = true;
+            this.lblCardID.Location = new System.Drawing.Point(30, 22);
+            this.lblCardID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardID.Name = "lblCardID";
+            this.lblCardID.Size = new System.Drawing.Size(100, 24);
+            this.lblCardID.TabIndex = 5;
+            this.lblCardID.Text = "借书证号：";
             // 
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.Location = new System.Drawing.Point(0, 50);
+            this.splitContainer.Location = new System.Drawing.Point(0, 75);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer.Name = "splitContainer";
             this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer.Panel1
@@ -110,8 +136,10 @@ namespace BooksManagermentSysytem.Controls
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.panelReaderInfo);
-            this.splitContainer.Size = new System.Drawing.Size(900, 500);
-            this.splitContainer.SplitterDistance = 200;
+            this.splitContainer.Size = new System.Drawing.Size(1350, 750);
+            this.splitContainer.SplitterDistance = 300;
+            this.splitContainer.SplitterWidth = 6;
+            this.splitContainer.TabIndex = 0;
             // 
             // dgvReaders
             // 
@@ -119,10 +147,17 @@ namespace BooksManagermentSysytem.Controls
             this.dgvReaders.AllowUserToDeleteRows = false;
             this.dgvReaders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReaders.BackgroundColor = System.Drawing.Color.White;
+            this.dgvReaders.ColumnHeadersHeight = 40;
             this.dgvReaders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvReaders.Location = new System.Drawing.Point(0, 0);
+            this.dgvReaders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvReaders.Name = "dgvReaders";
             this.dgvReaders.ReadOnly = true;
             this.dgvReaders.RowHeadersVisible = false;
+            this.dgvReaders.RowHeadersWidth = 62;
             this.dgvReaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReaders.Size = new System.Drawing.Size(1350, 300);
+            this.dgvReaders.TabIndex = 0;
             this.dgvReaders.SelectionChanged += new System.EventHandler(this.dgvReaders_SelectionChanged);
             // 
             // panelReaderInfo
@@ -133,41 +168,11 @@ namespace BooksManagermentSysytem.Controls
             this.panelReaderInfo.Controls.Add(this.lblBorrowedTitle);
             this.panelReaderInfo.Controls.Add(this.lblReaderInfoTitle);
             this.panelReaderInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            // 
-            // lblReaderInfoTitle
-            // 
-            this.lblReaderInfoTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblReaderInfoTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblReaderInfoTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblReaderInfoTitle.ForeColor = System.Drawing.Color.White;
-            this.lblReaderInfoTitle.Size = new System.Drawing.Size(900, 28);
-            this.lblReaderInfoTitle.Text = "  读者详情";
-            this.lblReaderInfoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblBorrowedTitle
-            // 
-            this.lblBorrowedTitle.AutoSize = true;
-            this.lblBorrowedTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblBorrowedTitle.Location = new System.Drawing.Point(10, 35);
-            this.lblBorrowedTitle.Text = "当前借阅：";
-            // 
-            // dgvBorrowedBooks
-            // 
-            this.dgvBorrowedBooks.AllowUserToAddRows = false;
-            this.dgvBorrowedBooks.AllowUserToDeleteRows = false;
-            this.dgvBorrowedBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBorrowedBooks.BackgroundColor = System.Drawing.Color.White;
-            this.dgvBorrowedBooks.Location = new System.Drawing.Point(10, 55);
-            this.dgvBorrowedBooks.ReadOnly = true;
-            this.dgvBorrowedBooks.RowHeadersVisible = false;
-            this.dgvBorrowedBooks.Size = new System.Drawing.Size(430, 120);
-            // 
-            // lblFinesTitle
-            // 
-            this.lblFinesTitle.AutoSize = true;
-            this.lblFinesTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblFinesTitle.Location = new System.Drawing.Point(460, 35);
-            this.lblFinesTitle.Text = "未支付罚款：";
+            this.panelReaderInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelReaderInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReaderInfo.Name = "panelReaderInfo";
+            this.panelReaderInfo.Size = new System.Drawing.Size(1350, 444);
+            this.panelReaderInfo.TabIndex = 0;
             // 
             // dgvFines
             // 
@@ -175,18 +180,80 @@ namespace BooksManagermentSysytem.Controls
             this.dgvFines.AllowUserToDeleteRows = false;
             this.dgvFines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvFines.BackgroundColor = System.Drawing.Color.White;
-            this.dgvFines.Location = new System.Drawing.Point(460, 55);
+            this.dgvFines.ColumnHeadersHeight = 40;
+            this.dgvFines.Location = new System.Drawing.Point(690, 82);
+            this.dgvFines.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvFines.Name = "dgvFines";
             this.dgvFines.ReadOnly = true;
             this.dgvFines.RowHeadersVisible = false;
-            this.dgvFines.Size = new System.Drawing.Size(420, 120);
+            this.dgvFines.RowHeadersWidth = 62;
+            this.dgvFines.Size = new System.Drawing.Size(630, 180);
+            this.dgvFines.TabIndex = 0;
+            // 
+            // lblFinesTitle
+            // 
+            this.lblFinesTitle.AutoSize = true;
+            this.lblFinesTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblFinesTitle.Location = new System.Drawing.Point(690, 52);
+            this.lblFinesTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFinesTitle.Name = "lblFinesTitle";
+            this.lblFinesTitle.Size = new System.Drawing.Size(120, 25);
+            this.lblFinesTitle.TabIndex = 1;
+            this.lblFinesTitle.Text = "未支付罚款：";
+            // 
+            // dgvBorrowedBooks
+            // 
+            this.dgvBorrowedBooks.AllowUserToAddRows = false;
+            this.dgvBorrowedBooks.AllowUserToDeleteRows = false;
+            this.dgvBorrowedBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBorrowedBooks.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBorrowedBooks.ColumnHeadersHeight = 40;
+            this.dgvBorrowedBooks.Location = new System.Drawing.Point(15, 82);
+            this.dgvBorrowedBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBorrowedBooks.Name = "dgvBorrowedBooks";
+            this.dgvBorrowedBooks.ReadOnly = true;
+            this.dgvBorrowedBooks.RowHeadersVisible = false;
+            this.dgvBorrowedBooks.RowHeadersWidth = 62;
+            this.dgvBorrowedBooks.Size = new System.Drawing.Size(645, 180);
+            this.dgvBorrowedBooks.TabIndex = 2;
+            // 
+            // lblBorrowedTitle
+            // 
+            this.lblBorrowedTitle.AutoSize = true;
+            this.lblBorrowedTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblBorrowedTitle.Location = new System.Drawing.Point(15, 52);
+            this.lblBorrowedTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBorrowedTitle.Name = "lblBorrowedTitle";
+            this.lblBorrowedTitle.Size = new System.Drawing.Size(102, 25);
+            this.lblBorrowedTitle.TabIndex = 3;
+            this.lblBorrowedTitle.Text = "当前借阅：";
+            // 
+            // lblReaderInfoTitle
+            // 
+            this.lblReaderInfoTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.lblReaderInfoTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblReaderInfoTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblReaderInfoTitle.ForeColor = System.Drawing.Color.White;
+            this.lblReaderInfoTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblReaderInfoTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderInfoTitle.Name = "lblReaderInfoTitle";
+            this.lblReaderInfoTitle.Size = new System.Drawing.Size(1350, 42);
+            this.lblReaderInfoTitle.TabIndex = 4;
+            this.lblReaderInfoTitle.Text = "  读者详情";
+            this.lblReaderInfoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ReaderManagementControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panelSearch);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Size = new System.Drawing.Size(900, 550);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
+            this.Name = "ReaderManagementControl";
+            this.Size = new System.Drawing.Size(1350, 825);
             this.Load += new System.EventHandler(this.ReaderManagementControl_Load);
             this.panelSearch.ResumeLayout(false);
             this.panelSearch.PerformLayout();
@@ -197,9 +264,10 @@ namespace BooksManagermentSysytem.Controls
             ((System.ComponentModel.ISupportInitialize)(this.dgvReaders)).EndInit();
             this.panelReaderInfo.ResumeLayout(false);
             this.panelReaderInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFines)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelSearch;
