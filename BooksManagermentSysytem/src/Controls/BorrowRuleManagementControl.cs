@@ -23,8 +23,8 @@ namespace BooksManagermentSysytem.Controls
         private void InitializeComponent()
         {
             this.panelTop = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.dgvRules = new System.Windows.Forms.DataGridView();
             this.panelEdit = new System.Windows.Forms.Panel();
             this.lblEditTitle = new System.Windows.Forms.Label();
@@ -56,9 +56,10 @@ namespace BooksManagermentSysytem.Controls
             ((System.ComponentModel.ISupportInitialize)(this.numMaxRenew)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRenewDays)).BeginInit();
             this.SuspendLayout();
-            
+            // 
             // panelTop
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
+            // 
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.panelTop.Controls.Add(this.btnRefresh);
             this.panelTop.Controls.Add(this.lblTitle);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -66,32 +67,38 @@ namespace BooksManagermentSysytem.Controls
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1200, 60);
             this.panelTop.TabIndex = 0;
-            
-            // lblTitle
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(20, 18);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(110, 22);
-            this.lblTitle.Text = "📋 借阅规则管理";
-            
+            // 
             // btnRefresh
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(0, 122, 204);
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Location = new System.Drawing.Point(1080, 12);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 36);
+            this.btnRefresh.TabIndex = 0;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(20, 18);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(192, 31);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "📋 借阅规则管理";
+            // 
             // dgvRules
+            // 
             this.dgvRules.AllowUserToAddRows = false;
             this.dgvRules.AllowUserToDeleteRows = false;
-            this.dgvRules.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | 
-                System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.dgvRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRules.BackgroundColor = System.Drawing.Color.White;
             this.dgvRules.ColumnHeadersHeight = 40;
@@ -100,14 +107,17 @@ namespace BooksManagermentSysytem.Controls
             this.dgvRules.Name = "dgvRules";
             this.dgvRules.ReadOnly = true;
             this.dgvRules.RowHeadersVisible = false;
+            this.dgvRules.RowHeadersWidth = 62;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRules.Size = new System.Drawing.Size(1160, 250);
+            this.dgvRules.TabIndex = 0;
             this.dgvRules.SelectionChanged += new System.EventHandler(this.dgvRules_SelectionChanged);
-            
+            // 
             // panelEdit
-            this.panelEdit.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | 
-                System.Windows.Forms.AnchorStyles.Right;
-            this.panelEdit.BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
+            // 
+            this.panelEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.panelEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelEdit.Controls.Add(this.lblEditTitle);
             this.panelEdit.Controls.Add(this.lblReaderType);
@@ -132,137 +142,261 @@ namespace BooksManagermentSysytem.Controls
             this.panelEdit.Location = new System.Drawing.Point(20, 350);
             this.panelEdit.Name = "panelEdit";
             this.panelEdit.Size = new System.Drawing.Size(1160, 300);
-            
+            this.panelEdit.TabIndex = 1;
+            // 
             // lblEditTitle
+            // 
             this.lblEditTitle.AutoSize = true;
             this.lblEditTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblEditTitle.Location = new System.Drawing.Point(15, 15);
+            this.lblEditTitle.Name = "lblEditTitle";
+            this.lblEditTitle.Size = new System.Drawing.Size(92, 27);
+            this.lblEditTitle.TabIndex = 0;
             this.lblEditTitle.Text = "规则编辑";
-            
+            // 
             // lblReaderType
+            // 
             this.lblReaderType.AutoSize = true;
-            this.lblReaderType.Location = new System.Drawing.Point(20, 55);
+            this.lblReaderType.Location = new System.Drawing.Point(16, 55);
+            this.lblReaderType.Name = "lblReaderType";
+            this.lblReaderType.Size = new System.Drawing.Size(100, 24);
+            this.lblReaderType.TabIndex = 1;
             this.lblReaderType.Text = "读者类型：";
-            
+            // 
             // cboReaderType
+            // 
             this.cboReaderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboReaderType.Items.AddRange(new object[] { "本校学生", "本校教师", "校外人员" });
+            this.cboReaderType.Items.AddRange(new object[] {
+            "本校学生",
+            "本校教师",
+            "校外人员"});
             this.cboReaderType.Location = new System.Drawing.Point(100, 52);
             this.cboReaderType.Name = "cboReaderType";
-            this.cboReaderType.Size = new System.Drawing.Size(150, 28);
-            
+            this.cboReaderType.Size = new System.Drawing.Size(150, 32);
+            this.cboReaderType.TabIndex = 2;
+            // 
             // lblMaxBorrow
+            // 
             this.lblMaxBorrow.AutoSize = true;
-            this.lblMaxBorrow.Location = new System.Drawing.Point(280, 55);
+            this.lblMaxBorrow.Location = new System.Drawing.Point(256, 54);
+            this.lblMaxBorrow.Name = "lblMaxBorrow";
+            this.lblMaxBorrow.Size = new System.Drawing.Size(118, 24);
+            this.lblMaxBorrow.TabIndex = 3;
             this.lblMaxBorrow.Text = "最大借阅数：";
-            
+            // 
             // numMaxBorrow
+            // 
             this.numMaxBorrow.Location = new System.Drawing.Point(380, 52);
-            this.numMaxBorrow.Maximum = 10;
-            this.numMaxBorrow.Minimum = 1;
+            this.numMaxBorrow.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numMaxBorrow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numMaxBorrow.Name = "numMaxBorrow";
-            this.numMaxBorrow.Size = new System.Drawing.Size(80, 28);
-            this.numMaxBorrow.Value = 3;
-            
+            this.numMaxBorrow.Size = new System.Drawing.Size(80, 30);
+            this.numMaxBorrow.TabIndex = 4;
+            this.numMaxBorrow.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
             // lblMaxCategory
+            // 
             this.lblMaxCategory.AutoSize = true;
-            this.lblMaxCategory.Location = new System.Drawing.Point(480, 55);
+            this.lblMaxCategory.Location = new System.Drawing.Point(456, 55);
+            this.lblMaxCategory.Name = "lblMaxCategory";
+            this.lblMaxCategory.Size = new System.Drawing.Size(118, 24);
+            this.lblMaxCategory.TabIndex = 5;
             this.lblMaxCategory.Text = "最大分类数：";
-            
+            // 
             // numMaxCategory
+            // 
             this.numMaxCategory.Location = new System.Drawing.Point(580, 52);
-            this.numMaxCategory.Maximum = 5;
-            this.numMaxCategory.Minimum = 1;
+            this.numMaxCategory.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numMaxCategory.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numMaxCategory.Name = "numMaxCategory";
-            this.numMaxCategory.Size = new System.Drawing.Size(80, 28);
-            this.numMaxCategory.Value = 2;
-            
+            this.numMaxCategory.Size = new System.Drawing.Size(80, 30);
+            this.numMaxCategory.TabIndex = 6;
+            this.numMaxCategory.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
             // lblBorrowDays
+            // 
             this.lblBorrowDays.AutoSize = true;
-            this.lblBorrowDays.Location = new System.Drawing.Point(20, 100);
+            this.lblBorrowDays.Location = new System.Drawing.Point(7, 99);
+            this.lblBorrowDays.Name = "lblBorrowDays";
+            this.lblBorrowDays.Size = new System.Drawing.Size(100, 24);
+            this.lblBorrowDays.TabIndex = 7;
             this.lblBorrowDays.Text = "借阅天数：";
-            
+            // 
             // numBorrowDays
-            this.numBorrowDays.Location = new System.Drawing.Point(100, 97);
-            this.numBorrowDays.Maximum = 90;
-            this.numBorrowDays.Minimum = 1;
+            // 
+            this.numBorrowDays.Location = new System.Drawing.Point(113, 95);
+            this.numBorrowDays.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.numBorrowDays.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numBorrowDays.Name = "numBorrowDays";
-            this.numBorrowDays.Size = new System.Drawing.Size(80, 28);
-            this.numBorrowDays.Value = 7;
-            
+            this.numBorrowDays.Size = new System.Drawing.Size(80, 30);
+            this.numBorrowDays.TabIndex = 8;
+            this.numBorrowDays.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
             // lblMaxRenew
+            // 
             this.lblMaxRenew.AutoSize = true;
-            this.lblMaxRenew.Location = new System.Drawing.Point(200, 100);
+            this.lblMaxRenew.Location = new System.Drawing.Point(192, 101);
+            this.lblMaxRenew.Name = "lblMaxRenew";
+            this.lblMaxRenew.Size = new System.Drawing.Size(136, 24);
+            this.lblMaxRenew.TabIndex = 9;
             this.lblMaxRenew.Text = "最大续借次数：";
-            
+            // 
             // numMaxRenew
-            this.numMaxRenew.Location = new System.Drawing.Point(300, 97);
-            this.numMaxRenew.Maximum = 5;
-            this.numMaxRenew.Minimum = 0;
+            // 
+            this.numMaxRenew.Location = new System.Drawing.Point(334, 95);
+            this.numMaxRenew.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numMaxRenew.Name = "numMaxRenew";
-            this.numMaxRenew.Size = new System.Drawing.Size(80, 28);
-            this.numMaxRenew.Value = 2;
-            
+            this.numMaxRenew.Size = new System.Drawing.Size(80, 30);
+            this.numMaxRenew.TabIndex = 10;
+            this.numMaxRenew.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
             // lblRenewDays
+            // 
             this.lblRenewDays.AutoSize = true;
-            this.lblRenewDays.Location = new System.Drawing.Point(400, 100);
+            this.lblRenewDays.Location = new System.Drawing.Point(414, 99);
+            this.lblRenewDays.Name = "lblRenewDays";
+            this.lblRenewDays.Size = new System.Drawing.Size(100, 24);
+            this.lblRenewDays.TabIndex = 11;
             this.lblRenewDays.Text = "续借天数：";
-            
+            // 
             // numRenewDays
-            this.numRenewDays.Location = new System.Drawing.Point(480, 97);
-            this.numRenewDays.Maximum = 30;
-            this.numRenewDays.Minimum = 1;
+            // 
+            this.numRenewDays.Location = new System.Drawing.Point(520, 97);
+            this.numRenewDays.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numRenewDays.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numRenewDays.Name = "numRenewDays";
-            this.numRenewDays.Size = new System.Drawing.Size(80, 28);
-            this.numRenewDays.Value = 7;
-            
+            this.numRenewDays.Size = new System.Drawing.Size(80, 30);
+            this.numRenewDays.TabIndex = 12;
+            this.numRenewDays.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
             // chkReference
+            // 
             this.chkReference.AutoSize = true;
             this.chkReference.Location = new System.Drawing.Point(20, 145);
+            this.chkReference.Name = "chkReference";
+            this.chkReference.Size = new System.Drawing.Size(144, 28);
+            this.chkReference.TabIndex = 13;
             this.chkReference.Text = "允许借工具书";
-            
+            // 
             // chkNewBooks
+            // 
             this.chkNewBooks.AutoSize = true;
             this.chkNewBooks.Checked = true;
-            this.chkNewBooks.Location = new System.Drawing.Point(150, 145);
+            this.chkNewBooks.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkNewBooks.Location = new System.Drawing.Point(170, 148);
+            this.chkNewBooks.Name = "chkNewBooks";
+            this.chkNewBooks.Size = new System.Drawing.Size(126, 28);
+            this.chkNewBooks.TabIndex = 14;
             this.chkNewBooks.Text = "允许借新书";
-            
+            // 
             // chkHotBooks
+            // 
             this.chkHotBooks.AutoSize = true;
             this.chkHotBooks.Checked = true;
-            this.chkHotBooks.Location = new System.Drawing.Point(270, 145);
+            this.chkHotBooks.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHotBooks.Location = new System.Drawing.Point(316, 145);
+            this.chkHotBooks.Name = "chkHotBooks";
+            this.chkHotBooks.Size = new System.Drawing.Size(144, 28);
+            this.chkHotBooks.TabIndex = 15;
             this.chkHotBooks.Text = "允许借热门书";
-            
+            // 
             // lblRemark
+            // 
             this.lblRemark.AutoSize = true;
             this.lblRemark.Location = new System.Drawing.Point(20, 185);
+            this.lblRemark.Name = "lblRemark";
+            this.lblRemark.Size = new System.Drawing.Size(100, 24);
+            this.lblRemark.TabIndex = 16;
             this.lblRemark.Text = "备注说明：";
-            
+            // 
             // txtRemark
-            this.txtRemark.Location = new System.Drawing.Point(100, 182);
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(126, 182);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(500, 60);
-            
+            this.txtRemark.TabIndex = 17;
+            // 
             // btnSave
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(76, 175, 80);
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(450, 255);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 36);
+            this.btnSave.TabIndex = 18;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            
+            // 
             // btnCancel
+            // 
             this.btnCancel.Location = new System.Drawing.Point(590, 255);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(120, 36);
+            this.btnCancel.TabIndex = 19;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            
+            // 
             // BorrowRuleManagementControl
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
@@ -284,6 +418,7 @@ namespace BooksManagermentSysytem.Controls
             ((System.ComponentModel.ISupportInitialize)(this.numMaxRenew)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRenewDays)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel panelTop;

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
 using BooksManagermentSysytem.Models;
+using BooksManagermentSysytem.Helpers;
 
 namespace BooksManagermentSysytem.Controls
 {
@@ -24,7 +25,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtReaderName = new System.Windows.Forms.TextBox();
             this.lblReaderName = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.cboCardID = new System.Windows.Forms.ComboBox();
             this.lblCardID = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvReaders = new System.Windows.Forms.DataGridView();
@@ -52,11 +53,11 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.btnSearch);
             this.panelSearch.Controls.Add(this.txtReaderName);
             this.panelSearch.Controls.Add(this.lblReaderName);
-            this.panelSearch.Controls.Add(this.txtCardID);
+            this.panelSearch.Controls.Add(this.cboCardID);
             this.panelSearch.Controls.Add(this.lblCardID);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearch.Location = new System.Drawing.Point(0, 0);
-            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(1350, 75);
             this.panelSearch.TabIndex = 1;
@@ -64,7 +65,7 @@ namespace BooksManagermentSysytem.Controls
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(855, 15);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(120, 42);
             this.btnClear.TabIndex = 0;
@@ -77,7 +78,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Location = new System.Drawing.Point(720, 15);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(120, 42);
             this.btnSearch.TabIndex = 1;
@@ -88,7 +89,7 @@ namespace BooksManagermentSysytem.Controls
             // txtReaderName
             // 
             this.txtReaderName.Location = new System.Drawing.Point(495, 18);
-            this.txtReaderName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtReaderName.Margin = new System.Windows.Forms.Padding(4);
             this.txtReaderName.Name = "txtReaderName";
             this.txtReaderName.Size = new System.Drawing.Size(178, 30);
             this.txtReaderName.TabIndex = 2;
@@ -103,13 +104,13 @@ namespace BooksManagermentSysytem.Controls
             this.lblReaderName.TabIndex = 3;
             this.lblReaderName.Text = "读者姓名：";
             // 
-            // txtCardID
+            // cboCardID
             // 
-            this.txtCardID.Location = new System.Drawing.Point(135, 18);
-            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtCardID.Name = "txtCardID";
-            this.txtCardID.Size = new System.Drawing.Size(223, 30);
-            this.txtCardID.TabIndex = 4;
+            this.cboCardID.Location = new System.Drawing.Point(135, 18);
+            this.cboCardID.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCardID.Name = "cboCardID";
+            this.cboCardID.Size = new System.Drawing.Size(255, 32);
+            this.cboCardID.TabIndex = 4;
             // 
             // lblCardID
             // 
@@ -125,7 +126,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.Location = new System.Drawing.Point(0, 75);
-            this.splitContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer.Name = "splitContainer";
             this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -150,7 +151,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvReaders.ColumnHeadersHeight = 40;
             this.dgvReaders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvReaders.Location = new System.Drawing.Point(0, 0);
-            this.dgvReaders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvReaders.Margin = new System.Windows.Forms.Padding(4);
             this.dgvReaders.Name = "dgvReaders";
             this.dgvReaders.ReadOnly = true;
             this.dgvReaders.RowHeadersVisible = false;
@@ -169,7 +170,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelReaderInfo.Controls.Add(this.lblReaderInfoTitle);
             this.panelReaderInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelReaderInfo.Location = new System.Drawing.Point(0, 0);
-            this.panelReaderInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReaderInfo.Margin = new System.Windows.Forms.Padding(4);
             this.panelReaderInfo.Name = "panelReaderInfo";
             this.panelReaderInfo.Size = new System.Drawing.Size(1350, 444);
             this.panelReaderInfo.TabIndex = 0;
@@ -182,7 +183,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvFines.BackgroundColor = System.Drawing.Color.White;
             this.dgvFines.ColumnHeadersHeight = 40;
             this.dgvFines.Location = new System.Drawing.Point(690, 82);
-            this.dgvFines.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvFines.Margin = new System.Windows.Forms.Padding(4);
             this.dgvFines.Name = "dgvFines";
             this.dgvFines.ReadOnly = true;
             this.dgvFines.RowHeadersVisible = false;
@@ -209,7 +210,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvBorrowedBooks.BackgroundColor = System.Drawing.Color.White;
             this.dgvBorrowedBooks.ColumnHeadersHeight = 40;
             this.dgvBorrowedBooks.Location = new System.Drawing.Point(15, 82);
-            this.dgvBorrowedBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBorrowedBooks.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBorrowedBooks.Name = "dgvBorrowedBooks";
             this.dgvBorrowedBooks.ReadOnly = true;
             this.dgvBorrowedBooks.RowHeadersVisible = false;
@@ -250,7 +251,7 @@ namespace BooksManagermentSysytem.Controls
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panelSearch);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 750);
             this.Name = "ReaderManagementControl";
             this.Size = new System.Drawing.Size(1350, 825);
@@ -272,7 +273,7 @@ namespace BooksManagermentSysytem.Controls
 
         private System.Windows.Forms.Panel panelSearch;
         private System.Windows.Forms.Label lblCardID;
-        private System.Windows.Forms.TextBox txtCardID;
+        private System.Windows.Forms.ComboBox cboCardID;
         private System.Windows.Forms.Label lblReaderName;
         private System.Windows.Forms.TextBox txtReaderName;
         private System.Windows.Forms.Button btnSearch;
@@ -288,6 +289,9 @@ namespace BooksManagermentSysytem.Controls
 
         private void ReaderManagementControl_Load(object sender, EventArgs e)
         {
+            // 初始化借书证选择框 - 显示所有状态的借书证
+            CardIDSelector.InitializeCardIDComboBox(cboCardID, onlyNormal: false, allowEmpty: true);
+            
             LoadReaders();
         }
 
@@ -298,7 +302,7 @@ namespace BooksManagermentSysytem.Controls
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtCardID.Clear();
+            CardIDSelector.SetSelectedCardID(cboCardID, "");
             txtReaderName.Clear();
             LoadReaders();
         }
@@ -318,10 +322,11 @@ namespace BooksManagermentSysytem.Controls
 
                 var parameters = new System.Collections.Generic.List<System.Data.SqlClient.SqlParameter>();
 
-                if (!string.IsNullOrWhiteSpace(txtCardID.Text))
+                string cardID = CardIDSelector.GetSelectedCardID(cboCardID);
+                if (!string.IsNullOrWhiteSpace(cardID))
                 {
                     sql += " AND r.cardID LIKE @cardID";
-                    parameters.Add(DatabaseHelper.CreateParameter("@cardID", "%" + txtCardID.Text.Trim() + "%"));
+                    parameters.Add(DatabaseHelper.CreateParameter("@cardID", "%" + cardID + "%"));
                 }
 
                 if (!string.IsNullOrWhiteSpace(txtReaderName.Text))

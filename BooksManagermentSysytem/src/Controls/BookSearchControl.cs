@@ -408,7 +408,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.splitContainer.Panel2.Controls.Add(this.panelDetails);
             this.splitContainer.Size = new System.Drawing.Size(1425, 662);
-            this.splitContainer.SplitterDistance = 1384;
+            this.splitContainer.SplitterDistance = 1376;
             this.splitContainer.SplitterWidth = 8;
             this.splitContainer.TabIndex = 0;
             // 
@@ -427,7 +427,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvResults.RowHeadersVisible = false;
             this.dgvResults.RowHeadersWidth = 62;
             this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvResults.Size = new System.Drawing.Size(1384, 662);
+            this.dgvResults.Size = new System.Drawing.Size(1376, 662);
             this.dgvResults.TabIndex = 0;
             this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
             // 
@@ -441,7 +441,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelDetails.Margin = new System.Windows.Forms.Padding(4);
             this.panelDetails.Name = "panelDetails";
             this.panelDetails.Padding = new System.Windows.Forms.Padding(15);
-            this.panelDetails.Size = new System.Drawing.Size(33, 662);
+            this.panelDetails.Size = new System.Drawing.Size(41, 662);
             this.panelDetails.TabIndex = 0;
             // 
             // BookSearchControl

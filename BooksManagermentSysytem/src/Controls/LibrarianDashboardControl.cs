@@ -66,7 +66,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1425, 75);
             this.panelHeader.TabIndex = 2;
@@ -89,7 +89,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Location = new System.Drawing.Point(1275, 15);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(120, 45);
             this.btnRefresh.TabIndex = 1;
@@ -117,9 +117,9 @@ namespace BooksManagermentSysytem.Controls
             this.panelStats.Controls.Add(this.panelStat1);
             this.panelStats.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelStats.Location = new System.Drawing.Point(0, 75);
-            this.panelStats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStats.Margin = new System.Windows.Forms.Padding(4);
             this.panelStats.Name = "panelStats";
-            this.panelStats.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.panelStats.Padding = new System.Windows.Forms.Padding(15);
             this.panelStats.Size = new System.Drawing.Size(1425, 150);
             this.panelStats.TabIndex = 1;
             // 
@@ -129,7 +129,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelStat4.Controls.Add(this.lblStat4Value);
             this.panelStat4.Controls.Add(this.lblStat4Title);
             this.panelStat4.Location = new System.Drawing.Point(1020, 15);
-            this.panelStat4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStat4.Margin = new System.Windows.Forms.Padding(4);
             this.panelStat4.Name = "panelStat4";
             this.panelStat4.Size = new System.Drawing.Size(300, 120);
             this.panelStat4.TabIndex = 0;
@@ -162,7 +162,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelStat3.Controls.Add(this.lblStat3Value);
             this.panelStat3.Controls.Add(this.lblStat3Title);
             this.panelStat3.Location = new System.Drawing.Point(690, 15);
-            this.panelStat3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStat3.Margin = new System.Windows.Forms.Padding(4);
             this.panelStat3.Name = "panelStat3";
             this.panelStat3.Size = new System.Drawing.Size(300, 120);
             this.panelStat3.TabIndex = 1;
@@ -195,7 +195,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelStat2.Controls.Add(this.lblStat2Value);
             this.panelStat2.Controls.Add(this.lblStat2Title);
             this.panelStat2.Location = new System.Drawing.Point(360, 15);
-            this.panelStat2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStat2.Margin = new System.Windows.Forms.Padding(4);
             this.panelStat2.Name = "panelStat2";
             this.panelStat2.Size = new System.Drawing.Size(300, 120);
             this.panelStat2.TabIndex = 2;
@@ -228,7 +228,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelStat1.Controls.Add(this.lblStat1Value);
             this.panelStat1.Controls.Add(this.lblStat1Title);
             this.panelStat1.Location = new System.Drawing.Point(30, 15);
-            this.panelStat1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStat1.Margin = new System.Windows.Forms.Padding(4);
             this.panelStat1.Name = "panelStat1";
             this.panelStat1.Size = new System.Drawing.Size(300, 120);
             this.panelStat1.TabIndex = 3;
@@ -259,7 +259,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.Location = new System.Drawing.Point(0, 225);
-            this.splitContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
@@ -280,9 +280,9 @@ namespace BooksManagermentSysytem.Controls
             this.panelOverdue.Controls.Add(this.lblOverdueTitle);
             this.panelOverdue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOverdue.Location = new System.Drawing.Point(0, 0);
-            this.panelOverdue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelOverdue.Margin = new System.Windows.Forms.Padding(4);
             this.panelOverdue.Name = "panelOverdue";
-            this.panelOverdue.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.panelOverdue.Padding = new System.Windows.Forms.Padding(15);
             this.panelOverdue.Size = new System.Drawing.Size(712, 600);
             this.panelOverdue.TabIndex = 0;
             // 
@@ -295,7 +295,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvOverdue.ColumnHeadersHeight = 40;
             this.dgvOverdue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOverdue.Location = new System.Drawing.Point(15, 60);
-            this.dgvOverdue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvOverdue.Margin = new System.Windows.Forms.Padding(4);
             this.dgvOverdue.Name = "dgvOverdue";
             this.dgvOverdue.ReadOnly = true;
             this.dgvOverdue.RowHeadersVisible = false;
@@ -322,9 +322,9 @@ namespace BooksManagermentSysytem.Controls
             this.panelReservations.Controls.Add(this.lblReservationsTitle);
             this.panelReservations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelReservations.Location = new System.Drawing.Point(0, 0);
-            this.panelReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReservations.Margin = new System.Windows.Forms.Padding(4);
             this.panelReservations.Name = "panelReservations";
-            this.panelReservations.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.panelReservations.Padding = new System.Windows.Forms.Padding(15);
             this.panelReservations.Size = new System.Drawing.Size(707, 600);
             this.panelReservations.TabIndex = 0;
             // 
@@ -337,7 +337,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvReservations.ColumnHeadersHeight = 40;
             this.dgvReservations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvReservations.Location = new System.Drawing.Point(15, 60);
-            this.dgvReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvReservations.Margin = new System.Windows.Forms.Padding(4);
             this.dgvReservations.Name = "dgvReservations";
             this.dgvReservations.ReadOnly = true;
             this.dgvReservations.RowHeadersVisible = false;
@@ -367,7 +367,7 @@ namespace BooksManagermentSysytem.Controls
             this.Controls.Add(this.panelStats);
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 750);
             this.Name = "LibrarianDashboardControl";
             this.Size = new System.Drawing.Size(1425, 825);

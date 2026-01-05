@@ -75,9 +75,9 @@ namespace BooksManagermentSysytem.Controls
             this.mainLayout.Controls.Add(this.panelHistory, 0, 2);
             this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainLayout.Location = new System.Drawing.Point(0, 75);
-            this.mainLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainLayout.Margin = new System.Windows.Forms.Padding(4);
             this.mainLayout.Name = "mainLayout";
-            this.mainLayout.Padding = new System.Windows.Forms.Padding(30, 30, 30, 30);
+            this.mainLayout.Padding = new System.Windows.Forms.Padding(30);
             this.mainLayout.RowCount = 3;
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -94,9 +94,9 @@ namespace BooksManagermentSysytem.Controls
             this.panelCardInfo.Controls.Add(this.lblCardInfoTitle);
             this.panelCardInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCardInfo.Location = new System.Drawing.Point(34, 34);
-            this.panelCardInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCardInfo.Margin = new System.Windows.Forms.Padding(4);
             this.panelCardInfo.Name = "panelCardInfo";
-            this.panelCardInfo.Padding = new System.Windows.Forms.Padding(22, 22, 22, 22);
+            this.panelCardInfo.Padding = new System.Windows.Forms.Padding(22);
             this.panelCardInfo.Size = new System.Drawing.Size(1282, 334);
             this.panelCardInfo.TabIndex = 0;
             // 
@@ -127,7 +127,7 @@ namespace BooksManagermentSysytem.Controls
             this.cardInfoLayout.Controls.Add(this.lblNumberValue, 1, 4);
             this.cardInfoLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardInfoLayout.Location = new System.Drawing.Point(22, 67);
-            this.cardInfoLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cardInfoLayout.Margin = new System.Windows.Forms.Padding(4);
             this.cardInfoLayout.Name = "cardInfoLayout";
             this.cardInfoLayout.RowCount = 5;
             this.cardInfoLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -346,7 +346,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelBorrowInfo.Location = new System.Drawing.Point(30, 394);
             this.panelBorrowInfo.Margin = new System.Windows.Forms.Padding(0, 22, 0, 0);
             this.panelBorrowInfo.Name = "panelBorrowInfo";
-            this.panelBorrowInfo.Padding = new System.Windows.Forms.Padding(22, 22, 22, 22);
+            this.panelBorrowInfo.Padding = new System.Windows.Forms.Padding(22);
             this.panelBorrowInfo.Size = new System.Drawing.Size(1290, 350);
             this.panelBorrowInfo.TabIndex = 1;
             // 
@@ -360,7 +360,7 @@ namespace BooksManagermentSysytem.Controls
             this.borrowInfoLayout.Controls.Add(this.lblBorrowSummary, 0, 1);
             this.borrowInfoLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.borrowInfoLayout.Location = new System.Drawing.Point(22, 67);
-            this.borrowInfoLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.borrowInfoLayout.Margin = new System.Windows.Forms.Padding(4);
             this.borrowInfoLayout.Name = "borrowInfoLayout";
             this.borrowInfoLayout.RowCount = 2;
             this.borrowInfoLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 225F));
@@ -377,7 +377,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvCurrentBorrows.ColumnHeadersHeight = 40;
             this.dgvCurrentBorrows.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCurrentBorrows.Location = new System.Drawing.Point(4, 4);
-            this.dgvCurrentBorrows.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCurrentBorrows.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCurrentBorrows.Name = "dgvCurrentBorrows";
             this.dgvCurrentBorrows.ReadOnly = true;
             this.dgvCurrentBorrows.RowHeadersVisible = false;
@@ -422,7 +422,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelHistory.Location = new System.Drawing.Point(30, 766);
             this.panelHistory.Margin = new System.Windows.Forms.Padding(0, 22, 0, 0);
             this.panelHistory.Name = "panelHistory";
-            this.panelHistory.Padding = new System.Windows.Forms.Padding(22, 22, 22, 22);
+            this.panelHistory.Padding = new System.Windows.Forms.Padding(22);
             this.panelHistory.Size = new System.Drawing.Size(1290, 314);
             this.panelHistory.TabIndex = 2;
             // 
@@ -435,7 +435,7 @@ namespace BooksManagermentSysytem.Controls
             this.historyLayout.Controls.Add(this.dgvBorrowHistory, 0, 0);
             this.historyLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.historyLayout.Location = new System.Drawing.Point(22, 67);
-            this.historyLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.historyLayout.Margin = new System.Windows.Forms.Padding(4);
             this.historyLayout.Name = "historyLayout";
             this.historyLayout.RowCount = 1;
             this.historyLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 225F));
@@ -451,7 +451,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvBorrowHistory.ColumnHeadersHeight = 40;
             this.dgvBorrowHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBorrowHistory.Location = new System.Drawing.Point(4, 4);
-            this.dgvBorrowHistory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBorrowHistory.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBorrowHistory.Name = "dgvBorrowHistory";
             this.dgvBorrowHistory.ReadOnly = true;
             this.dgvBorrowHistory.RowHeadersVisible = false;
@@ -480,7 +480,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Padding = new System.Windows.Forms.Padding(30, 15, 30, 15);
             this.panelHeader.Size = new System.Drawing.Size(1350, 75);
@@ -492,7 +492,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Location = new System.Drawing.Point(1200, 15);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(120, 45);
             this.btnRefresh.TabIndex = 0;
@@ -522,7 +522,7 @@ namespace BooksManagermentSysytem.Controls
             this.Controls.Add(this.mainLayout);
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 900);
             this.Name = "PersonalInfoControl";
             this.Size = new System.Drawing.Size(1350, 1050);
@@ -706,7 +706,20 @@ namespace BooksManagermentSysytem.Controls
 
             int currentCount = dt.Rows.Count;
             int maxBooks = BorrowRules.MaxBooksPerBorrow;
+            
+            // 更新显示文本 - 确保显示正确的借阅数量
             lblBorrowSummary.Text = $"当前已借阅：{currentCount} 本 / 最多可借：{maxBooks} 本 | 借期：{BorrowRules.BorrowDays} 天";
+            
+            // 如果没有借阅记录，提供提示信息
+            if (currentCount == 0)
+            {
+                lblBorrowSummary.Text += " | 暂无借阅记录";
+                lblBorrowSummary.ForeColor = System.Drawing.Color.Gray;
+            }
+            else
+            {
+                lblBorrowSummary.ForeColor = System.Drawing.Color.FromArgb(76, 175, 80); // 绿色
+            }
 
             dgvCurrentBorrows.CellFormatting += (s, cellArgs) =>
             {

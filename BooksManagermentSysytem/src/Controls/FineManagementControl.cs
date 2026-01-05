@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
+using BooksManagermentSysytem.Helpers;
 
 namespace BooksManagermentSysytem.Controls
 {
@@ -27,7 +28,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnSearch = new System.Windows.Forms.Button();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.cboCardID = new System.Windows.Forms.ComboBox();
             this.lblCardID = new System.Windows.Forms.Label();
             this.dgvFines = new System.Windows.Forms.DataGridView();
             this.panelSummary = new System.Windows.Forms.Panel();
@@ -49,11 +50,11 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.btnSearch);
             this.panelSearch.Controls.Add(this.cboStatus);
             this.panelSearch.Controls.Add(this.lblStatus);
-            this.panelSearch.Controls.Add(this.txtCardID);
+            this.panelSearch.Controls.Add(this.cboCardID);
             this.panelSearch.Controls.Add(this.lblCardID);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearch.Location = new System.Drawing.Point(0, 0);
-            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(1350, 75);
             this.panelSearch.TabIndex = 3;
@@ -61,7 +62,7 @@ namespace BooksManagermentSysytem.Controls
             // btnShowAll
             // 
             this.btnShowAll.Location = new System.Drawing.Point(765, 15);
-            this.btnShowAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(150, 42);
             this.btnShowAll.TabIndex = 0;
@@ -74,7 +75,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Location = new System.Drawing.Point(630, 15);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(120, 42);
             this.btnSearch.TabIndex = 1;
@@ -90,7 +91,7 @@ namespace BooksManagermentSysytem.Controls
             "未支付",
             "已支付"});
             this.cboStatus.Location = new System.Drawing.Point(458, 18);
-            this.cboStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStatus.Margin = new System.Windows.Forms.Padding(4);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(148, 32);
             this.cboStatus.TabIndex = 2;
@@ -105,13 +106,13 @@ namespace BooksManagermentSysytem.Controls
             this.lblStatus.TabIndex = 3;
             this.lblStatus.Text = "状态：";
             // 
-            // txtCardID
+            // cboCardID
             // 
-            this.txtCardID.Location = new System.Drawing.Point(135, 18);
-            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtCardID.Name = "txtCardID";
-            this.txtCardID.Size = new System.Drawing.Size(223, 30);
-            this.txtCardID.TabIndex = 4;
+            this.cboCardID.Location = new System.Drawing.Point(135, 18);
+            this.cboCardID.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCardID.Name = "cboCardID";
+            this.cboCardID.Size = new System.Drawing.Size(255, 32);
+            this.cboCardID.TabIndex = 4;
             // 
             // lblCardID
             // 
@@ -131,14 +132,14 @@ namespace BooksManagermentSysytem.Controls
             this.dgvFines.BackgroundColor = System.Drawing.Color.White;
             this.dgvFines.ColumnHeadersHeight = 40;
             this.dgvFines.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvFines.Location = new System.Drawing.Point(0, 75);
-            this.dgvFines.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvFines.Location = new System.Drawing.Point(0, 0);
+            this.dgvFines.Margin = new System.Windows.Forms.Padding(4);
             this.dgvFines.Name = "dgvFines";
             this.dgvFines.ReadOnly = true;
             this.dgvFines.RowHeadersVisible = false;
             this.dgvFines.RowHeadersWidth = 62;
             this.dgvFines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFines.Size = new System.Drawing.Size(1350, 585);
+            this.dgvFines.Size = new System.Drawing.Size(1350, 795);
             this.dgvFines.TabIndex = 0;
             // 
             // panelSummary
@@ -147,8 +148,8 @@ namespace BooksManagermentSysytem.Controls
             this.panelSummary.Controls.Add(this.lblTotalPaid);
             this.panelSummary.Controls.Add(this.lblTotalUnpaid);
             this.panelSummary.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelSummary.Location = new System.Drawing.Point(0, 660);
-            this.panelSummary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSummary.Location = new System.Drawing.Point(0, 735);
+            this.panelSummary.Margin = new System.Windows.Forms.Padding(4);
             this.panelSummary.Name = "panelSummary";
             this.panelSummary.Size = new System.Drawing.Size(1350, 60);
             this.panelSummary.TabIndex = 1;
@@ -181,8 +182,8 @@ namespace BooksManagermentSysytem.Controls
             this.panelActions.Controls.Add(this.btnPrintNotice);
             this.panelActions.Controls.Add(this.btnMarkPaid);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(0, 720);
-            this.panelActions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelActions.Location = new System.Drawing.Point(0, 660);
+            this.panelActions.Margin = new System.Windows.Forms.Padding(4);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(1350, 75);
             this.panelActions.TabIndex = 2;
@@ -190,7 +191,7 @@ namespace BooksManagermentSysytem.Controls
             // btnPrintNotice
             // 
             this.btnPrintNotice.Location = new System.Drawing.Point(690, 15);
-            this.btnPrintNotice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrintNotice.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintNotice.Name = "btnPrintNotice";
             this.btnPrintNotice.Size = new System.Drawing.Size(180, 48);
             this.btnPrintNotice.TabIndex = 0;
@@ -204,7 +205,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnMarkPaid.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnMarkPaid.ForeColor = System.Drawing.Color.White;
             this.btnMarkPaid.Location = new System.Drawing.Point(450, 12);
-            this.btnMarkPaid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMarkPaid.Margin = new System.Windows.Forms.Padding(4);
             this.btnMarkPaid.Name = "btnMarkPaid";
             this.btnMarkPaid.Size = new System.Drawing.Size(210, 52);
             this.btnMarkPaid.TabIndex = 1;
@@ -222,7 +223,7 @@ namespace BooksManagermentSysytem.Controls
             this.Controls.Add(this.panelSummary);
             this.Controls.Add(this.dgvFines);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 750);
             this.Name = "FineManagementControl";
             this.Size = new System.Drawing.Size(1350, 795);
@@ -238,7 +239,7 @@ namespace BooksManagermentSysytem.Controls
 
         private System.Windows.Forms.Panel panelSearch;
         private System.Windows.Forms.Label lblCardID;
-        private System.Windows.Forms.TextBox txtCardID;
+        private System.Windows.Forms.ComboBox cboCardID;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cboStatus;
         private System.Windows.Forms.Button btnSearch;
@@ -254,6 +255,10 @@ namespace BooksManagermentSysytem.Controls
         private void FineManagementControl_Load(object sender, EventArgs e)
         {
             cboStatus.SelectedIndex = 1; // 默认显示未支付
+            
+            // 初始化借书证选择框 - 显示所有状态的借书证(包括注销等)
+            CardIDSelector.InitializeCardIDComboBox(cboCardID, onlyNormal: false, allowEmpty: true);
+            
             LoadFines();
         }
 
@@ -264,7 +269,7 @@ namespace BooksManagermentSysytem.Controls
 
         private void btnShowAll_Click(object sender, EventArgs e)
         {
-            txtCardID.Clear();
+            CardIDSelector.SetSelectedCardID(cboCardID, "");
             cboStatus.SelectedIndex = 1;
             LoadFines();
         }
@@ -282,10 +287,11 @@ namespace BooksManagermentSysytem.Controls
 
                 var parameters = new System.Collections.Generic.List<System.Data.SqlClient.SqlParameter>();
 
-                if (!string.IsNullOrWhiteSpace(txtCardID.Text))
+                string cardID = CardIDSelector.GetSelectedCardID(cboCardID);
+                if (!string.IsNullOrWhiteSpace(cardID))
                 {
                     sql += " AND f.cardID LIKE @cardID";
-                    parameters.Add(DatabaseHelper.CreateParameter("@cardID", "%" + txtCardID.Text.Trim() + "%"));
+                    parameters.Add(DatabaseHelper.CreateParameter("@cardID", "%" + cardID + "%"));
                 }
 
                 if (cboStatus.SelectedIndex == 1)

@@ -70,7 +70,7 @@ namespace BooksManagermentSysytem.Controls
             this.tabControl.Controls.Add(this.tabMyReservations);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1350, 825);
@@ -82,9 +82,9 @@ namespace BooksManagermentSysytem.Controls
             this.tabNewReservation.Controls.Add(this.panelSearch);
             this.tabNewReservation.Controls.Add(this.panelReader);
             this.tabNewReservation.Location = new System.Drawing.Point(4, 33);
-            this.tabNewReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabNewReservation.Margin = new System.Windows.Forms.Padding(4);
             this.tabNewReservation.Name = "tabNewReservation";
-            this.tabNewReservation.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabNewReservation.Padding = new System.Windows.Forms.Padding(4);
             this.tabNewReservation.Size = new System.Drawing.Size(1342, 788);
             this.tabNewReservation.TabIndex = 0;
             this.tabNewReservation.Text = "新建预约";
@@ -98,7 +98,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelSelected.Controls.Add(this.lblSelectedTitle);
             this.panelSelected.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSelected.Location = new System.Drawing.Point(4, 394);
-            this.panelSelected.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSelected.Margin = new System.Windows.Forms.Padding(4);
             this.panelSelected.Name = "panelSelected";
             this.panelSelected.Size = new System.Drawing.Size(1334, 390);
             this.panelSelected.TabIndex = 0;
@@ -120,7 +120,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnConfirmReservation.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnConfirmReservation.ForeColor = System.Drawing.Color.White;
             this.btnConfirmReservation.Location = new System.Drawing.Point(525, 255);
-            this.btnConfirmReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfirmReservation.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmReservation.Name = "btnConfirmReservation";
             this.btnConfirmReservation.Size = new System.Drawing.Size(225, 57);
             this.btnConfirmReservation.TabIndex = 1;
@@ -131,7 +131,7 @@ namespace BooksManagermentSysytem.Controls
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(1200, 52);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(112, 42);
             this.btnRemove.TabIndex = 2;
@@ -146,7 +146,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvSelectedBooks.BackgroundColor = System.Drawing.Color.White;
             this.dgvSelectedBooks.ColumnHeadersHeight = 40;
             this.dgvSelectedBooks.Location = new System.Drawing.Point(15, 52);
-            this.dgvSelectedBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSelectedBooks.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSelectedBooks.Name = "dgvSelectedBooks";
             this.dgvSelectedBooks.ReadOnly = true;
             this.dgvSelectedBooks.RowHeadersVisible = false;
@@ -176,7 +176,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelSearch.Controls.Add(this.lblSearchTitle);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearch.Location = new System.Drawing.Point(4, 94);
-            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(1334, 300);
             this.panelSearch.TabIndex = 1;
@@ -187,7 +187,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnAddToReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddToReservation.ForeColor = System.Drawing.Color.White;
             this.btnAddToReservation.Location = new System.Drawing.Point(1200, 98);
-            this.btnAddToReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddToReservation.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddToReservation.Name = "btnAddToReservation";
             this.btnAddToReservation.Size = new System.Drawing.Size(112, 45);
             this.btnAddToReservation.TabIndex = 0;
@@ -203,7 +203,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvSearchResults.BackgroundColor = System.Drawing.Color.White;
             this.dgvSearchResults.ColumnHeadersHeight = 40;
             this.dgvSearchResults.Location = new System.Drawing.Point(15, 98);
-            this.dgvSearchResults.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSearchResults.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSearchResults.Name = "dgvSearchResults";
             this.dgvSearchResults.ReadOnly = true;
             this.dgvSearchResults.RowHeadersVisible = false;
@@ -215,7 +215,7 @@ namespace BooksManagermentSysytem.Controls
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(420, 50);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 42);
             this.btnSearch.TabIndex = 2;
@@ -225,7 +225,7 @@ namespace BooksManagermentSysytem.Controls
             // txtKeyword
             // 
             this.txtKeyword.Location = new System.Drawing.Point(105, 52);
-            this.txtKeyword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKeyword.Margin = new System.Windows.Forms.Padding(4);
             this.txtKeyword.Name = "txtKeyword";
             this.txtKeyword.Size = new System.Drawing.Size(298, 30);
             this.txtKeyword.TabIndex = 3;
@@ -261,7 +261,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelReader.Controls.Add(this.lblCardID);
             this.panelReader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelReader.Location = new System.Drawing.Point(4, 4);
-            this.panelReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReader.Margin = new System.Windows.Forms.Padding(4);
             this.panelReader.Name = "panelReader";
             this.panelReader.Size = new System.Drawing.Size(1334, 90);
             this.panelReader.TabIndex = 2;
@@ -288,8 +288,8 @@ namespace BooksManagermentSysytem.Controls
             this.btnLoadReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnLoadReader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadReader.ForeColor = System.Drawing.Color.White;
-            this.btnLoadReader.Location = new System.Drawing.Point(382, 22);
-            this.btnLoadReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLoadReader.Location = new System.Drawing.Point(420, 23);
+            this.btnLoadReader.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoadReader.Name = "btnLoadReader";
             this.btnLoadReader.Size = new System.Drawing.Size(105, 42);
             this.btnLoadReader.TabIndex = 2;
@@ -300,9 +300,9 @@ namespace BooksManagermentSysytem.Controls
             // txtCardID
             // 
             this.txtCardID.Location = new System.Drawing.Point(128, 26);
-            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardID.Margin = new System.Windows.Forms.Padding(4);
             this.txtCardID.Name = "txtCardID";
-            this.txtCardID.Size = new System.Drawing.Size(238, 30);
+            this.txtCardID.Size = new System.Drawing.Size(284, 30);
             this.txtCardID.TabIndex = 3;
             // 
             // lblCardID
@@ -321,7 +321,7 @@ namespace BooksManagermentSysytem.Controls
             this.tabMyReservations.Controls.Add(this.btnCancelReservation);
             this.tabMyReservations.Controls.Add(this.dgvMyReservations);
             this.tabMyReservations.Location = new System.Drawing.Point(4, 33);
-            this.tabMyReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabMyReservations.Margin = new System.Windows.Forms.Padding(4);
             this.tabMyReservations.Name = "tabMyReservations";
             this.tabMyReservations.Size = new System.Drawing.Size(1342, 788);
             this.tabMyReservations.TabIndex = 1;
@@ -331,7 +331,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.btnRefreshReservations.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnRefreshReservations.Location = new System.Drawing.Point(705, 720);
-            this.btnRefreshReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefreshReservations.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefreshReservations.Name = "btnRefreshReservations";
             this.btnRefreshReservations.Size = new System.Drawing.Size(150, 45);
             this.btnRefreshReservations.TabIndex = 0;
@@ -342,7 +342,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.btnCancelReservation.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancelReservation.Location = new System.Drawing.Point(525, 720);
-            this.btnCancelReservation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelReservation.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelReservation.Name = "btnCancelReservation";
             this.btnCancelReservation.Size = new System.Drawing.Size(150, 45);
             this.btnCancelReservation.TabIndex = 1;
@@ -358,7 +358,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvMyReservations.ColumnHeadersHeight = 40;
             this.dgvMyReservations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMyReservations.Location = new System.Drawing.Point(0, 0);
-            this.dgvMyReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvMyReservations.Margin = new System.Windows.Forms.Padding(4);
             this.dgvMyReservations.Name = "dgvMyReservations";
             this.dgvMyReservations.ReadOnly = true;
             this.dgvMyReservations.RowHeadersVisible = false;
@@ -374,7 +374,7 @@ namespace BooksManagermentSysytem.Controls
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 750);
             this.Name = "ReservationControl";
             this.Size = new System.Drawing.Size(1350, 825);

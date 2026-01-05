@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
 using BooksManagermentSysytem.Models;
 using BooksManagermentSysytem.Services;
+using BooksManagermentSysytem.Helpers;
 
 namespace BooksManagermentSysytem.Controls
 {
@@ -30,7 +31,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelReader = new System.Windows.Forms.Panel();
             this.lblReaderInfo = new System.Windows.Forms.Label();
             this.btnLoadReader = new System.Windows.Forms.Button();
-            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.cboCardID = new System.Windows.Forms.ComboBox();
             this.lblCardIDInput = new System.Windows.Forms.Label();
             this.lblReaderTitle = new System.Windows.Forms.Label();
             this.panelBooks = new System.Windows.Forms.Panel();
@@ -56,12 +57,12 @@ namespace BooksManagermentSysytem.Controls
             this.panelReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.panelReader.Controls.Add(this.lblReaderInfo);
             this.panelReader.Controls.Add(this.btnLoadReader);
-            this.panelReader.Controls.Add(this.txtCardID);
+            this.panelReader.Controls.Add(this.cboCardID);
             this.panelReader.Controls.Add(this.lblCardIDInput);
             this.panelReader.Controls.Add(this.lblReaderTitle);
             this.panelReader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelReader.Location = new System.Drawing.Point(0, 0);
-            this.panelReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelReader.Margin = new System.Windows.Forms.Padding(4);
             this.panelReader.Name = "panelReader";
             this.panelReader.Size = new System.Drawing.Size(1350, 120);
             this.panelReader.TabIndex = 2;
@@ -69,7 +70,7 @@ namespace BooksManagermentSysytem.Controls
             // lblReaderInfo
             // 
             this.lblReaderInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblReaderInfo.Location = new System.Drawing.Point(555, 52);
+            this.lblReaderInfo.Location = new System.Drawing.Point(600, 56);
             this.lblReaderInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReaderInfo.Name = "lblReaderInfo";
             this.lblReaderInfo.Size = new System.Drawing.Size(750, 60);
@@ -81,8 +82,8 @@ namespace BooksManagermentSysytem.Controls
             this.btnLoadReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnLoadReader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadReader.ForeColor = System.Drawing.Color.White;
-            this.btnLoadReader.Location = new System.Drawing.Point(412, 60);
-            this.btnLoadReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLoadReader.Location = new System.Drawing.Point(463, 59);
+            this.btnLoadReader.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoadReader.Name = "btnLoadReader";
             this.btnLoadReader.Size = new System.Drawing.Size(120, 42);
             this.btnLoadReader.TabIndex = 1;
@@ -90,13 +91,13 @@ namespace BooksManagermentSysytem.Controls
             this.btnLoadReader.UseVisualStyleBackColor = false;
             this.btnLoadReader.Click += new System.EventHandler(this.btnLoadReader_Click);
             // 
-            // txtCardID
+            // cboCardID
             // 
-            this.txtCardID.Location = new System.Drawing.Point(128, 63);
-            this.txtCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtCardID.Name = "txtCardID";
-            this.txtCardID.Size = new System.Drawing.Size(268, 30);
-            this.txtCardID.TabIndex = 2;
+            this.cboCardID.Location = new System.Drawing.Point(128, 63);
+            this.cboCardID.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCardID.Name = "cboCardID";
+            this.cboCardID.Size = new System.Drawing.Size(327, 32);
+            this.cboCardID.TabIndex = 2;
             // 
             // lblCardIDInput
             // 
@@ -130,9 +131,9 @@ namespace BooksManagermentSysytem.Controls
             this.panelBooks.Controls.Add(this.lblRules);
             this.panelBooks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBooks.Location = new System.Drawing.Point(0, 120);
-            this.panelBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelBooks.Margin = new System.Windows.Forms.Padding(4);
             this.panelBooks.Name = "panelBooks";
-            this.panelBooks.Padding = new System.Windows.Forms.Padding(22, 22, 22, 22);
+            this.panelBooks.Padding = new System.Windows.Forms.Padding(22);
             this.panelBooks.Size = new System.Drawing.Size(1350, 600);
             this.panelBooks.TabIndex = 0;
             // 
@@ -160,7 +161,7 @@ namespace BooksManagermentSysytem.Controls
             // txtBarcode
             // 
             this.txtBarcode.Location = new System.Drawing.Point(128, 63);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(268, 30);
             this.txtBarcode.TabIndex = 2;
@@ -172,7 +173,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnAddBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddBook.ForeColor = System.Drawing.Color.White;
             this.btnAddBook.Location = new System.Drawing.Point(412, 60);
-            this.btnAddBook.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddBook.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddBook.Name = "btnAddBook";
             this.btnAddBook.Size = new System.Drawing.Size(120, 42);
             this.btnAddBook.TabIndex = 3;
@@ -191,7 +192,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvSelectedBooks.BackgroundColor = System.Drawing.Color.White;
             this.dgvSelectedBooks.ColumnHeadersHeight = 40;
             this.dgvSelectedBooks.Location = new System.Drawing.Point(22, 120);
-            this.dgvSelectedBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSelectedBooks.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSelectedBooks.Name = "dgvSelectedBooks";
             this.dgvSelectedBooks.ReadOnly = true;
             this.dgvSelectedBooks.RowHeadersVisible = false;
@@ -204,7 +205,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.btnRemoveBook.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveBook.Location = new System.Drawing.Point(2242, 120);
-            this.btnRemoveBook.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveBook.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveBook.Name = "btnRemoveBook";
             this.btnRemoveBook.Size = new System.Drawing.Size(120, 45);
             this.btnRemoveBook.TabIndex = 5;
@@ -231,7 +232,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelAction.Controls.Add(this.btnClear);
             this.panelAction.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelAction.Location = new System.Drawing.Point(0, 720);
-            this.panelAction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelAction.Margin = new System.Windows.Forms.Padding(4);
             this.panelAction.Name = "panelAction";
             this.panelAction.Size = new System.Drawing.Size(1350, 90);
             this.panelAction.TabIndex = 1;
@@ -253,7 +254,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnBorrow.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnBorrow.ForeColor = System.Drawing.Color.White;
             this.btnBorrow.Location = new System.Drawing.Point(450, 18);
-            this.btnBorrow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBorrow.Margin = new System.Windows.Forms.Padding(4);
             this.btnBorrow.Name = "btnBorrow";
             this.btnBorrow.Size = new System.Drawing.Size(225, 57);
             this.btnBorrow.TabIndex = 1;
@@ -264,7 +265,7 @@ namespace BooksManagermentSysytem.Controls
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(705, 22);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(150, 48);
             this.btnClear.TabIndex = 2;
@@ -280,7 +281,7 @@ namespace BooksManagermentSysytem.Controls
             this.Controls.Add(this.panelAction);
             this.Controls.Add(this.panelReader);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 750);
             this.Name = "BorrowBookControl";
             this.Size = new System.Drawing.Size(1350, 810);
@@ -299,7 +300,7 @@ namespace BooksManagermentSysytem.Controls
         private System.Windows.Forms.Panel panelReader;
         private System.Windows.Forms.Label lblReaderTitle;
         private System.Windows.Forms.Label lblCardIDInput;
-        private System.Windows.Forms.TextBox txtCardID;
+        private System.Windows.Forms.ComboBox cboCardID;
         private System.Windows.Forms.Button btnLoadReader;
         private System.Windows.Forms.Label lblReaderInfo;
         private System.Windows.Forms.Panel panelBooks;
@@ -317,11 +318,14 @@ namespace BooksManagermentSysytem.Controls
 
         private void BorrowBookControl_Load(object sender, EventArgs e)
         {
+            // 初始化借书证选择框
+            CardIDSelector.InitializeCardIDComboBox(cboCardID, onlyNormal: true, allowEmpty: true);
+            
             // 如果是读者登录，自动填充借书证号
             var user = AuthenticationService.Instance.CurrentUser;
             if (user != null && user.IsReader && !string.IsNullOrEmpty(user.CardID))
             {
-                txtCardID.Text = user.CardID;
+                CardIDSelector.SetSelectedCardID(cboCardID, user.CardID);
                 LoadReader();
             }
 
@@ -338,9 +342,10 @@ namespace BooksManagermentSysytem.Controls
             lblMessage.Text = string.Empty;
             currentReader = null;
 
-            if (string.IsNullOrWhiteSpace(txtCardID.Text))
+            string cardID = CardIDSelector.GetSelectedCardID(cboCardID);
+            if (string.IsNullOrWhiteSpace(cardID))
             {
-                lblReaderInfo.Text = "请输入借书证号";
+                lblReaderInfo.Text = "请选择或输入借书证号";
                 lblReaderInfo.ForeColor = System.Drawing.Color.Red;
                 return;
             }
@@ -355,7 +360,7 @@ namespace BooksManagermentSysytem.Controls
                     WHERE r.cardID = @cardID";
 
                 DataTable dt = DatabaseHelper.ExecuteQuery(sql, 
-                    DatabaseHelper.CreateParameter("@cardID", txtCardID.Text.Trim()));
+                    DatabaseHelper.CreateParameter("@cardID", cardID));
 
                 if (dt.Rows.Count == 0)
                 {
@@ -684,9 +689,9 @@ namespace BooksManagermentSysytem.Controls
             var user = AuthenticationService.Instance.CurrentUser;
             if (user == null || !user.IsReader)
             {
-                txtCardID.Clear();
+                CardIDSelector.SetSelectedCardID(cboCardID, "");
                 currentReader = null;
-                lblReaderInfo.Text = "请输入借书证号并点击查询";
+                lblReaderInfo.Text = "请选择或输入借书证号并点击查询";
                 lblReaderInfo.ForeColor = System.Drawing.Color.Black;
             }
             else

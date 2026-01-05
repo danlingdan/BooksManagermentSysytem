@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
 using BooksManagermentSysytem.Utils;
+using BooksManagermentSysytem.Helpers;
 
 namespace BooksManagermentSysytem.Controls.Reports
 {
@@ -30,7 +31,7 @@ namespace BooksManagermentSysytem.Controls.Reports
             this.btnPrint = new System.Windows.Forms.Button();
             this.panelSearch = new System.Windows.Forms.Panel();
             this.lblCardID = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.cboCardID = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panelReaderInfo = new System.Windows.Forms.Panel();
             this.lblReaderInfo = new System.Windows.Forms.Label();
@@ -80,7 +81,7 @@ namespace BooksManagermentSysytem.Controls.Reports
             // panelSearch
             this.panelSearch.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
             this.panelSearch.Controls.Add(this.btnSearch);
-            this.panelSearch.Controls.Add(this.txtCardID);
+            this.panelSearch.Controls.Add(this.cboCardID);
             this.panelSearch.Controls.Add(this.lblCardID);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearch.Location = new System.Drawing.Point(0, 60);
@@ -92,10 +93,10 @@ namespace BooksManagermentSysytem.Controls.Reports
             this.lblCardID.Location = new System.Drawing.Point(20, 25);
             this.lblCardID.Text = "借书证号：";
             
-            // txtCardID
-            this.txtCardID.Location = new System.Drawing.Point(100, 22);
-            this.txtCardID.Size = new System.Drawing.Size(250, 25);
-            this.txtCardID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCardID_KeyDown);
+            // cboCardID
+            this.cboCardID.Location = new System.Drawing.Point(100, 22);
+            this.cboCardID.Size = new System.Drawing.Size(250, 28);
+            this.cboCardID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCardID_KeyDown);
             
             // btnSearch
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(0, 122, 204);
@@ -173,7 +174,7 @@ namespace BooksManagermentSysytem.Controls.Reports
         private Button btnPrint;
         private Panel panelSearch;
         private Label lblCardID;
-        private TextBox txtCardID;
+        private ComboBox cboCardID;
         private Button btnSearch;
         private Panel panelReaderInfo;
         private Label lblReaderInfo;
@@ -181,7 +182,13 @@ namespace BooksManagermentSysytem.Controls.Reports
         private Panel panelStats;
         private Label lblStats;
 
-        private void txtCardID_KeyDown(object sender, KeyEventArgs e)
+        private void ReaderHistoryControl_Load(object sender, EventArgs e)
+        {
+            // 初始化借书证选择框 - 显示所有状态的借书证
+            CardIDSelector.InitializeCardIDComboBox(cboCardID, onlyNormal: false, allowEmpty: true);
+        }
+
+        private void cboCardID_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -193,9 +200,10 @@ namespace BooksManagermentSysytem.Controls.Reports
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCardID.Text))
+            string cardID = CardIDSelector.GetSelectedCardID(cboCardID);
+            if (string.IsNullOrWhiteSpace(cardID))
             {
-                MessageBox.Show("请输入借书证号", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("请选择或输入借书证号", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -209,7 +217,7 @@ namespace BooksManagermentSysytem.Controls.Reports
                     WHERE r.cardID = @cardID";
 
                 DataTable readerDt = DatabaseHelper.ExecuteQuery(readerSql,
-                    DatabaseHelper.CreateParameter("@cardID", txtCardID.Text.Trim()));
+                    DatabaseHelper.CreateParameter("@cardID", cardID));
 
                 if (readerDt.Rows.Count == 0)
                 {

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
 using BooksManagermentSysytem.Utils;
+using BooksManagermentSysytem.Helpers;
 
 namespace BooksManagermentSysytem.Controls.Reports
 {
@@ -33,7 +34,7 @@ namespace BooksManagermentSysytem.Controls.Reports
             this.lblUnit = new System.Windows.Forms.Label();
             this.txtUnit = new System.Windows.Forms.TextBox();
             this.lblCardID = new System.Windows.Forms.Label();
-            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.cboCardID = new System.Windows.Forms.ComboBox();
             this.lblBorrowDateRange = new System.Windows.Forms.Label();
             this.dtpBorrowStart = new System.Windows.Forms.DateTimePicker();
             this.lblTo1 = new System.Windows.Forms.Label();
@@ -110,7 +111,7 @@ namespace BooksManagermentSysytem.Controls.Reports
             this.panelQuery.Controls.Add(this.lblTo1);
             this.panelQuery.Controls.Add(this.dtpBorrowStart);
             this.panelQuery.Controls.Add(this.lblBorrowDateRange);
-            this.panelQuery.Controls.Add(this.txtCardID);
+            this.panelQuery.Controls.Add(this.cboCardID);
             this.panelQuery.Controls.Add(this.lblCardID);
             this.panelQuery.Controls.Add(this.txtUnit);
             this.panelQuery.Controls.Add(this.lblUnit);
@@ -157,10 +158,11 @@ namespace BooksManagermentSysytem.Controls.Reports
             this.lblCardID.Location = new System.Drawing.Point(500, 50);
             this.lblCardID.Text = "借书证号：";
             
-            // txtCardID
-            this.txtCardID.Location = new System.Drawing.Point(580, 47);
-            this.txtCardID.Name = "txtCardID";
-            this.txtCardID.Size = new System.Drawing.Size(150, 25);
+            // cboCardID
+            this.cboCardID.Location = new System.Drawing.Point(580, 47);
+            this.cboCardID.Name = "cboCardID";
+            this.cboCardID.Size = new System.Drawing.Size(150, 28);
+            this.cboCardID.TabIndex = 2;
             
             // lblBorrowDateRange
             this.lblBorrowDateRange.AutoSize = true;
@@ -302,7 +304,7 @@ namespace BooksManagermentSysytem.Controls.Reports
         private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.TextBox txtUnit;
         private System.Windows.Forms.Label lblCardID;
-        private System.Windows.Forms.TextBox txtCardID;
+        private System.Windows.Forms.ComboBox cboCardID;
         private System.Windows.Forms.Label lblBorrowDateRange;
         private System.Windows.Forms.DateTimePicker dtpBorrowStart;
         private System.Windows.Forms.Label lblTo1;
@@ -326,6 +328,9 @@ namespace BooksManagermentSysytem.Controls.Reports
             dtpBorrowEnd.Value = DateTime.Now;
             dtpReturnStart.Value = DateTime.Now.AddMonths(-3);
             dtpReturnEnd.Value = DateTime.Now;
+            
+            // 初始化借书证选择框 - 显示所有状态的借书证
+            CardIDSelector.InitializeCardIDComboBox(cboCardID, onlyNormal: false, allowEmpty: true);
         }
 
         private void btnQuery_Click(object sender, EventArgs e)
@@ -387,10 +392,11 @@ namespace BooksManagermentSysytem.Controls.Reports
                 }
 
                 // 借书证号
-                if (!string.IsNullOrWhiteSpace(txtCardID.Text))
+                string cardID = CardIDSelector.GetSelectedCardID(cboCardID);
+                if (!string.IsNullOrWhiteSpace(cardID))
                 {
                     sql += " AND bb.cardID LIKE @cardID";
-                    parameters.Add(DatabaseHelper.CreateParameter("@cardID", "%" + txtCardID.Text.Trim() + "%"));
+                    parameters.Add(DatabaseHelper.CreateParameter("@cardID", "%" + cardID + "%"));
                 }
 
                 // 借阅日期范围
@@ -459,7 +465,7 @@ namespace BooksManagermentSysytem.Controls.Reports
         {
             cboReaderType.SelectedIndex = 0;
             txtUnit.Clear();
-            txtCardID.Clear();
+            CardIDSelector.SetSelectedCardID(cboCardID, "");
             dtpBorrowStart.Value = DateTime.Now.AddMonths(-3);
             dtpBorrowEnd.Value = DateTime.Now;
             dtpReturnStart.Value = DateTime.Now.AddMonths(-3);

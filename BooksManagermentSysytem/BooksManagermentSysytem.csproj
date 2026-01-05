@@ -194,6 +194,7 @@
     <Compile Include="src\Forms\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Helpers\CardIDSelector.cs" />
     <Compile Include="src\Helpers\InputDialog.cs" />
     <Compile Include="src\Models\BusinessRules.cs" />
     <Compile Include="src\Models\Entities.cs" />
@@ -228,11 +229,20 @@
     <EmbeddedResource Include="src\Controls\BorrowBookControl.resx">
       <DependentUpon>BorrowBookControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\BorrowRuleManagementControl.resx">
+      <DependentUpon>BorrowRuleManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\CardManagementControl.resx">
+      <DependentUpon>CardManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\CategoryManagementControl.resx">
       <DependentUpon>CategoryManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\FineManagementControl.resx">
       <DependentUpon>FineManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\FineRuleManagementControl.resx">
+      <DependentUpon>FineRuleManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\LibrarianDashboardControl.resx">
       <DependentUpon>LibrarianDashboardControl.cs</DependentUpon>
@@ -245,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\ReaderManagementControl.resx">
       <DependentUpon>ReaderManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\Reports\ReportManagementControl.resx">
+      <DependentUpon>ReportManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\ReservationControl.resx">
       <DependentUpon>ReservationControl.cs</DependentUpon>
@@ -262,6 +275,9 @@
     <None Include="docs\README-借阅归还.md" />
     <None Include="docs\README_规则管理.md" />
     <None Include="docs\个人信息和罚款功能说明.md" />
+    <None Include="docs\借书证选择功能修改完成报告.md" />
+    <None Include="docs\借书证选择功能修改说明.md" />
+    <None Include="docs\借书证选择功能测试指南.md" />
     <None Include="docs\借阅归还功能完善总结.md" />
     <None Include="docs\借阅归还功能说明.md" />
     <None Include="docs\借阅归还快速指南.md" />

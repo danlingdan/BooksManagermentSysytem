@@ -53,7 +53,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1425, 75);
             this.panelHeader.TabIndex = 3;
@@ -63,7 +63,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnExport.BackColor = System.Drawing.Color.White;
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Location = new System.Drawing.Point(1290, 15);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(105, 45);
             this.btnExport.TabIndex = 0;
@@ -76,7 +76,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Location = new System.Drawing.Point(1170, 15);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(105, 45);
             this.btnRefresh.TabIndex = 1;
@@ -91,7 +91,7 @@ namespace BooksManagermentSysytem.Controls
             this.lblTitle.Location = new System.Drawing.Point(30, 18);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(300, 42);
+            this.lblTitle.Size = new System.Drawing.Size(321, 42);
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "📋 系统操作日志";
             // 
@@ -112,7 +112,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelFilter.Controls.Add(this.lblDateRange);
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilter.Location = new System.Drawing.Point(0, 75);
-            this.panelFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelFilter.Margin = new System.Windows.Forms.Padding(4);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Size = new System.Drawing.Size(1425, 120);
             this.panelFilter.TabIndex = 2;
@@ -120,7 +120,7 @@ namespace BooksManagermentSysytem.Controls
             // btnClearFilter
             // 
             this.btnClearFilter.Location = new System.Drawing.Point(495, 68);
-            this.btnClearFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearFilter.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearFilter.Name = "btnClearFilter";
             this.btnClearFilter.Size = new System.Drawing.Size(135, 42);
             this.btnClearFilter.TabIndex = 0;
@@ -133,7 +133,7 @@ namespace BooksManagermentSysytem.Controls
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFilter.ForeColor = System.Drawing.Color.White;
             this.btnFilter.Location = new System.Drawing.Point(375, 68);
-            this.btnFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(4);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(105, 42);
             this.btnFilter.TabIndex = 1;
@@ -144,7 +144,7 @@ namespace BooksManagermentSysytem.Controls
             // txtOperator
             // 
             this.txtOperator.Location = new System.Drawing.Point(128, 70);
-            this.txtOperator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOperator.Margin = new System.Windows.Forms.Padding(4);
             this.txtOperator.Name = "txtOperator";
             this.txtOperator.Size = new System.Drawing.Size(223, 30);
             this.txtOperator.TabIndex = 2;
@@ -163,7 +163,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.cboActionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboActionType.Location = new System.Drawing.Point(975, 18);
-            this.cboActionType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboActionType.Margin = new System.Windows.Forms.Padding(4);
             this.cboActionType.Name = "cboActionType";
             this.cboActionType.Size = new System.Drawing.Size(178, 32);
             this.cboActionType.TabIndex = 4;
@@ -182,7 +182,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.cboTargetType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTargetType.Location = new System.Drawing.Point(630, 18);
-            this.cboTargetType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTargetType.Margin = new System.Windows.Forms.Padding(4);
             this.cboTargetType.Name = "cboTargetType";
             this.cboTargetType.Size = new System.Drawing.Size(208, 32);
             this.cboTargetType.TabIndex = 6;
@@ -201,7 +201,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpEndDate.Location = new System.Drawing.Point(330, 18);
-            this.dtpEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(163, 30);
             this.dtpEndDate.TabIndex = 8;
@@ -220,7 +220,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpStartDate.Location = new System.Drawing.Point(128, 18);
-            this.dtpStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpStartDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(163, 30);
             this.dtpStartDate.TabIndex = 10;
@@ -244,7 +244,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvLogs.ColumnHeadersHeight = 40;
             this.dgvLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLogs.Location = new System.Drawing.Point(0, 195);
-            this.dgvLogs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLogs.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLogs.Name = "dgvLogs";
             this.dgvLogs.ReadOnly = true;
             this.dgvLogs.RowHeadersVisible = false;
@@ -260,7 +260,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelStats.Controls.Add(this.lblTotalCount);
             this.panelStats.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelStats.Location = new System.Drawing.Point(0, 765);
-            this.panelStats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStats.Margin = new System.Windows.Forms.Padding(4);
             this.panelStats.Name = "panelStats";
             this.panelStats.Size = new System.Drawing.Size(1425, 60);
             this.panelStats.TabIndex = 1;
@@ -297,7 +297,7 @@ namespace BooksManagermentSysytem.Controls
             this.Controls.Add(this.panelFilter);
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 750);
             this.Name = "SystemLogControl";
             this.Size = new System.Drawing.Size(1425, 825);

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using BooksManagermentSysytem.Data;
+using BooksManagermentSysytem.Helpers;
 
 namespace BooksManagermentSysytem.Controls
 {
@@ -24,20 +25,20 @@ namespace BooksManagermentSysytem.Controls
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabCardList = new System.Windows.Forms.TabPage();
-            this.tabNewCard = new System.Windows.Forms.TabPage();
-            this.panelSearch = new System.Windows.Forms.Panel();
-            this.lblSearchCardID = new System.Windows.Forms.Label();
-            this.txtSearchCardID = new System.Windows.Forms.TextBox();
-            this.lblSearchState = new System.Windows.Forms.Label();
-            this.cboSearchState = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnShowAll = new System.Windows.Forms.Button();
             this.dgvCards = new System.Windows.Forms.DataGridView();
             this.panelActions = new System.Windows.Forms.Panel();
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.btnMarkLost = new System.Windows.Forms.Button();
             this.btnReissue = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.panelSearch = new System.Windows.Forms.Panel();
+            this.lblSearchCardID = new System.Windows.Forms.Label();
+            this.cboSearchCardID = new System.Windows.Forms.ComboBox();
+            this.lblSearchState = new System.Windows.Forms.Label();
+            this.cboSearchState = new System.Windows.Forms.ComboBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnShowAll = new System.Windows.Forms.Button();
+            this.tabNewCard = new System.Windows.Forms.TabPage();
             this.panelNewCard = new System.Windows.Forms.Panel();
             this.lblReaderName = new System.Windows.Forms.Label();
             this.txtReaderName = new System.Windows.Forms.TextBox();
@@ -51,16 +52,16 @@ namespace BooksManagermentSysytem.Controls
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.lblNote = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            this.btnCreateCard = new System.Windows.Forms.Button();
-            this.btnClearForm = new System.Windows.Forms.Button();
             this.lblCardIDPreview = new System.Windows.Forms.Label();
             this.lblCardIDValue = new System.Windows.Forms.Label();
+            this.btnCreateCard = new System.Windows.Forms.Button();
+            this.btnClearForm = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabCardList.SuspendLayout();
-            this.tabNewCard.SuspendLayout();
-            this.panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCards)).BeginInit();
             this.panelActions.SuspendLayout();
+            this.panelSearch.SuspendLayout();
+            this.tabNewCard.SuspendLayout();
             this.panelNewCard.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,9 +71,11 @@ namespace BooksManagermentSysytem.Controls
             this.tabControl.Controls.Add(this.tabNewCard);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(900, 600);
+            this.tabControl.Size = new System.Drawing.Size(1350, 900);
+            this.tabControl.TabIndex = 0;
             // 
             // tabCardList
             // 
@@ -80,50 +83,135 @@ namespace BooksManagermentSysytem.Controls
             this.tabCardList.Controls.Add(this.dgvCards);
             this.tabCardList.Controls.Add(this.panelActions);
             this.tabCardList.Controls.Add(this.panelSearch);
-            this.tabCardList.Location = new System.Drawing.Point(4, 26);
+            this.tabCardList.Location = new System.Drawing.Point(4, 33);
+            this.tabCardList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabCardList.Name = "tabCardList";
-            this.tabCardList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCardList.Size = new System.Drawing.Size(892, 570);
+            this.tabCardList.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabCardList.Size = new System.Drawing.Size(1342, 863);
+            this.tabCardList.TabIndex = 0;
             this.tabCardList.Text = "借书证列表";
             // 
-            // tabNewCard
+            // dgvCards
             // 
-            this.tabNewCard.BackColor = System.Drawing.Color.White;
-            this.tabNewCard.Controls.Add(this.panelNewCard);
-            this.tabNewCard.Location = new System.Drawing.Point(4, 26);
-            this.tabNewCard.Name = "tabNewCard";
-            this.tabNewCard.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNewCard.Size = new System.Drawing.Size(892, 570);
-            this.tabNewCard.Text = "新办理";
+            this.dgvCards.AllowUserToAddRows = false;
+            this.dgvCards.AllowUserToDeleteRows = false;
+            this.dgvCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCards.BackgroundColor = System.Drawing.Color.White;
+            this.dgvCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCards.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCards.Location = new System.Drawing.Point(4, 79);
+            this.dgvCards.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCards.MultiSelect = false;
+            this.dgvCards.Name = "dgvCards";
+            this.dgvCards.ReadOnly = true;
+            this.dgvCards.RowHeadersVisible = false;
+            this.dgvCards.RowHeadersWidth = 62;
+            this.dgvCards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCards.Size = new System.Drawing.Size(1334, 705);
+            this.dgvCards.TabIndex = 0;
+            this.dgvCards.SelectionChanged += new System.EventHandler(this.dgvCards_SelectionChanged);
+            // 
+            // panelActions
+            // 
+            this.panelActions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.panelActions.Controls.Add(this.btnViewDetails);
+            this.panelActions.Controls.Add(this.btnMarkLost);
+            this.panelActions.Controls.Add(this.btnReissue);
+            this.panelActions.Controls.Add(this.btnCancel);
+            this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelActions.Location = new System.Drawing.Point(4, 784);
+            this.panelActions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelActions.Name = "panelActions";
+            this.panelActions.Size = new System.Drawing.Size(1334, 75);
+            this.panelActions.TabIndex = 1;
+            // 
+            // btnViewDetails
+            // 
+            this.btnViewDetails.Enabled = false;
+            this.btnViewDetails.Location = new System.Drawing.Point(30, 16);
+            this.btnViewDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnViewDetails.Name = "btnViewDetails";
+            this.btnViewDetails.Size = new System.Drawing.Size(180, 42);
+            this.btnViewDetails.TabIndex = 0;
+            this.btnViewDetails.Text = "查看详情";
+            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
+            // 
+            // btnMarkLost
+            // 
+            this.btnMarkLost.Enabled = false;
+            this.btnMarkLost.Location = new System.Drawing.Point(225, 16);
+            this.btnMarkLost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMarkLost.Name = "btnMarkLost";
+            this.btnMarkLost.Size = new System.Drawing.Size(180, 42);
+            this.btnMarkLost.TabIndex = 1;
+            this.btnMarkLost.Text = "标记挂失";
+            this.btnMarkLost.Click += new System.EventHandler(this.btnMarkLost_Click);
+            // 
+            // btnReissue
+            // 
+            this.btnReissue.Enabled = false;
+            this.btnReissue.Location = new System.Drawing.Point(420, 16);
+            this.btnReissue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReissue.Name = "btnReissue";
+            this.btnReissue.Size = new System.Drawing.Size(180, 42);
+            this.btnReissue.TabIndex = 2;
+            this.btnReissue.Text = "补办";
+            this.btnReissue.Click += new System.EventHandler(this.btnReissue_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(615, 16);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(180, 42);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "注销";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // panelSearch
             // 
             this.panelSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.panelSearch.Controls.Add(this.lblSearchCardID);
-            this.panelSearch.Controls.Add(this.txtSearchCardID);
+            this.panelSearch.Controls.Add(this.cboSearchCardID);
             this.panelSearch.Controls.Add(this.lblSearchState);
             this.panelSearch.Controls.Add(this.cboSearchState);
             this.panelSearch.Controls.Add(this.btnSearch);
             this.panelSearch.Controls.Add(this.btnShowAll);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSearch.Location = new System.Drawing.Point(3, 3);
-            this.panelSearch.Size = new System.Drawing.Size(886, 50);
+            this.panelSearch.Location = new System.Drawing.Point(4, 4);
+            this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(1334, 75);
+            this.panelSearch.TabIndex = 2;
             // 
             // lblSearchCardID
             // 
             this.lblSearchCardID.AutoSize = true;
-            this.lblSearchCardID.Location = new System.Drawing.Point(20, 15);
+            this.lblSearchCardID.Location = new System.Drawing.Point(30, 22);
+            this.lblSearchCardID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSearchCardID.Name = "lblSearchCardID";
+            this.lblSearchCardID.Size = new System.Drawing.Size(100, 24);
+            this.lblSearchCardID.TabIndex = 0;
             this.lblSearchCardID.Text = "借书证号：";
             // 
-            // txtSearchCardID
+            // cboSearchCardID
             // 
-            this.txtSearchCardID.Location = new System.Drawing.Point(90, 12);
-            this.txtSearchCardID.Size = new System.Drawing.Size(180, 23);
+            this.cboSearchCardID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSearchCardID.Location = new System.Drawing.Point(135, 18);
+            this.cboSearchCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboSearchCardID.Name = "cboSearchCardID";
+            this.cboSearchCardID.Size = new System.Drawing.Size(292, 32);
+            this.cboSearchCardID.TabIndex = 1;
             // 
             // lblSearchState
             // 
             this.lblSearchState.AutoSize = true;
-            this.lblSearchState.Location = new System.Drawing.Point(290, 15);
+            this.lblSearchState.Location = new System.Drawing.Point(435, 22);
+            this.lblSearchState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSearchState.Name = "lblSearchState";
+            this.lblSearchState.Size = new System.Drawing.Size(64, 24);
+            this.lblSearchState.TabIndex = 2;
             this.lblSearchState.Text = "状态：";
             // 
             // cboSearchState
@@ -136,83 +224,47 @@ namespace BooksManagermentSysytem.Controls
             "注销",
             "挂失",
             "补办中"});
-            this.cboSearchState.Location = new System.Drawing.Point(340, 12);
-            this.cboSearchState.Size = new System.Drawing.Size(120, 25);
-            this.cboSearchState.SelectedIndex = 0;
+            this.cboSearchState.Location = new System.Drawing.Point(510, 18);
+            this.cboSearchState.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboSearchState.Name = "cboSearchState";
+            this.cboSearchState.Size = new System.Drawing.Size(178, 32);
+            this.cboSearchState.TabIndex = 3;
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(480, 10);
-            this.btnSearch.Size = new System.Drawing.Size(80, 28);
+            this.btnSearch.Location = new System.Drawing.Point(720, 15);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(120, 42);
+            this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(570, 10);
-            this.btnShowAll.Size = new System.Drawing.Size(100, 28);
+            this.btnShowAll.Location = new System.Drawing.Point(855, 15);
+            this.btnShowAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowAll.Name = "btnShowAll";
+            this.btnShowAll.Size = new System.Drawing.Size(150, 42);
+            this.btnShowAll.TabIndex = 5;
             this.btnShowAll.Text = "显示全部";
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
-            // dgvCards
+            // tabNewCard
             // 
-            this.dgvCards.AllowUserToAddRows = false;
-            this.dgvCards.AllowUserToDeleteRows = false;
-            this.dgvCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCards.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCards.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCards.MultiSelect = false;
-            this.dgvCards.ReadOnly = true;
-            this.dgvCards.RowHeadersVisible = false;
-            this.dgvCards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCards.SelectionChanged += new System.EventHandler(this.dgvCards_SelectionChanged);
-            // 
-            // panelActions
-            // 
-            this.panelActions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.panelActions.Controls.Add(this.btnViewDetails);
-            this.panelActions.Controls.Add(this.btnMarkLost);
-            this.panelActions.Controls.Add(this.btnReissue);
-            this.panelActions.Controls.Add(this.btnCancel);
-            this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(3, 517);
-            this.panelActions.Size = new System.Drawing.Size(886, 50);
-            // 
-            // btnViewDetails
-            // 
-            this.btnViewDetails.Location = new System.Drawing.Point(20, 11);
-            this.btnViewDetails.Size = new System.Drawing.Size(120, 28);
-            this.btnViewDetails.Text = "查看详情";
-            this.btnViewDetails.Enabled = false;
-            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
-            // 
-            // btnMarkLost
-            // 
-            this.btnMarkLost.Location = new System.Drawing.Point(150, 11);
-            this.btnMarkLost.Size = new System.Drawing.Size(120, 28);
-            this.btnMarkLost.Text = "标记挂失";
-            this.btnMarkLost.Enabled = false;
-            this.btnMarkLost.Click += new System.EventHandler(this.btnMarkLost_Click);
-            // 
-            // btnReissue
-            // 
-            this.btnReissue.Location = new System.Drawing.Point(280, 11);
-            this.btnReissue.Size = new System.Drawing.Size(120, 28);
-            this.btnReissue.Text = "补办";
-            this.btnReissue.Enabled = false;
-            this.btnReissue.Click += new System.EventHandler(this.btnReissue_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(410, 11);
-            this.btnCancel.Size = new System.Drawing.Size(120, 28);
-            this.btnCancel.Text = "注销";
-            this.btnCancel.Enabled = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.tabNewCard.BackColor = System.Drawing.Color.White;
+            this.tabNewCard.Controls.Add(this.panelNewCard);
+            this.tabNewCard.Location = new System.Drawing.Point(4, 33);
+            this.tabNewCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabNewCard.Name = "tabNewCard";
+            this.tabNewCard.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabNewCard.Size = new System.Drawing.Size(1342, 863);
+            this.tabNewCard.TabIndex = 1;
+            this.tabNewCard.Text = "新办理";
             // 
             // panelNewCard
             // 
@@ -233,24 +285,38 @@ namespace BooksManagermentSysytem.Controls
             this.panelNewCard.Controls.Add(this.btnCreateCard);
             this.panelNewCard.Controls.Add(this.btnClearForm);
             this.panelNewCard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelNewCard.Location = new System.Drawing.Point(3, 3);
-            this.panelNewCard.Size = new System.Drawing.Size(886, 564);
+            this.panelNewCard.Location = new System.Drawing.Point(4, 4);
+            this.panelNewCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelNewCard.Name = "panelNewCard";
+            this.panelNewCard.Size = new System.Drawing.Size(1334, 855);
+            this.panelNewCard.TabIndex = 0;
             // 
             // lblReaderName
             // 
             this.lblReaderName.AutoSize = true;
-            this.lblReaderName.Location = new System.Drawing.Point(50, 50);
+            this.lblReaderName.Location = new System.Drawing.Point(75, 75);
+            this.lblReaderName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderName.Name = "lblReaderName";
+            this.lblReaderName.Size = new System.Drawing.Size(100, 24);
+            this.lblReaderName.TabIndex = 0;
             this.lblReaderName.Text = "读者姓名：";
             // 
             // txtReaderName
             // 
-            this.txtReaderName.Location = new System.Drawing.Point(140, 47);
-            this.txtReaderName.Size = new System.Drawing.Size(300, 23);
+            this.txtReaderName.Location = new System.Drawing.Point(210, 70);
+            this.txtReaderName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtReaderName.Name = "txtReaderName";
+            this.txtReaderName.Size = new System.Drawing.Size(448, 30);
+            this.txtReaderName.TabIndex = 1;
             // 
             // lblReaderType
             // 
             this.lblReaderType.AutoSize = true;
-            this.lblReaderType.Location = new System.Drawing.Point(50, 90);
+            this.lblReaderType.Location = new System.Drawing.Point(75, 135);
+            this.lblReaderType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblReaderType.Name = "lblReaderType";
+            this.lblReaderType.Size = new System.Drawing.Size(100, 24);
+            this.lblReaderType.TabIndex = 2;
             this.lblReaderType.Text = "读者类型：";
             // 
             // cboReaderType
@@ -261,62 +327,96 @@ namespace BooksManagermentSysytem.Controls
             "本校学生",
             "本校教师",
             "校外人员"});
-            this.cboReaderType.Location = new System.Drawing.Point(140, 87);
-            this.cboReaderType.Size = new System.Drawing.Size(300, 25);
-            this.cboReaderType.SelectedIndex = 0;
+            this.cboReaderType.Location = new System.Drawing.Point(210, 130);
+            this.cboReaderType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboReaderType.Name = "cboReaderType";
+            this.cboReaderType.Size = new System.Drawing.Size(448, 32);
+            this.cboReaderType.TabIndex = 3;
             this.cboReaderType.SelectedIndexChanged += new System.EventHandler(this.cboReaderType_SelectedIndexChanged);
             // 
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(50, 130);
+            this.lblUnit.Location = new System.Drawing.Point(75, 195);
+            this.lblUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(108, 24);
+            this.lblUnit.TabIndex = 4;
             this.lblUnit.Text = "单位/学院：";
             // 
             // txtUnit
             // 
-            this.txtUnit.Location = new System.Drawing.Point(140, 127);
-            this.txtUnit.Size = new System.Drawing.Size(300, 23);
+            this.txtUnit.Location = new System.Drawing.Point(210, 190);
+            this.txtUnit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUnit.Name = "txtUnit";
+            this.txtUnit.Size = new System.Drawing.Size(448, 30);
+            this.txtUnit.TabIndex = 5;
             // 
             // lblNumber
             // 
             this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(50, 170);
+            this.lblNumber.Location = new System.Drawing.Point(75, 255);
+            this.lblNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNumber.Name = "lblNumber";
+            this.lblNumber.Size = new System.Drawing.Size(108, 24);
+            this.lblNumber.TabIndex = 6;
             this.lblNumber.Text = "学号/工号：";
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(140, 167);
-            this.txtNumber.Size = new System.Drawing.Size(300, 23);
+            this.txtNumber.Location = new System.Drawing.Point(210, 250);
+            this.txtNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.Size = new System.Drawing.Size(448, 30);
+            this.txtNumber.TabIndex = 7;
             // 
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Location = new System.Drawing.Point(50, 210);
+            this.lblStartDate.Location = new System.Drawing.Point(75, 315);
+            this.lblStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStartDate.Name = "lblStartDate";
+            this.lblStartDate.Size = new System.Drawing.Size(100, 24);
+            this.lblStartDate.TabIndex = 8;
             this.lblStartDate.Text = "开始日期：";
             // 
             // dtpStartDate
             // 
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStartDate.Location = new System.Drawing.Point(140, 207);
-            this.dtpStartDate.Size = new System.Drawing.Size(300, 23);
+            this.dtpStartDate.Location = new System.Drawing.Point(210, 310);
+            this.dtpStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(448, 30);
+            this.dtpStartDate.TabIndex = 9;
             this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // lblNote
             // 
             this.lblNote.AutoSize = true;
-            this.lblNote.Location = new System.Drawing.Point(50, 250);
+            this.lblNote.Location = new System.Drawing.Point(75, 375);
+            this.lblNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(64, 24);
+            this.lblNote.TabIndex = 10;
             this.lblNote.Text = "备注：";
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(140, 247);
+            this.txtNote.Location = new System.Drawing.Point(210, 370);
+            this.txtNote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNote.Multiline = true;
-            this.txtNote.Size = new System.Drawing.Size(300, 80);
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(448, 118);
+            this.txtNote.TabIndex = 11;
             // 
             // lblCardIDPreview
             // 
             this.lblCardIDPreview.AutoSize = true;
-            this.lblCardIDPreview.Location = new System.Drawing.Point(50, 350);
+            this.lblCardIDPreview.Location = new System.Drawing.Point(75, 525);
+            this.lblCardIDPreview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardIDPreview.Name = "lblCardIDPreview";
+            this.lblCardIDPreview.Size = new System.Drawing.Size(136, 24);
+            this.lblCardIDPreview.TabIndex = 12;
             this.lblCardIDPreview.Text = "借书证号预览：";
             // 
             // lblCardIDValue
@@ -324,8 +424,11 @@ namespace BooksManagermentSysytem.Controls
             this.lblCardIDValue.AutoSize = true;
             this.lblCardIDValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.lblCardIDValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblCardIDValue.Location = new System.Drawing.Point(140, 348);
-            this.lblCardIDValue.Size = new System.Drawing.Size(300, 20);
+            this.lblCardIDValue.Location = new System.Drawing.Point(210, 522);
+            this.lblCardIDValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCardIDValue.Name = "lblCardIDValue";
+            this.lblCardIDValue.Size = new System.Drawing.Size(246, 25);
+            this.lblCardIDValue.TabIndex = 13;
             this.lblCardIDValue.Text = "BRW-YYYY-X-XXXXXX";
             // 
             // btnCreateCard
@@ -333,39 +436,48 @@ namespace BooksManagermentSysytem.Controls
             this.btnCreateCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnCreateCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateCard.ForeColor = System.Drawing.Color.White;
-            this.btnCreateCard.Location = new System.Drawing.Point(140, 400);
-            this.btnCreateCard.Size = new System.Drawing.Size(120, 35);
+            this.btnCreateCard.Location = new System.Drawing.Point(210, 600);
+            this.btnCreateCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateCard.Name = "btnCreateCard";
+            this.btnCreateCard.Size = new System.Drawing.Size(180, 52);
+            this.btnCreateCard.TabIndex = 14;
             this.btnCreateCard.Text = "办理";
+            this.btnCreateCard.UseVisualStyleBackColor = false;
             this.btnCreateCard.Click += new System.EventHandler(this.btnCreateCard_Click);
             // 
             // btnClearForm
             // 
-            this.btnClearForm.Location = new System.Drawing.Point(270, 400);
-            this.btnClearForm.Size = new System.Drawing.Size(120, 35);
+            this.btnClearForm.Location = new System.Drawing.Point(405, 600);
+            this.btnClearForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(180, 52);
+            this.btnClearForm.TabIndex = 15;
             this.btnClearForm.Text = "清空";
             this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
             // 
             // CardManagementControl
             // 
-            this.AutoScaleDimensions = new SizeF(96F, 96F);
-            this.AutoScaleMode = AutoScaleMode.Dpi;
-            this.BackColor = Color.White;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabControl);
-            this.Font = new Font("Microsoft YaHei UI", 9F);
-            this.MinimumSize = new Size(800, 500);
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1200, 750);
             this.Name = "CardManagementControl";
-            this.Size = new Size(900, 600);
-            this.Load += new EventHandler(this.CardManagementControl_Load);
+            this.Size = new System.Drawing.Size(1350, 900);
+            this.Load += new System.EventHandler(this.CardManagementControl_Load);
             this.tabControl.ResumeLayout(false);
             this.tabCardList.ResumeLayout(false);
-            this.tabNewCard.ResumeLayout(false);
-            this.panelSearch.ResumeLayout(false);
-            this.panelSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCards)).EndInit();
             this.panelActions.ResumeLayout(false);
+            this.panelSearch.ResumeLayout(false);
+            this.panelSearch.PerformLayout();
+            this.tabNewCard.ResumeLayout(false);
             this.panelNewCard.ResumeLayout(false);
             this.panelNewCard.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #region Designer Fields
@@ -375,7 +487,7 @@ namespace BooksManagermentSysytem.Controls
         private System.Windows.Forms.TabPage tabNewCard;
         private System.Windows.Forms.Panel panelSearch;
         private System.Windows.Forms.Label lblSearchCardID;
-        private System.Windows.Forms.TextBox txtSearchCardID;
+        private System.Windows.Forms.ComboBox cboSearchCardID;
         private System.Windows.Forms.Label lblSearchState;
         private System.Windows.Forms.ComboBox cboSearchState;
         private System.Windows.Forms.Button btnSearch;
@@ -408,13 +520,16 @@ namespace BooksManagermentSysytem.Controls
 
         private void CardManagementControl_Load(object sender, EventArgs e)
         {
+            // 初始化查询页面的借书证选择框 - 显示所有状态
+            CardIDSelector.InitializeCardIDComboBox(cboSearchCardID, onlyNormal: false, allowEmpty: true);
+            
             LoadAllCards();
             UpdateCardIDPreview();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string cardID = txtSearchCardID.Text.Trim();
+            string cardID = CardIDSelector.GetSelectedCardID(cboSearchCardID);
             string state = cboSearchState.SelectedItem.ToString();
 
             string sql = @"
@@ -470,7 +585,7 @@ namespace BooksManagermentSysytem.Controls
 
         private void btnShowAll_Click(object sender, EventArgs e)
         {
-            txtSearchCardID.Clear();
+            CardIDSelector.SetSelectedCardID(cboSearchCardID, "");
             cboSearchState.SelectedIndex = 0;
             LoadAllCards();
         }
