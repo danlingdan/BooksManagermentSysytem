@@ -209,7 +209,14 @@
       <DependentUpon>UserManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="docs\README-借阅归还.md" />
     <None Include="docs\个人信息和罚款功能说明.md" />
+    <None Include="docs\借阅归还功能完善总结.md" />
+    <None Include="docs\借阅归还功能说明.md" />
+    <None Include="docs\借阅归还快速指南.md" />
+    <None Include="docs\实现计划_第一阶段.md" />
+    <None Include="docs\实现计划_第二阶段.md" />
+    <None Include="docs\未完成功能清单.md" />
     <None Include="docs\用户管理和系统日志功能说明.md" />
     <None Include="LibraryDBDataSet.xsc">
       <DependentUpon>LibraryDBDataSet.xsd</DependentUpon>
@@ -223,7 +230,6 @@
       <DependentUpon>LibraryDBDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="plan.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

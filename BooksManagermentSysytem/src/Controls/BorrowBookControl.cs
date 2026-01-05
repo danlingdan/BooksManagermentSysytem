@@ -13,6 +13,7 @@ namespace BooksManagermentSysytem.Controls
     /// <summary>
     /// 借阅图书控件
     /// 规则：最多借3本，最多2个分类，借期7天
+    /// 完整校验：借书证状态、未付罚款、逾期书籍、借阅数量限制
     /// </summary>
     public partial class BorrowBookControl : UserControl
     {
@@ -384,13 +385,43 @@ namespace BooksManagermentSysytem.Controls
                     return;
                 }
 
+                // 检查是否有未支付罚款
+                string fineSql = "SELECT SUM(amount) FROM fine WHERE cardID = @cardID AND fine_status = N'未支付'";
+                object unpaidObj = DatabaseHelper.ExecuteScalar(fineSql,
+                    DatabaseHelper.CreateParameter("@cardID", currentReader.CardID));
+                decimal unpaidFines = unpaidObj != null && unpaidObj != DBNull.Value ? Convert.ToDecimal(unpaidObj) : 0;
+
+                if (unpaidFines > 0)
+                {
+                    lblReaderInfo.Text = $"姓名：{currentReader.ReaderName} | 有未支付罚款 ¥{unpaidFines:F2}，请先缴纳罚款后再借阅";
+                    lblReaderInfo.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                // 检查是否有逾期书籍
+                string overdueSql = @"
+                    SELECT COUNT(*) 
+                    FROM bookborrow 
+                    WHERE cardID = @cardID 
+                      AND overdate IS NULL 
+                      AND GETDATE() > DATEADD(DAY, 7, borrowdate)";
+                int overdueCount = Convert.ToInt32(DatabaseHelper.ExecuteScalar(overdueSql,
+                    DatabaseHelper.CreateParameter("@cardID", currentReader.CardID)));
+
+                if (overdueCount > 0)
+                {
+                    lblReaderInfo.Text = $"姓名：{currentReader.ReaderName} | 有{overdueCount}本逾期未还书籍，请先归还逾期书籍后再借阅";
+                    lblReaderInfo.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
                 // 获取当前借阅数量
                 string countSql = "SELECT COUNT(*) FROM bookborrow WHERE cardID = @cardID AND overdate IS NULL";
                 int borrowedCount = Convert.ToInt32(DatabaseHelper.ExecuteScalar(countSql,
                     DatabaseHelper.CreateParameter("@cardID", currentReader.CardID)));
 
                 lblReaderInfo.Text = $"姓名：{currentReader.ReaderName} | 类型：{currentReader.ReaderType} | " +
-                    $"单位：{currentReader.Unit} | 当前已借：{borrowedCount}本 | 状态：可借阅";
+                    $"单位：{currentReader.Unit} | 当前已借：{borrowedCount}本 | 可借阅：{BorrowRules.MaxBooksPerBorrow - borrowedCount}本 | 状态：可借阅";
                 lblReaderInfo.ForeColor = System.Drawing.Color.Green;
             }
             catch (Exception ex)
@@ -471,7 +502,10 @@ namespace BooksManagermentSysytem.Controls
                 string status = row["current_status"].ToString();
                 if (status != "AVAILABLE")
                 {
-                    lblMessage.Text = $"该书籍当前状态为 {status}，无法借阅";
+                    string statusText = status == "BORROWED" ? "已借出" :
+                                       status == "RESERVED" ? "已预约" : 
+                                       status == "OFF_SHELF" ? "已下架" : status;
+                    lblMessage.Text = $"该书籍当前状态为 {statusText}，无法借阅";
                     return;
                 }
 
@@ -479,7 +513,7 @@ namespace BooksManagermentSysytem.Controls
                 string locationType = row["location_type"].ToString();
                 if (locationType == "REFERENCE" || locationType == "TOOL_ONLY")
                 {
-                    lblMessage.Text = "工具书区书籍不可外借";
+                    lblMessage.Text = "工具书区/仅供查阅书籍不可外借";
                     return;
                 }
 
@@ -500,7 +534,7 @@ namespace BooksManagermentSysytem.Controls
                 if (!currentCategories.Contains(book.CategoryCode) && 
                     currentCategories.Count >= BorrowRules.MaxCategoriesPerBorrow)
                 {
-                    lblMessage.Text = $"最多只能借阅{BorrowRules.MaxCategoriesPerBorrow}个分类的书籍";
+                    lblMessage.Text = $"最多只能借阅{BorrowRules.MaxCategoriesPerBorrow}个分类的书籍，当前已选分类：{string.Join("、", currentCategories)}";
                     return;
                 }
 
@@ -508,10 +542,14 @@ namespace BooksManagermentSysytem.Controls
                 RefreshSelectedBooksGrid();
                 txtBarcode.Clear();
                 txtBarcode.Focus();
+
+                lblMessage.Text = $"已添加：《{book.BookName}》";
+                lblMessage.ForeColor = System.Drawing.Color.Green;
             }
             catch (Exception ex)
             {
                 lblMessage.Text = "添加失败：" + ex.Message;
+                lblMessage.ForeColor = System.Drawing.Color.Red;
             }
         }
 
@@ -567,8 +605,19 @@ namespace BooksManagermentSysytem.Controls
                 return;
             }
 
-            if (MessageBox.Show($"确认借阅以下 {selectedBooks.Count} 本书籍？\n借期：7天\n应还日期：{DateTime.Now.AddDays(7):yyyy-MM-dd}",
-                "确认借阅", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            DateTime dueDate = BorrowRules.CalculateDueDate(DateTime.Now);
+            
+            string confirmMsg = $"确认借阅以下 {selectedBooks.Count} 本书籍？\n\n";
+            confirmMsg += "书籍列表：\n";
+            foreach (var book in selectedBooks)
+            {
+                confirmMsg += $"  • 《{book.BookName}》 ({book.CategoryCode})\n";
+            }
+            confirmMsg += $"\n借期：{BorrowRules.BorrowDays}天\n";
+            confirmMsg += $"应还日期：{dueDate:yyyy-MM-dd}\n";
+            confirmMsg += $"\n逾期罚款规则：书价×{FineCalculator.OverduePriceRate:P0} + 每天¥{FineCalculator.OverdueDayRate:F2}";
+
+            if (MessageBox.Show(confirmMsg, "确认借阅", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
                 return;
             }
@@ -607,8 +656,8 @@ namespace BooksManagermentSysytem.Controls
                         DatabaseHelper.CreateParameter("@barcode", book.ItemBarcode));
                 }
 
-                MessageBox.Show($"借阅成功！\n共借阅 {selectedBooks.Count} 本书\n应还日期：{DateTime.Now.AddDays(7):yyyy-MM-dd}",
-                    "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"借阅成功！\n\n共借阅 {selectedBooks.Count} 本书\n应还日期：{dueDate:yyyy-MM-dd}\n\n请按时归还，避免产生罚款。",
+                    "借阅成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // 清空
                 ClearAll();
