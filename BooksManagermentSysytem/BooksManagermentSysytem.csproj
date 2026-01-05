@@ -124,6 +124,33 @@
     <Compile Include="src\Controls\RenewManagementControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="src\Controls\Reports\BookHistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\BorrowQueryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\CirculationStatisticsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\CollectionStatisticsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\DamagedBooksQueryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\FineReportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\OverdueReportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\ReaderHistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\Reports\ReportManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\Controls\ReservationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +205,8 @@
     <Compile Include="src\Services\RenewService.cs" />
     <Compile Include="src\Services\ReservationService.cs" />
     <Compile Include="src\Utils\DpiHelper.cs" />
+    <Compile Include="src\Utils\ExportHelper.cs" />
+    <Compile Include="src\Utils\PrintHelper.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

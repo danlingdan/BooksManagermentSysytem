@@ -112,6 +112,11 @@ namespace BooksManagermentSysytem.Forms
             ShowContent("预约图书", "Reservation");
         }
 
+        private void menuRenew_Click(object sender, EventArgs e)
+        {
+            ShowContent("图书续借", "Renew");
+        }
+
         private void menuMyFines_Click(object sender, EventArgs e)
         {
             ShowContent("我的罚款", "MyFines");
@@ -131,6 +136,11 @@ namespace BooksManagermentSysytem.Forms
         private void menuBorrowStats_Click(object sender, EventArgs e)
         {
             ShowContent("借阅统计", "BorrowStats");
+        }
+
+        private void menuReportsManagement_Click(object sender, EventArgs e)
+        {
+            ShowContent("统计报表", "ReportsManagement");
         }
 
         // 编目管理菜单
@@ -277,12 +287,16 @@ namespace BooksManagermentSysytem.Forms
                     return new Controls.ReturnBookControl();
                 case "Reservation":
                     return new Controls.ReservationControl();
+                case "Renew":
+                    return new Controls.RenewManagementControl();
                 case "ReaderManagement":
                     return new Controls.ReaderManagementControl();
                 case "FineManagement":
                     return new Controls.FineManagementControl();
                 case "BorrowStats":
                     return new Controls.LibrarianDashboardControl();
+                case "ReportsManagement":
+                    return new Controls.Reports.ReportManagementControl();
                 case "CategoryManagement":
                     return new Controls.CategoryManagementControl();
                 case "LocationManagement":

@@ -22,12 +22,14 @@ namespace BooksManagermentSysytem.Forms
             this.menuReaderQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBorrowBook = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReturnBook = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRenew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReservation = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMyFines = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLibrarian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReaderManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFineManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBorrowStats = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuReportsManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCatalog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCategoryManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLocationManagement = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,6 +86,7 @@ namespace BooksManagermentSysytem.Forms
             this.menuReaderQuery,
             this.menuBorrowBook,
             this.menuReturnBook,
+            this.menuRenew,
             this.menuReservation,
             this.menuMyFines});
             this.menuReader.Name = "menuReader";
@@ -111,6 +114,13 @@ namespace BooksManagermentSysytem.Forms
             this.menuReturnBook.Text = "归还图书";
             this.menuReturnBook.Click += new System.EventHandler(this.menuReturnBook_Click);
             // 
+            // menuRenew
+            // 
+            this.menuRenew.Name = "menuRenew";
+            this.menuRenew.Size = new System.Drawing.Size(148, 24);
+            this.menuRenew.Text = "续借图书";
+            this.menuRenew.Click += new System.EventHandler(this.menuRenew_Click);
+            // 
             // menuReservation
             // 
             this.menuReservation.Name = "menuReservation";
@@ -130,7 +140,8 @@ namespace BooksManagermentSysytem.Forms
             this.menuLibrarian.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuReaderManagement,
             this.menuFineManagement,
-            this.menuBorrowStats});
+            this.menuBorrowStats,
+            this.menuReportsManagement});
             this.menuLibrarian.Name = "menuLibrarian";
             this.menuLibrarian.Size = new System.Drawing.Size(93, 24);
             this.menuLibrarian.Text = "图书管理员";
@@ -155,6 +166,13 @@ namespace BooksManagermentSysytem.Forms
             this.menuBorrowStats.Size = new System.Drawing.Size(148, 24);
             this.menuBorrowStats.Text = "借阅统计";
             this.menuBorrowStats.Click += new System.EventHandler(this.menuBorrowStats_Click);
+            // 
+            // menuReportsManagement
+            // 
+            this.menuReportsManagement.Name = "menuReportsManagement";
+            this.menuReportsManagement.Size = new System.Drawing.Size(148, 24);
+            this.menuReportsManagement.Text = "统计报表";
+            this.menuReportsManagement.Click += new System.EventHandler(this.menuReportsManagement_Click);
             // 
             // menuCatalog
             // 
@@ -419,12 +437,14 @@ namespace BooksManagermentSysytem.Forms
         private System.Windows.Forms.ToolStripMenuItem menuReaderQuery;
         private System.Windows.Forms.ToolStripMenuItem menuBorrowBook;
         private System.Windows.Forms.ToolStripMenuItem menuReturnBook;
+        private System.Windows.Forms.ToolStripMenuItem menuRenew;
         private System.Windows.Forms.ToolStripMenuItem menuReservation;
         private System.Windows.Forms.ToolStripMenuItem menuMyFines;
         private System.Windows.Forms.ToolStripMenuItem menuLibrarian;
         private System.Windows.Forms.ToolStripMenuItem menuReaderManagement;
         private System.Windows.Forms.ToolStripMenuItem menuFineManagement;
         private System.Windows.Forms.ToolStripMenuItem menuBorrowStats;
+        private System.Windows.Forms.ToolStripMenuItem menuReportsManagement;
         private System.Windows.Forms.ToolStripMenuItem menuCatalog;
         private System.Windows.Forms.ToolStripMenuItem menuCategoryManagement;
         private System.Windows.Forms.ToolStripMenuItem menuLocationManagement;
