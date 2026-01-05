@@ -39,6 +39,12 @@ namespace BooksManagermentSysytem.Forms
             this.menuAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCardManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUserManagement = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPermissionManagement = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBatchRoleAssignment = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuBorrowRules = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFineRules = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuSystemLog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUser = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChangePassword = new System.Windows.Forms.ToolStripMenuItem();
@@ -215,6 +221,12 @@ namespace BooksManagermentSysytem.Forms
             this.menuAdmin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuCardManagement,
             this.menuUserManagement,
+            this.menuPermissionManagement,
+            this.menuBatchRoleAssignment,
+            this.toolStripSeparator3,
+            this.menuBorrowRules,
+            this.menuFineRules,
+            this.toolStripSeparator4,
             this.menuSystemLog});
             this.menuAdmin.Name = "menuAdmin";
             this.menuAdmin.Size = new System.Drawing.Size(76, 24);
@@ -234,6 +246,20 @@ namespace BooksManagermentSysytem.Forms
             this.menuUserManagement.Text = "用户管理";
             this.menuUserManagement.Click += new System.EventHandler(this.menuUserManagement_Click);
             // 
+            // menuPermissionManagement
+            // 
+            this.menuPermissionManagement.Name = "menuPermissionManagement";
+            this.menuPermissionManagement.Size = new System.Drawing.Size(148, 24);
+            this.menuPermissionManagement.Text = "角色权限管理";
+            this.menuPermissionManagement.Click += new System.EventHandler(this.menuPermissionManagement_Click);
+            // 
+            // menuBatchRoleAssignment
+            // 
+            this.menuBatchRoleAssignment.Name = "menuBatchRoleAssignment";
+            this.menuBatchRoleAssignment.Size = new System.Drawing.Size(148, 24);
+            this.menuBatchRoleAssignment.Text = "批量角色分配";
+            this.menuBatchRoleAssignment.Click += new System.EventHandler(this.menuBatchRoleAssignment_Click);
+            // 
             // menuSystemLog
             // 
             this.menuSystemLog.Name = "menuSystemLog";
@@ -241,6 +267,30 @@ namespace BooksManagermentSysytem.Forms
             this.menuSystemLog.Text = "系统日志";
             this.menuSystemLog.Click += new System.EventHandler(this.menuSystemLog_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(145, 6);
+            // 
+            // menuBorrowRules
+            // 
+            this.menuBorrowRules.Name = "menuBorrowRules";
+            this.menuBorrowRules.Size = new System.Drawing.Size(148, 24);
+            this.menuBorrowRules.Text = "借阅规则管理";
+            this.menuBorrowRules.Click += new System.EventHandler(this.menuBorrowRules_Click);
+            // 
+            // menuFineRules
+            // 
+            this.menuFineRules.Name = "menuFineRules";
+            this.menuFineRules.Size = new System.Drawing.Size(148, 24);
+            this.menuFineRules.Text = "处罚规则管理";
+            this.menuFineRules.Click += new System.EventHandler(this.menuFineRules_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(145, 6);
+            //
             // menuUser
             // 
             this.menuUser.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -386,6 +436,12 @@ namespace BooksManagermentSysytem.Forms
         private System.Windows.Forms.ToolStripMenuItem menuAdmin;
         private System.Windows.Forms.ToolStripMenuItem menuCardManagement;
         private System.Windows.Forms.ToolStripMenuItem menuUserManagement;
+        private System.Windows.Forms.ToolStripMenuItem menuPermissionManagement;
+        private System.Windows.Forms.ToolStripMenuItem menuBatchRoleAssignment;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem menuBorrowRules;
+        private System.Windows.Forms.ToolStripMenuItem menuFineRules;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem menuSystemLog;
         private System.Windows.Forms.ToolStripMenuItem menuUser;
         private System.Windows.Forms.ToolStripMenuItem menuChangePassword;

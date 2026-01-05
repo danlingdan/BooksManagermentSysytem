@@ -171,9 +171,29 @@ namespace BooksManagermentSysytem.Forms
             ShowContent("用户管理", "UserManagement");
         }
 
+        private void menuBorrowRules_Click(object sender, EventArgs e)
+        {
+            ShowContent("借阅规则管理", "BorrowRules");
+        }
+
+        private void menuFineRules_Click(object sender, EventArgs e)
+        {
+            ShowContent("处罚规则管理", "FineRules");
+        }
+
         private void menuSystemLog_Click(object sender, EventArgs e)
         {
             ShowContent("系统日志", "SystemLog");
+        }
+
+        private void menuPermissionManagement_Click(object sender, EventArgs e)
+        {
+            ShowContent("角色权限管理", "PermissionManagement");
+        }
+
+        private void menuBatchRoleAssignment_Click(object sender, EventArgs e)
+        {
+            ShowContent("批量角色分配", "BatchRoleAssignment");
         }
 
         // 用户菜单
@@ -275,6 +295,14 @@ namespace BooksManagermentSysytem.Forms
                     return new Controls.CardManagementControl();
                 case "UserManagement":
                     return new Controls.UserManagementControl();
+                case "PermissionManagement":
+                    return new Controls.PermissionManagementControl();
+                case "BatchRoleAssignment":
+                    return new Controls.BatchRoleAssignmentControl();
+                case "BorrowRules":
+                    return new Controls.BorrowRuleManagementControl();
+                case "FineRules":
+                    return new Controls.FineRuleManagementControl();
                 case "SystemLog":
                     return new Controls.SystemLogControl();
                 default:

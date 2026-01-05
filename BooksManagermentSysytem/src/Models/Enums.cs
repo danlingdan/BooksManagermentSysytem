@@ -244,4 +244,115 @@ namespace BooksManagermentSysytem.Models
         /// </summary>
         RepairArea
     }
+
+    /// <summary>
+    /// 权限代码枚举 - 功能权限精细化管理
+    /// </summary>
+    public enum PermissionCode
+    {
+        /// <summary>
+        /// 图书编目
+        /// </summary>
+        BOOK_CATALOG,
+
+        /// <summary>
+        /// 删除书目
+        /// </summary>
+        BOOK_CATALOG_DELETE,
+
+        /// <summary>
+        /// 馆藏管理
+        /// </summary>
+        BOOK_ITEM_MANAGE,
+
+        /// <summary>
+        /// 分类管理
+        /// </summary>
+        BOOK_CATEGORY_MANAGE,
+
+        /// <summary>
+        /// 库位管理
+        /// </summary>
+        BOOK_LOCATION_MANAGE,
+
+        /// <summary>
+        /// 读者信息查看
+        /// </summary>
+        READER_INFO_VIEW,
+
+        /// <summary>
+        /// 读者信息修改
+        /// </summary>
+        READER_INFO_MODIFY,
+
+        /// <summary>
+        /// 借书证管理
+        /// </summary>
+        READER_CARD_MANAGE,
+
+        /// <summary>
+        /// 借阅操作
+        /// </summary>
+        BORROW_OPERATION,
+
+        /// <summary>
+        /// 续借操作
+        /// </summary>
+        BORROW_RENEW,
+
+        /// <summary>
+        /// 预约管理
+        /// </summary>
+        RESERVATION_MANAGE,
+
+        /// <summary>
+        /// 借阅规则设置
+        /// </summary>
+        BORROW_RULE_SETTING,
+
+        /// <summary>
+        /// 处罚规则设置
+        /// </summary>
+        FINE_RULE_SETTING,
+
+        /// <summary>
+        /// 罚款管理
+        /// </summary>
+        FINE_MANAGE,
+
+        /// <summary>
+        /// 用户管理
+        /// </summary>
+        USER_MANAGE,
+
+        /// <summary>
+        /// 角色权限管理
+        /// </summary>
+        ROLE_PERMISSION_MANAGE,
+
+        /// <summary>
+        /// 系统日志查看
+        /// </summary>
+        SYSTEM_LOG_VIEW,
+
+        /// <summary>
+        /// 系统配置
+        /// </summary>
+        SYSTEM_CONFIG,
+
+        /// <summary>
+        /// 借阅统计报表
+        /// </summary>
+        REPORT_BORROW_STATS,
+
+        /// <summary>
+        /// 读者统计报表
+        /// </summary>
+        REPORT_READER_STATS,
+
+        /// <summary>
+        /// 图书统计报表
+        /// </summary>
+        REPORT_BOOK_STATS
+    }
 }

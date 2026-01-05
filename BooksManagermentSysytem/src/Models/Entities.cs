@@ -20,15 +20,89 @@ namespace BooksManagermentSysytem.Models
         public DateTime? LastLoginTime { get; set; }
 
         /// <summary>
-        /// 检查用户是否有指定权限
+        /// 用户权限列表（延迟加载）
+        /// </summary>
+        private System.Collections.Generic.HashSet<string> _permissions;
+
+        /// <summary>
+        /// 设置用户权限列表
+        /// </summary>
+        public void SetPermissions(System.Collections.Generic.IEnumerable<string> permissions)
+        {
+            _permissions = new System.Collections.Generic.HashSet<string>(permissions);
+        }
+
+        /// <summary>
+        /// 检查用户是否有指定权限（基于角色）
         /// </summary>
         public bool HasPermission(UserRole requiredRole)
         {
-            // Admin 拥有所有权限
             if (Role == UserRole.Admin)
                 return true;
 
             return Role == requiredRole;
+        }
+
+        /// <summary>
+        /// 检查用户是否有指定的细粒度权限
+        /// </summary>
+        public bool HasPermission(PermissionCode permissionCode)
+        {
+            if (Role == UserRole.Admin)
+                return true;
+
+            if (_permissions == null)
+            {
+                LoadPermissions();
+            }
+
+            return _permissions != null && _permissions.Contains(permissionCode.ToString());
+        }
+
+        /// <summary>
+        /// 检查用户是否有指定的细粒度权限（字符串形式）
+        /// </summary>
+        public bool HasPermission(string permissionCode)
+        {
+            if (Role == UserRole.Admin)
+                return true;
+
+            if (_permissions == null)
+            {
+                LoadPermissions();
+            }
+
+            return _permissions != null && _permissions.Contains(permissionCode);
+        }
+
+        /// <summary>
+        /// 从数据库加载用户权限
+        /// </summary>
+        private void LoadPermissions()
+        {
+            try
+            {
+                string sql = @"
+                    SELECT DISTINCT rp.permission_code
+                    FROM sys_role_permission rp
+                    INNER JOIN sys_permission p ON rp.permission_code = p.permission_code
+                    WHERE rp.role_name = @roleName AND p.is_active = 1";
+
+                var dt = BooksManagermentSysytem.Data.DatabaseHelper.ExecuteQuery(sql,
+                    BooksManagermentSysytem.Data.DatabaseHelper.CreateParameter("@roleName", Role.ToString()));
+
+                var permissions = new System.Collections.Generic.List<string>();
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    permissions.Add(row["permission_code"].ToString());
+                }
+
+                _permissions = new System.Collections.Generic.HashSet<string>(permissions);
+            }
+            catch
+            {
+                _permissions = new System.Collections.Generic.HashSet<string>();
+            }
         }
 
         /// <summary>
@@ -204,6 +278,7 @@ namespace BooksManagermentSysytem.Models
         public string ISBN { get; set; }
         public string LocationCode { get; set; }
         public string LocationName { get; set; }
+        public string LocationType { get; set; }
         public string CategoryCode { get; set; }
     }
 
@@ -234,5 +309,77 @@ namespace BooksManagermentSysytem.Models
         public int MaxCapacity { get; set; }
         public int CurrentQuantity { get; set; }
         public string Status { get; set; }
+    }
+
+    /// <summary>
+    /// 借阅规则实体类
+    /// </summary>
+    public class BorrowRule
+    {
+        public int RuleId { get; set; }
+        public string ReaderType { get; set; }
+        public int MaxBorrowCount { get; set; }
+        public int MaxCategoryCount { get; set; }
+        public int BorrowDays { get; set; }
+        public int MaxRenewCount { get; set; }
+        public int RenewDays { get; set; }
+        public bool AllowReferenceBooks { get; set; }
+        public bool AllowNewBooks { get; set; }
+        public bool AllowHotBooks { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
+        public string Remark { get; set; }
+    }
+
+    /// <summary>
+    /// 处罚规则实体类
+    /// </summary>
+    public class FineRule
+    {
+        public int RuleId { get; set; }
+        public string ReaderType { get; set; }
+        public decimal OverduePriceRate { get; set; }
+        public decimal OverdueDayRate { get; set; }
+        public decimal LostRate { get; set; }
+        public decimal DamagedRate { get; set; }
+        public decimal MinorDamagedRate { get; set; }
+        public decimal? MaxOverdueFine { get; set; }
+        public decimal? MaxTotalFine { get; set; }
+        public int FreeOverdueDays { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
+        public string Remark { get; set; }
+    }
+
+    /// <summary>
+    /// 权限实体类 - 功能权限精细化管理
+    /// </summary>
+    public class Permission
+    {
+        public int PermissionId { get; set; }
+        public string PermissionCode { get; set; }
+        public string PermissionName { get; set; }
+        public string PermissionGroup { get; set; }
+        public string Description { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
+    }
+
+    /// <summary>
+    /// 角色权限关联实体类
+    /// </summary>
+    public class RolePermission
+    {
+        public int RolePermissionId { get; set; }
+        public string RoleName { get; set; }
+        public string PermissionCode { get; set; }
+        public string GrantedBy { get; set; }
+        public DateTime GrantedTime { get; set; }
+        
+        public string PermissionName { get; set; }
+        public string PermissionGroup { get; set; }
     }
 }

@@ -73,6 +73,9 @@
       <DependentUpon>LibraryDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="src\Controls\BatchRoleAssignmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\Controls\BibliographyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,6 +88,9 @@
     <Compile Include="src\Controls\BorrowBookControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="src\Controls\BorrowRuleManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\Controls\CardManagementControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +98,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\Controls\FineManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\FineRuleManagementControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\Controls\LibrarianDashboardControl.cs">
@@ -103,10 +112,16 @@
     <Compile Include="src\Controls\MyFinesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="src\Controls\PermissionManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\Controls\PersonalInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\Controls\ReaderManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\RenewManagementControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\Controls\ReservationControl.cs">
@@ -143,6 +158,9 @@
     <Compile Include="src\Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Forms\MainForm.Designer.Extension.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\Forms\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +174,9 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Services\AuthenticationService.cs" />
+    <Compile Include="src\Services\PermissionService.cs" />
+    <Compile Include="src\Services\RenewService.cs" />
+    <Compile Include="src\Services\ReservationService.cs" />
     <Compile Include="src\Utils\DpiHelper.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -210,14 +231,20 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="docs\README-借阅归还.md" />
+    <None Include="docs\README_规则管理.md" />
     <None Include="docs\个人信息和罚款功能说明.md" />
     <None Include="docs\借阅归还功能完善总结.md" />
     <None Include="docs\借阅归还功能说明.md" />
     <None Include="docs\借阅归还快速指南.md" />
-    <None Include="docs\实现计划_第一阶段.md" />
-    <None Include="docs\实现计划_第二阶段.md" />
+    <None Include="docs\实现总结.md" />
     <None Include="docs\未完成功能清单.md" />
+    <None Include="docs\权限管理功能说明.md" />
     <None Include="docs\用户管理和系统日志功能说明.md" />
+    <None Include="docs\续借与预约功能说明.md" />
+    <None Include="docs\规则管理功能完成总结.md" />
+    <None Include="docs\规则管理功能说明.md" />
+    <None Include="docs\规则管理功能集成完成.md" />
+    <None Include="docs\规则管理快速指南.md" />
     <None Include="LibraryDBDataSet.xsc">
       <DependentUpon>LibraryDBDataSet.xsd</DependentUpon>
     </None>
@@ -242,7 +269,7 @@
     <None Include="src\app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sql\databaseinstruction.md" />
+    <None Include="docs\databaseinstruction.md" />
     <None Include="src\App.config" />
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +286,11 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="sql\create_rules_tables.sql" />
     <Content Include="sql\database.sql" />
+    <Content Include="sql\init_rules_data.sql" />
+    <Content Include="sql\permission_system.sql" />
+    <Content Include="sql\renew_reservation_extensions.sql" />
     <Content Include="sql\schema_extensions.sql" />
   </ItemGroup>
   <ItemGroup />

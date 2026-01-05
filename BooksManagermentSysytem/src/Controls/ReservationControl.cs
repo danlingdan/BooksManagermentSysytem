@@ -11,8 +11,9 @@ using BooksManagermentSysytem.Services;
 namespace BooksManagermentSysytem.Controls
 {
     /// <summary>
-    /// 预约图书控件
+    /// 预约图书控件 - 完整版
     /// 规则：最多预约3本，最多2个分类，预约后3天内取书，未完成预约前不能再次预约
+    /// 支持预约取书、预约取消、预约过期自动处理
     /// </summary>
     public partial class ReservationControl : UserControl
     {
@@ -453,7 +454,7 @@ namespace BooksManagermentSysytem.Controls
 
             try
             {
-                string sql = @"SELECT r.readername, rc.state, rc.overdate 
+                string sql = @"SELECT r.readername, r.readertype, rc.state, rc.overdate 
                               FROM reader r INNER JOIN readcard rc ON r.cardID = rc.cardID 
                               WHERE r.cardID = @cardID";
                 DataTable dt = DatabaseHelper.ExecuteQuery(sql, DatabaseHelper.CreateParameter("@cardID", currentCardID));
@@ -478,18 +479,14 @@ namespace BooksManagermentSysytem.Controls
                     return;
                 }
 
-                // 检查是否有未完成的预约
-                string checkSql = @"SELECT COUNT(*) FROM book_reservation 
-                                   WHERE cardID = @cardID AND reservation_status = N'PENDING'";
-                int pendingCount = Convert.ToInt32(DatabaseHelper.ExecuteScalar(checkSql,
-                    DatabaseHelper.CreateParameter("@cardID", currentCardID)));
+                // 使用ReservationService获取预约列表
+                DataTable reservations = ReservationService.GetReaderReservations(currentCardID, false);
+                hasPendingReservation = reservations.Rows.Count > 0;
 
-                hasPendingReservation = pendingCount > 0;
-
-                lblReaderInfo.Text = $"姓名：{row["readername"]}";
+                lblReaderInfo.Text = $"姓名：{row["readername"]} | 类型：{row["readertype"]}";
                 if (hasPendingReservation)
                 {
-                    lblReaderInfo.Text += " | 有未完成预约";
+                    lblReaderInfo.Text += $" | 有{reservations.Rows.Count}个待处理预约";
                     lblReaderInfo.ForeColor = System.Drawing.Color.Orange;
                 }
                 else
@@ -521,7 +518,7 @@ namespace BooksManagermentSysytem.Controls
                 string sql = @"
                     SELECT bi.item_barcode AS 馆藏码, bib.bibliography_name AS 书名, bib.ISBN,
                            bc.category_code AS 分类, bi.current_status AS 状态,
-                           sl.location_name AS 位置
+                           sl.location_name AS 位置, sl.location_type
                     FROM BOOK_ITEM bi
                     INNER JOIN BIBLIOGRAPHY bib ON bi.bibliography_id = bib.bibliography_id
                     INNER JOIN BOOK_CATEGORY bc ON bib.category_id = bc.category_id
@@ -536,6 +533,12 @@ namespace BooksManagermentSysytem.Controls
                     DatabaseHelper.CreateParameter("@keyword", "%" + txtKeyword.Text.Trim() + "%"));
 
                 dgvSearchResults.DataSource = dt;
+
+                // 隐藏location_type列
+                if (dgvSearchResults.Columns.Contains("location_type"))
+                {
+                    dgvSearchResults.Columns["location_type"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -594,7 +597,8 @@ namespace BooksManagermentSysytem.Controls
                 BookName = row.Cells["书名"].Value.ToString(),
                 ISBN = row.Cells["ISBN"].Value.ToString(),
                 CategoryCode = categoryCode,
-                CurrentStatus = row.Cells["状态"].Value.ToString()
+                CurrentStatus = row.Cells["状态"].Value.ToString(),
+                LocationType = row.Cells["location_type"].Value.ToString()
             });
 
             RefreshSelectedBooksGrid();
@@ -610,7 +614,14 @@ namespace BooksManagermentSysytem.Controls
 
         private void RefreshSelectedBooksGrid()
         {
-            var data = selectedBooks.Select(b => new { 馆藏码 = b.ItemBarcode, 书名 = b.BookName, ISBN = b.ISBN, 分类 = b.CategoryCode }).ToList();
+            var data = selectedBooks.Select(b => new 
+            { 
+                馆藏码 = b.ItemBarcode, 
+                书名 = b.BookName, 
+                ISBN = b.ISBN, 
+                分类 = b.CategoryCode,
+                状态 = b.CurrentStatus == "BORROWED" ? "已借出（预约）" : "可借（预约）"
+            }).ToList();
             dgvSelectedBooks.DataSource = null;
             dgvSelectedBooks.DataSource = data;
         }
@@ -637,7 +648,7 @@ namespace BooksManagermentSysytem.Controls
                 return;
             }
 
-            DateTime expireTime = DateTime.Now.AddDays(BorrowRules.ReservationDays);
+            DateTime expireTime = BorrowRules.CalculateReservationExpireTime(DateTime.Now);
 
             if (MessageBox.Show($"确认预约 {selectedBooks.Count} 本书籍？\n请在 {expireTime:yyyy-MM-dd HH:mm} 前取书。",
                 "确认预约", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -647,27 +658,49 @@ namespace BooksManagermentSysytem.Controls
 
             try
             {
+                int successCount = 0;
+                string firstError = string.Empty;
+
                 foreach (var book in selectedBooks)
                 {
-                    string sql = @"INSERT INTO book_reservation 
-                        (cardID, bookID, reservation_type, expire_time, reservation_status)
-                        VALUES (@cardID, @bookID, N'BORROW_RESERVE', @expire, N'PENDING')";
+                    // 判断预约类型
+                    string reservationType = book.LocationType == "NEW_BOOK" ? "NEW_BOOK" : "BORROW_RESERVE";
 
-                    DatabaseHelper.ExecuteNonQuery(sql,
-                        DatabaseHelper.CreateParameter("@cardID", currentCardID),
-                        DatabaseHelper.CreateParameter("@bookID", book.ItemBarcode),
-                        DatabaseHelper.CreateParameter("@expire", expireTime));
+                    string errorMessage;
+                    long reservationId = ReservationService.CreateReservation(
+                        currentCardID, 
+                        book.ItemBarcode, 
+                        reservationType, 
+                        out errorMessage);
 
-                    // 更新书籍状态为已预约
-                    string updateSql = "UPDATE BOOK_ITEM SET current_status = N'RESERVED' WHERE item_barcode = @barcode";
-                    DatabaseHelper.ExecuteNonQuery(updateSql, DatabaseHelper.CreateParameter("@barcode", book.ItemBarcode));
+                    if (reservationId > 0)
+                    {
+                        successCount++;
+                    }
+                    else if (string.IsNullOrEmpty(firstError))
+                    {
+                        firstError = $"《{book.BookName}》：{errorMessage}";
+                    }
                 }
 
-                MessageBox.Show($"预约成功！请在 {expireTime:yyyy-MM-dd HH:mm} 前到馆取书。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (successCount > 0)
+                {
+                    string msg = $"成功预约 {successCount} 本书籍！\n请在 {expireTime:yyyy-MM-dd HH:mm} 前到馆取书。";
+                    if (successCount < selectedBooks.Count)
+                    {
+                        msg += $"\n\n部分预约失败：\n{firstError}";
+                    }
 
-                selectedBooks.Clear();
-                RefreshSelectedBooksGrid();
-                LoadReaderAndCheck();
+                    MessageBox.Show(msg, "预约完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    selectedBooks.Clear();
+                    RefreshSelectedBooksGrid();
+                    LoadReaderAndCheck();
+                }
+                else
+                {
+                    MessageBox.Show("预约失败：" + firstError, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -681,25 +714,73 @@ namespace BooksManagermentSysytem.Controls
 
             try
             {
-                string sql = @"
-                    SELECT br.reservation_id AS ID, br.bookID AS 馆藏码, 
-                           bib.bibliography_name AS 书名, br.reservation_type AS 类型,
-                           br.reservation_time AS 预约时间, br.expire_time AS 过期时间,
-                           br.reservation_status AS 状态
-                    FROM book_reservation br
-                    INNER JOIN BOOK_ITEM bi ON br.bookID = bi.item_barcode
-                    INNER JOIN BIBLIOGRAPHY bib ON bi.bibliography_id = bib.bibliography_id
-                    WHERE br.cardID = @cardID
-                    ORDER BY br.reservation_time DESC";
+                // 使用ReservationService获取完整预约信息
+                DataTable dt = ReservationService.GetReaderReservations(currentCardID, true);
 
-                DataTable dt = DatabaseHelper.ExecuteQuery(sql, DatabaseHelper.CreateParameter("@cardID", currentCardID));
-                dgvMyReservations.DataSource = dt;
+                // 格式化显示数据
+                var displayData = dt.AsEnumerable().Select(row => new
+                {
+                    ID = row["reservation_id"],
+                    馆藏码 = row["bookID"],
+                    书名 = row["bibliography_name"],
+                    分类 = row["category_code"],
+                    类型 = row["reservation_type"].ToString() == "BORROW_RESERVE" ? "借阅预约" : "新书预约",
+                    预约时间 = Convert.ToDateTime(row["reservation_time"]).ToString("yyyy-MM-dd HH:mm"),
+                    过期时间 = Convert.ToDateTime(row["expire_time"]).ToString("yyyy-MM-dd HH:mm"),
+                    状态 = GetReservationStatusText(row["reservation_status"].ToString()),
+                    取书时间 = row["pickup_time"] != DBNull.Value ? 
+                        Convert.ToDateTime(row["pickup_time"]).ToString("yyyy-MM-dd HH:mm") : "",
+                    是否过期 = Convert.ToInt32(row["is_expired"])
+                }).ToList();
+
+                dgvMyReservations.DataSource = displayData;
+
+                // 隐藏某些列
+                if (dgvMyReservations.Columns.Contains("ID"))
+                    dgvMyReservations.Columns["ID"].Visible = false;
+                if (dgvMyReservations.Columns.Contains("是否过期"))
+                    dgvMyReservations.Columns["是否过期"].Visible = false;
+
+                // 设置过期行的颜色
+                dgvMyReservations.CellFormatting += (s, e) =>
+                {
+                    if (e.RowIndex >= 0 && dgvMyReservations.Rows[e.RowIndex].Cells["是否过期"].Value != null)
+                    {
+                        int isExpired = Convert.ToInt32(dgvMyReservations.Rows[e.RowIndex].Cells["是否过期"].Value);
+                        if (isExpired == 1)
+                        {
+                            e.CellStyle.BackColor = Color.LightPink;
+                        }
+                    }
+                };
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("加载预约失败：" + ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string GetReservationStatusText(string status)
+        {
+            switch (status)
+            {
+                case "PENDING": return "待处理";
+                case "FULFILLED": return "已完成";
+                case "EXPIRED": return "已过期";
+                case "CANCELLED": return "已取消";
+                default: return status;
+            }
         }
 
         private void btnRefreshReservations_Click(object sender, EventArgs e)
         {
+            // 先检查并处理过期预约
+            int expiredCount = ReservationService.CheckAndExpireReservations();
+            if (expiredCount > 0)
+            {
+                MessageBox.Show($"已自动处理 {expiredCount} 个过期预约", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             LoadMyReservations();
         }
 
@@ -712,7 +793,7 @@ namespace BooksManagermentSysytem.Controls
             }
 
             string status = dgvMyReservations.SelectedRows[0].Cells["状态"].Value?.ToString();
-            if (status != "PENDING")
+            if (status != "待处理")
             {
                 MessageBox.Show("只能取消待处理的预约", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -724,16 +805,18 @@ namespace BooksManagermentSysytem.Controls
             try
             {
                 long reservationId = Convert.ToInt64(dgvMyReservations.SelectedRows[0].Cells["ID"].Value);
-                string bookID = dgvMyReservations.SelectedRows[0].Cells["馆藏码"].Value.ToString();
+                string bookName = dgvMyReservations.SelectedRows[0].Cells["书名"].Value.ToString();
 
-                string sql = "UPDATE book_reservation SET reservation_status = N'CANCELLED' WHERE reservation_id = @id";
-                DatabaseHelper.ExecuteNonQuery(sql, DatabaseHelper.CreateParameter("@id", reservationId));
-
-                string updateSql = "UPDATE BOOK_ITEM SET current_status = N'AVAILABLE' WHERE item_barcode = @barcode";
-                DatabaseHelper.ExecuteNonQuery(updateSql, DatabaseHelper.CreateParameter("@barcode", bookID));
-
-                MessageBox.Show("预约已取消", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadReaderAndCheck();
+                string errorMessage;
+                if (ReservationService.CancelReservation(reservationId, "用户手动取消", out errorMessage))
+                {
+                    MessageBox.Show($"已成功取消《{bookName}》的预约", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadReaderAndCheck();
+                }
+                else
+                {
+                    MessageBox.Show("取消失败：" + errorMessage, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
