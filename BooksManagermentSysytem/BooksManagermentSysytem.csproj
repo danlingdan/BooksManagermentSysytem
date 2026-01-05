@@ -280,6 +280,19 @@
       <DependentUpon>UserManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="docs\Final Doc\00-文档导航索引.md" />
+    <None Include="docs\Final Doc\01-系统总体概述.md" />
+    <None Include="docs\Final Doc\02-数据库设计文档.md" />
+    <None Include="docs\Final Doc\03-用户认证与权限管理.md" />
+    <None Include="docs\Final Doc\04-读者与借书证管理.md" />
+    <None Include="docs\Final Doc\05-图书编目管理.md" />
+    <None Include="docs\Final Doc\06-借阅归还业务.md" />
+    <None Include="docs\Final Doc\07-续借与预约功能.md" />
+    <None Include="docs\Final Doc\08-罚款管理.md" />
+    <None Include="docs\Final Doc\09-报表统计功能.md" />
+    <None Include="docs\Final Doc\10-系统配置与规则管理.md" />
+    <None Include="docs\Final Doc\11-部署运维文档.md" />
+    <None Include="docs\Final Doc\12-快速开始与FAQ.md" />
     <None Include="docs\README-借阅归还.md" />
     <None Include="docs\README_规则管理.md" />
     <None Include="docs\个人信息和罚款功能说明.md" />
