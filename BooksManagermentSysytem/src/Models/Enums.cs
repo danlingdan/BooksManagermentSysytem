@@ -355,4 +355,118 @@ namespace BooksManagermentSysytem.Models
         /// </summary>
         REPORT_BOOK_STATS
     }
+
+    /// <summary>
+    /// 消息类型枚举
+    /// </summary>
+    public enum MessageType
+    {
+        /// <summary>
+        /// 系统消息
+        /// </summary>
+        System,
+
+        /// <summary>
+        /// 逾期提醒
+        /// </summary>
+        OverdueReminder,
+
+        /// <summary>
+        /// 即将逾期提醒
+        /// </summary>
+        SoonDueReminder,
+
+        /// <summary>
+        /// 预约到书通知
+        /// </summary>
+        ReservationReady,
+
+        /// <summary>
+        /// 预约过期通知
+        /// </summary>
+        ReservationExpired,
+
+        /// <summary>
+        /// 罚款通知
+        /// </summary>
+        FineNotice,
+
+        /// <summary>
+        /// 借书证到期提醒
+        /// </summary>
+        CardExpireReminder,
+
+        /// <summary>
+        /// 系统公告
+        /// </summary>
+        Announcement
+    }
+
+    /// <summary>
+    /// 消息状态枚举
+    /// </summary>
+    public enum MessageStatus
+    {
+        /// <summary>
+        /// 未读
+        /// </summary>
+        Unread,
+
+        /// <summary>
+        /// 已读
+        /// </summary>
+        Read,
+
+        /// <summary>
+        /// 已删除
+        /// </summary>
+        Deleted
+    }
+
+    /// <summary>
+    /// 消息优先级枚举
+    /// </summary>
+    public enum MessagePriority
+    {
+        /// <summary>
+        /// 低
+        /// </summary>
+        Low,
+
+        /// <summary>
+        /// 普通
+        /// </summary>
+        Normal,
+
+        /// <summary>
+        /// 高
+        /// </summary>
+        High,
+
+        /// <summary>
+        /// 紧急
+        /// </summary>
+        Urgent
+    }
+
+    /// <summary>
+    /// 通知渠道枚举
+    /// </summary>
+    public enum NotificationChannel
+    {
+        /// <summary>
+        /// 系统内消息
+        /// </summary>
+        InApp,
+
+        /// <summary>
+        /// 邮件
+        /// </summary>
+        Email,
+
+        /// <summary>
+        /// 短信
+        /// </summary>
+        SMS
+    }
 }

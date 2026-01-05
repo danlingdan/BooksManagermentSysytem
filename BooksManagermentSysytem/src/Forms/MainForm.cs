@@ -122,6 +122,11 @@ namespace BooksManagermentSysytem.Forms
             ShowContent("我的罚款", "MyFines");
         }
 
+        private void menuMessageCenter_Click(object sender, EventArgs e)
+        {
+            ShowContent("消息中心", "MessageCenter");
+        }
+
         // 图书管理员菜单
         private void menuReaderManagement_Click(object sender, EventArgs e)
         {
@@ -289,6 +294,8 @@ namespace BooksManagermentSysytem.Forms
                     return new Controls.ReservationControl();
                 case "Renew":
                     return new Controls.RenewManagementControl();
+                case "MessageCenter":
+                    return new Controls.MessageCenterControl();
                 case "ReaderManagement":
                     return new Controls.ReaderManagementControl();
                 case "FineManagement":

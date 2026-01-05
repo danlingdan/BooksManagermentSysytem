@@ -382,4 +382,48 @@ namespace BooksManagermentSysytem.Models
         public string PermissionName { get; set; }
         public string PermissionGroup { get; set; }
     }
+
+    /// <summary>
+    /// 系统消息实体类
+    /// </summary>
+    public class SystemMessage
+    {
+        public long MessageId { get; set; }
+        public string CardID { get; set; }
+        public string MessageType { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public string Priority { get; set; }
+        public string Status { get; set; }
+        public DateTime CreatedTime { get; set; }
+        public DateTime? ReadTime { get; set; }
+        public string RelatedId { get; set; }
+        public string RelatedType { get; set; }
+        
+        // 扩展属性
+        public string ReaderName { get; set; }
+        public bool IsUrgent => Priority == MessagePriority.Urgent.ToString();
+        public bool IsUnread => Status == MessageStatus.Unread.ToString();
+    }
+
+    /// <summary>
+    /// 逾期提醒记录实体类
+    /// </summary>
+    public class OverdueReminder
+    {
+        public long ReminderId { get; set; }
+        public string CardID { get; set; }
+        public string BookID { get; set; }
+        public DateTime BorrowDate { get; set; }
+        public DateTime DueDate { get; set; }
+        public int OverdueDays { get; set; }
+        public decimal EstimatedFine { get; set; }
+        public DateTime ReminderTime { get; set; }
+        public bool IsSent { get; set; }
+        public string Channel { get; set; }
+        
+        // 扩展属性
+        public string ReaderName { get; set; }
+        public string BookName { get; set; }
+    }
 }

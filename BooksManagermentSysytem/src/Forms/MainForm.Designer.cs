@@ -25,6 +25,7 @@ namespace BooksManagermentSysytem.Forms
             this.menuRenew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReservation = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMyFines = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMessageCenter = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLibrarian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReaderManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFineManagement = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,7 +89,8 @@ namespace BooksManagermentSysytem.Forms
             this.menuReturnBook,
             this.menuRenew,
             this.menuReservation,
-            this.menuMyFines});
+            this.menuMyFines,
+            this.menuMessageCenter});
             this.menuReader.Name = "menuReader";
             this.menuReader.Size = new System.Drawing.Size(76, 24);
             this.menuReader.Text = "读者服务";
@@ -134,6 +136,13 @@ namespace BooksManagermentSysytem.Forms
             this.menuMyFines.Size = new System.Drawing.Size(148, 24);
             this.menuMyFines.Text = "我的罚款";
             this.menuMyFines.Click += new System.EventHandler(this.menuMyFines_Click);
+            // 
+            // menuMessageCenter
+            // 
+            this.menuMessageCenter.Name = "menuMessageCenter";
+            this.menuMessageCenter.Size = new System.Drawing.Size(148, 24);
+            this.menuMessageCenter.Text = "消息中心";
+            this.menuMessageCenter.Click += new System.EventHandler(this.menuMessageCenter_Click);
             // 
             // menuLibrarian
             // 
@@ -440,6 +449,7 @@ namespace BooksManagermentSysytem.Forms
         private System.Windows.Forms.ToolStripMenuItem menuRenew;
         private System.Windows.Forms.ToolStripMenuItem menuReservation;
         private System.Windows.Forms.ToolStripMenuItem menuMyFines;
+        private System.Windows.Forms.ToolStripMenuItem menuMessageCenter;
         private System.Windows.Forms.ToolStripMenuItem menuLibrarian;
         private System.Windows.Forms.ToolStripMenuItem menuReaderManagement;
         private System.Windows.Forms.ToolStripMenuItem menuFineManagement;
