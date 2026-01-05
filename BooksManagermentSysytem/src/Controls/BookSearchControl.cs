@@ -153,7 +153,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.cboSearchType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboSearchType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSearchType.Location = new System.Drawing.Point(177, 89);
+            this.cboSearchType.Location = new System.Drawing.Point(177, 87);
             this.cboSearchType.Margin = new System.Windows.Forms.Padding(0, 4, 15, 4);
             this.cboSearchType.Name = "cboSearchType";
             this.cboSearchType.Size = new System.Drawing.Size(180, 32);
@@ -174,7 +174,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.cboCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategory.Location = new System.Drawing.Point(372, 89);
+            this.cboCategory.Location = new System.Drawing.Point(372, 87);
             this.cboCategory.Margin = new System.Windows.Forms.Padding(0, 4, 15, 4);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(118, 32);
@@ -408,7 +408,7 @@ namespace BooksManagermentSysytem.Controls
             // 
             this.splitContainer.Panel2.Controls.Add(this.panelDetails);
             this.splitContainer.Size = new System.Drawing.Size(1425, 662);
-            this.splitContainer.SplitterDistance = 1388;
+            this.splitContainer.SplitterDistance = 1384;
             this.splitContainer.SplitterWidth = 8;
             this.splitContainer.TabIndex = 0;
             // 
@@ -427,7 +427,7 @@ namespace BooksManagermentSysytem.Controls
             this.dgvResults.RowHeadersVisible = false;
             this.dgvResults.RowHeadersWidth = 62;
             this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvResults.Size = new System.Drawing.Size(1388, 662);
+            this.dgvResults.Size = new System.Drawing.Size(1384, 662);
             this.dgvResults.TabIndex = 0;
             this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
             // 
@@ -441,7 +441,7 @@ namespace BooksManagermentSysytem.Controls
             this.panelDetails.Margin = new System.Windows.Forms.Padding(4);
             this.panelDetails.Name = "panelDetails";
             this.panelDetails.Padding = new System.Windows.Forms.Padding(15);
-            this.panelDetails.Size = new System.Drawing.Size(29, 662);
+            this.panelDetails.Size = new System.Drawing.Size(33, 662);
             this.panelDetails.TabIndex = 0;
             // 
             // BookSearchControl
@@ -508,6 +508,7 @@ namespace BooksManagermentSysytem.Controls
         {
             LoadSearchTypes();
             LoadCategories();
+            SearchBooks();
         }
 
         private void LoadSearchTypes()
@@ -569,11 +570,12 @@ namespace BooksManagermentSysytem.Controls
                 string keyword = txtKeyword.Text.Trim();
 
                 string sql = @"
-                    SELECT DISTINCT b.bibliography_id AS ID, b.bibliography_name AS 书名, 
+                    SELECT b.bibliography_id AS ID, b.bibliography_name AS 书名, 
                            b.ISBN, b.publish AS 出版社, bc.category_name AS 分类,
                            b.price AS 定价,
                            (SELECT COUNT(*) FROM BOOK_ITEM bi WHERE bi.bibliography_id = b.bibliography_id AND bi.current_status = N'AVAILABLE') AS 可借数量,
-                           (SELECT COUNT(*) FROM BOOK_ITEM bi WHERE bi.bibliography_id = b.bibliography_id) AS 馆藏总数
+                           (SELECT COUNT(*) FROM BOOK_ITEM bi WHERE bi.bibliography_id = b.bibliography_id) AS 馆藏总数,
+                           b.create_time
                     FROM BIBLIOGRAPHY b
                     INNER JOIN BOOK_CATEGORY bc ON b.category_id = bc.category_id
                     LEFT JOIN BIBLIO_AUTHOR ba ON b.bibliography_id = ba.bibliography_id
@@ -616,9 +618,17 @@ namespace BooksManagermentSysytem.Controls
                     sql += " AND EXISTS (SELECT 1 FROM BOOK_ITEM bi WHERE bi.bibliography_id = b.bibliography_id AND bi.current_status = N'AVAILABLE')";
                 }
 
+                sql += " GROUP BY b.bibliography_id, b.bibliography_name, b.ISBN, b.publish, bc.category_name, b.price, b.create_time";
                 sql += " ORDER BY b.create_time DESC";
 
                 DataTable dt = DatabaseHelper.ExecuteQuery(sql, parameters.ToArray());
+                
+                // 移除 create_time 列,不显示给用户
+                if (dt.Columns.Contains("create_time"))
+                {
+                    dt.Columns.Remove("create_time");
+                }
+                
                 dgvResults.DataSource = dt;
 
                 lblResultCount.Text = $"找到 {dt.Rows.Count} 条结果";
