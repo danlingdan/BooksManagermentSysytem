@@ -8,11 +8,11 @@ GO
 
 SET NOCOUNT ON;
 
--- 1) 系统用户表 [system_user]
+-- 1) 应用用户表 [app_user]
 ------------------------------------------------------------
-IF OBJECT_ID(N'dbo.[system_user]', N'U') IS NULL
+IF OBJECT_ID(N'dbo.app_user', N'U') IS NULL
 BEGIN
-    CREATE TABLE dbo.[system_user](
+    CREATE TABLE dbo.app_user(
         user_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         username NVARCHAR(50) NOT NULL UNIQUE,
         password_hash NVARCHAR(256) NOT NULL,
@@ -21,18 +21,18 @@ BEGIN
         cardID NVARCHAR(20) NULL,
         windows_account NVARCHAR(100) NULL,
         display_name NVARCHAR(50) NOT NULL,
-        is_active BIT NOT NULL CONSTRAINT DF_system_user_active DEFAULT(1),
-        created_time DATETIME2(0) NOT NULL CONSTRAINT DF_system_user_created DEFAULT(SYSDATETIME()),
+        is_active BIT NOT NULL CONSTRAINT DF_app_user_active DEFAULT(1),
+        created_time DATETIME2(0) NOT NULL CONSTRAINT DF_app_user_created DEFAULT(SYSDATETIME()),
         last_login_time DATETIME2(0) NULL,
-        CONSTRAINT CK_system_user_role CHECK (user_role IN (N'Reader', N'Librarian', N'Cataloger', N'Admin')),
-        CONSTRAINT FK_system_user_reader FOREIGN KEY(cardID) REFERENCES dbo.reader(cardID)
+        CONSTRAINT CK_app_user_role CHECK (user_role IN (N'Reader', N'Librarian', N'Cataloger', N'Admin')),
+        CONSTRAINT FK_app_user_reader FOREIGN KEY(cardID) REFERENCES dbo.reader(cardID)
     );
 
-    CREATE INDEX IX_system_user_windows
-    ON dbo.[system_user](windows_account)
+    CREATE INDEX IX_app_user_windows
+    ON dbo.app_user(windows_account)
     WHERE windows_account IS NOT NULL;
 
-    PRINT N'✅ 创建表 [system_user]';
+    PRINT N'✅ 创建表 app_user';
 END
 GO
 
@@ -67,7 +67,7 @@ END
 GO
 
 ------------------------------------------------------------
--- 3) 搜索日志表 search_log（外键引用也要改）
+-- 3) 搜索日志表 search_log（外键引用改为 app_user）
 ------------------------------------------------------------
 IF OBJECT_ID(N'dbo.search_log', N'U') IS NULL
 BEGIN
@@ -79,7 +79,7 @@ BEGIN
         search_time DATETIME2(0) NOT NULL CONSTRAINT DF_search_log_time DEFAULT(SYSDATETIME()),
         user_id INT NULL,
         CONSTRAINT FK_search_log_bib  FOREIGN KEY(bibliography_id) REFERENCES dbo.BIBLIOGRAPHY(bibliography_id),
-        CONSTRAINT FK_search_log_user FOREIGN KEY(user_id)         REFERENCES dbo.[system_user](user_id)
+        CONSTRAINT FK_search_log_user FOREIGN KEY(user_id)         REFERENCES dbo.app_user(user_id)
     );
 
     CREATE INDEX IX_search_log_date_bib ON dbo.search_log(search_time, bibliography_id);
@@ -108,15 +108,14 @@ END
 GO
 
 ------------------------------------------------------------
--- 5) 插入默认管理员（表名要改）
--- 另外：你原来的 hash=8c6976... 实际是 SHA256('admin')，不是 admin123
+-- 5) 插入默认管理员（表名改为 app_user）
 ------------------------------------------------------------
-IF NOT EXISTS (SELECT 1 FROM dbo.[system_user] WHERE username = N'admin')
+IF NOT EXISTS (SELECT 1 FROM dbo.app_user WHERE username = N'admin')
 BEGIN
     DECLARE @salt NVARCHAR(64) = N'default_salt';
     DECLARE @pwd  NVARCHAR(100) = N'admin123';
 
-    INSERT INTO dbo.[system_user](username, password_hash, salt, user_role, display_name, windows_account)
+    INSERT INTO dbo.app_user(username, password_hash, salt, user_role, display_name, windows_account)
     VALUES (
         N'admin',
         CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(VARBINARY(4000), @pwd + @salt)), 2),

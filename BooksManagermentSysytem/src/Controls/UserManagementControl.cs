@@ -599,7 +599,7 @@ namespace BooksManagermentSysytem.Controls
                            user_role AS 角色, cardID AS 借书证号, 
                            CASE WHEN is_active = 1 THEN N'启用' ELSE N'禁用' END AS 状态,
                            last_login_time AS 最后登录
-                    FROM [system_user]
+                    FROM app_user
                     WHERE 1=1";
 
                 var parameters = new System.Collections.Generic.List<System.Data.SqlClient.SqlParameter>();
@@ -679,7 +679,7 @@ namespace BooksManagermentSysytem.Controls
         {
             try
             {
-                string sql = "SELECT * FROM [system_user] WHERE user_id = @id";
+                string sql = "SELECT * FROM app_user WHERE user_id = @id";
                 DataTable dt = DatabaseHelper.ExecuteQuery(sql, DatabaseHelper.CreateParameter("@id", userId));
 
                 if (dt.Rows.Count > 0)
@@ -736,7 +736,7 @@ namespace BooksManagermentSysytem.Controls
                     FROM reader r
                     INNER JOIN readcard rc ON r.cardID = rc.cardID
                     WHERE rc.state = N'正常' AND rc.overdate >= GETDATE()
-                    AND NOT EXISTS (SELECT 1 FROM [system_user] WHERE cardID = r.cardID" +
+                    AND NOT EXISTS (SELECT 1 FROM app_user WHERE cardID = r.cardID" +
                     (isNewMode ? "" : " AND user_id <> @userId") + @")
                     ORDER BY r.cardID";
 
@@ -857,7 +857,7 @@ namespace BooksManagermentSysytem.Controls
             {
                 if (isNewMode)
                 {
-                    string checkSql = "SELECT COUNT(*) FROM [system_user] WHERE username = @username";
+                    string checkSql = "SELECT COUNT(*) FROM app_user WHERE username = @username";
                     int count = Convert.ToInt32(DatabaseHelper.ExecuteScalar(checkSql,
                         DatabaseHelper.CreateParameter("@username", txtUsername.Text.Trim())));
 
@@ -883,7 +883,7 @@ namespace BooksManagermentSysytem.Controls
                 }
                 else
                 {
-                    string sql = @"UPDATE [system_user] SET 
+                    string sql = @"UPDATE app_user SET 
                                   display_name = @displayName, user_role = @role, 
                                   cardID = @cardID, windows_account = @windowsAccount, 
                                   is_active = @isActive
@@ -904,7 +904,7 @@ namespace BooksManagermentSysytem.Controls
                         string salt = GenerateSalt();
                         string passwordHash = ComputeHash(txtPassword.Text, salt);
 
-                        string pwdSql = "UPDATE [system_user] SET password_hash = @hash, salt = @salt WHERE user_id = @userId";
+                        string pwdSql = "UPDATE app_user SET password_hash = @hash, salt = @salt WHERE user_id = @userId";
                         DatabaseHelper.ExecuteNonQuery(pwdSql,
                             DatabaseHelper.CreateParameter("@hash", passwordHash),
                             DatabaseHelper.CreateParameter("@salt", salt),
@@ -940,7 +940,7 @@ namespace BooksManagermentSysytem.Controls
                 string salt = GenerateSalt();
                 string passwordHash = ComputeHash(newPassword, salt);
 
-                string sql = "UPDATE [system_user] SET password_hash = @hash, salt = @salt WHERE user_id = @userId";
+                string sql = "UPDATE app_user SET password_hash = @hash, salt = @salt WHERE user_id = @userId";
                 DatabaseHelper.ExecuteNonQuery(sql,
                     DatabaseHelper.CreateParameter("@hash", passwordHash),
                     DatabaseHelper.CreateParameter("@salt", salt),
@@ -975,7 +975,7 @@ namespace BooksManagermentSysytem.Controls
 
             try
             {
-                string sql = "DELETE FROM [system_user] WHERE user_id = @userId";
+                string sql = "DELETE FROM app_user WHERE user_id = @userId";
                 DatabaseHelper.ExecuteNonQuery(sql, DatabaseHelper.CreateParameter("@userId", currentUserId));
 
                 MessageBox.Show("删除成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
