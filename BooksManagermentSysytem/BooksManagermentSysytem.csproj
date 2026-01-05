@@ -283,6 +283,7 @@
     <None Include="docs\README-借阅归还.md" />
     <None Include="docs\README_规则管理.md" />
     <None Include="docs\个人信息和罚款功能说明.md" />
+    <None Include="docs\代码审计问题报告.md" />
     <None Include="docs\借书证选择功能修改完成报告.md" />
     <None Include="docs\借书证选择功能修改说明.md" />
     <None Include="docs\借书证选择功能测试指南.md" />
