@@ -189,11 +189,24 @@ namespace BooksManagermentSysytem.Services
                     return false;
                 }
 
-                // 借阅预约：必须是已借出状态
-                if (reservationType == "BORROW_RESERVE" && bookStatus != "BORROWED")
+                // 借阅预约：必须是已借出状态或已被预约状态
+                if (reservationType == "BORROW_RESERVE")
                 {
-                    errorMessage = "该书籍当前未被借出，无需预约，可直接借阅";
-                    return false;
+                    if (bookStatus == "AVAILABLE")
+                    {
+                        errorMessage = "该书籍当前未被借出，无需预约，可直接借阅";
+                        return false;
+                    }
+                    else if (bookStatus == "RESERVED")
+                    {
+                        errorMessage = "该书籍已被其他读者预约，暂时无法预约";
+                        return false;
+                    }
+                    else if (bookStatus != "BORROWED")
+                    {
+                        errorMessage = $"该书籍当前状态（{bookStatus}）不允许预约";
+                        return false;
+                    }
                 }
 
                 // 新书预约：必须是新书区且可借
