@@ -926,7 +926,9 @@ namespace BooksManagermentSysytem.Controls
                 }
 
                 StringBuilder filters = new StringBuilder("WHERE 1=1");
-                List<SqlParameter> parameters = new List<SqlParameter>();
+                
+                // 用于存储参数值的字典，避免SqlParameter重复使用问题
+                var parameterValues = new Dictionary<string, object>();
 
                 if (!string.IsNullOrEmpty(keyword))
                 {
@@ -949,13 +951,13 @@ namespace BooksManagermentSysytem.Controls
                             break;
                     }
 
-                    parameters.Add(DatabaseHelper.CreateParameter("@kw", "%" + keyword + "%"));
+                    parameterValues["@kw"] = "%" + keyword + "%";
                 }
 
                 if (!string.IsNullOrEmpty(categoryId))
                 {
                     filters.Append(" AND b.category_id = @catId");
-                    parameters.Add(DatabaseHelper.CreateParameter("@catId", Convert.ToInt32(categoryId)));
+                    parameterValues["@catId"] = Convert.ToInt32(categoryId);
                 }
 
                 if (availableOnly)
@@ -966,37 +968,39 @@ namespace BooksManagermentSysytem.Controls
                 if (!string.IsNullOrWhiteSpace(author))
                 {
                     filters.Append(" AND EXISTS (SELECT 1 FROM BIBLIO_AUTHOR ba INNER JOIN AUTHOR a ON ba.author_id = a.author_id WHERE ba.bibliography_id = b.bibliography_id AND a.author_name LIKE @author)");
-                    parameters.Add(DatabaseHelper.CreateParameter("@author", "%" + author + "%"));
+                    parameterValues["@author"] = "%" + author + "%";
                 }
 
                 if (!string.IsNullOrWhiteSpace(publisher))
                 {
                     filters.Append(" AND b.publish LIKE @publisher");
-                    parameters.Add(DatabaseHelper.CreateParameter("@publisher", "%" + publisher + "%"));
+                    parameterValues["@publisher"] = "%" + publisher + "%";
                 }
 
                 if (!string.IsNullOrWhiteSpace(isbn))
                 {
                     filters.Append(" AND b.ISBN LIKE @isbn");
-                    parameters.Add(DatabaseHelper.CreateParameter("@isbn", "%" + isbn + "%"));
+                    parameterValues["@isbn"] = "%" + isbn + "%";
                 }
 
                 if (yearFrom > 0)
                 {
                     filters.Append(" AND b.publish_date IS NOT NULL AND YEAR(b.publish_date) >= @yearFrom");
-                    parameters.Add(DatabaseHelper.CreateParameter("@yearFrom", yearFrom));
+                    parameterValues["@yearFrom"] = yearFrom;
                 }
 
                 if (yearTo > 0)
                 {
                     filters.Append(" AND b.publish_date IS NOT NULL AND YEAR(b.publish_date) <= @yearTo");
-                    parameters.Add(DatabaseHelper.CreateParameter("@yearTo", yearTo));
+                    parameterValues["@yearTo"] = yearTo;
                 }
 
                 string orderClause = GetOrderClause();
 
+                // 为count查询创建新的参数数组
                 string countSql = $"SELECT COUNT(*) FROM BIBLIOGRAPHY b INNER JOIN BOOK_CATEGORY bc ON b.category_id = bc.category_id {filters}";
-                totalRecords = Convert.ToInt32(DatabaseHelper.ExecuteScalar(countSql, parameters.ToArray()));
+                var countParams = CreateParametersFromDictionary(parameterValues);
+                totalRecords = Convert.ToInt32(DatabaseHelper.ExecuteScalar(countSql, countParams));
 
                 int totalPages = GetTotalPages(pageSize);
                 if (totalPages > 0 && currentPage > totalPages)
@@ -1004,11 +1008,10 @@ namespace BooksManagermentSysytem.Controls
                     currentPage = totalPages;
                 }
 
-                List<SqlParameter> dataParameters = new List<SqlParameter>(parameters)
-                {
-                    DatabaseHelper.CreateParameter("@offset", Math.Max(0, (currentPage - 1) * pageSize)),
-                    DatabaseHelper.CreateParameter("@pageSize", pageSize)
-                };
+                // 为数据查询创建新的参数数组
+                var dataParamValues = new Dictionary<string, object>(parameterValues);
+                dataParamValues["@offset"] = Math.Max(0, (currentPage - 1) * pageSize);
+                dataParamValues["@pageSize"] = pageSize;
 
                 string sql = $@"
                     SELECT b.bibliography_id AS ID,
@@ -1049,7 +1052,8 @@ namespace BooksManagermentSysytem.Controls
                     {orderClause}
                     OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY";
 
-                DataTable dt = DatabaseHelper.ExecuteQuery(sql, dataParameters.ToArray());
+                var dataParams = CreateParametersFromDictionary(dataParamValues);
+                DataTable dt = DatabaseHelper.ExecuteQuery(sql, dataParams);
                 dgvResults.DataSource = dt;
 
                 if (totalRecords == 0)
@@ -1068,6 +1072,19 @@ namespace BooksManagermentSysytem.Controls
             {
                 MessageBox.Show("搜索失败：" + ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// 从字典创建新的SqlParameter数组
+        /// </summary>
+        private SqlParameter[] CreateParametersFromDictionary(Dictionary<string, object> parameterValues)
+        {
+            var parameters = new List<SqlParameter>();
+            foreach (var kvp in parameterValues)
+            {
+                parameters.Add(DatabaseHelper.CreateParameter(kvp.Key, kvp.Value));
+            }
+            return parameters.ToArray();
         }
 
         private string GetOrderClause()
@@ -1148,41 +1165,41 @@ namespace BooksManagermentSysytem.Controls
                 return;
             }
 
-             currentPage = 1;
-             SearchBooks(false);
+            currentPage = 1;
+            SearchBooks(false);
         }
 
-         private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (suppressSearch)
             {
                 return;
             }
 
-             SearchBooks();
+            SearchBooks();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             suppressSearch = true;
-             txtKeyword.Clear();
-             cboSearchType.SelectedIndex = 0;
-             cboCategory.SelectedIndex = 0;
-             chkAvailableOnly.Checked = false;
-             txtAuthor.Clear();
-             txtPublisher.Clear();
-             txtIsbn.Clear();
-             numYearFrom.Value = 0;
-             numYearTo.Value = 0;
-             cboSort.SelectedIndex = 0;
-             numPageSize.Value = DefaultPageSize;
-             currentPage = 1;
-             totalRecords = 0;
-             dgvResults.DataSource = null;
-             lblResultCount.Text = "";
+            txtKeyword.Clear();
+            cboSearchType.SelectedIndex = 0;
+            cboCategory.SelectedIndex = 0;
+            chkAvailableOnly.Checked = false;
+            txtAuthor.Clear();
+            txtPublisher.Clear();
+            txtIsbn.Clear();
+            numYearFrom.Value = 0;
+            numYearTo.Value = 0;
+            cboSort.SelectedIndex = 0;
+            numPageSize.Value = DefaultPageSize;
+            currentPage = 1;
+            totalRecords = 0;
+            dgvResults.DataSource = null;
+            lblResultCount.Text = "";
 
-             UpdatePaginationControls((int)numPageSize.Value);
-             ClearDetails();
+            UpdatePaginationControls((int)numPageSize.Value);
+            ClearDetails();
             suppressSearch = false;
         }
 
