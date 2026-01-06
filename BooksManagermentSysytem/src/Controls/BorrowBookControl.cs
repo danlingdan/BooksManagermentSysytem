@@ -507,10 +507,10 @@ namespace BooksManagermentSysytem.Controls
                 string checkBorrowedSql = @"
                     SELECT COUNT(*) 
                     FROM bookborrow 
-                    WHERE bookID = @barcode AND overdate IS NULL";
+                    WHERE bookID = @bookID AND overdate IS NULL";
                 
                 int unreturned = Convert.ToInt32(DatabaseHelper.ExecuteScalar(checkBorrowedSql,
-                    DatabaseHelper.CreateParameter("@barcode", barcode)));
+                    DatabaseHelper.CreateParameter("@bookID", barcode)));
 
                 if (unreturned > 0)
                 {
