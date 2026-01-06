@@ -503,6 +503,21 @@ namespace BooksManagermentSysytem.Controls
 
                 DataRow row = dt.Rows[0];
 
+                // 检查是否已有未归还的借阅记录（关键检查）
+                string checkBorrowedSql = @"
+                    SELECT COUNT(*) 
+                    FROM bookborrow 
+                    WHERE bookID = @barcode AND overdate IS NULL";
+                
+                int unreturned = Convert.ToInt32(DatabaseHelper.ExecuteScalar(checkBorrowedSql,
+                    DatabaseHelper.CreateParameter("@barcode", barcode)));
+
+                if (unreturned > 0)
+                {
+                    lblMessage.Text = "该书籍已被借出（有未归还记录），无法再次借出";
+                    return;
+                }
+
                 // 检查状态
                 string status = row["current_status"].ToString();
                 if (status != "AVAILABLE")

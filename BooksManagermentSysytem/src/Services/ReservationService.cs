@@ -164,10 +164,10 @@ namespace BooksManagermentSysytem.Services
 
                 // 检查图书状态
                 string checkBookSql = @"
-                    SELECT current_status, location_id, sl.location_type
+                    SELECT bi.current_status, bi.location_id, sl.location_type
                     FROM BOOK_ITEM bi
                     INNER JOIN STORAGE_LOCATION sl ON bi.location_id = sl.location_id
-                    WHERE item_barcode = @bookID";
+                    WHERE bi.item_barcode = @bookID";
 
                 DataTable bookDt = DatabaseHelper.ExecuteQuery(checkBookSql,
                     DatabaseHelper.CreateParameter("@bookID", bookID));
