@@ -666,11 +666,16 @@ namespace BooksManagermentSysytem.Controls
                     if (row["price"] != DBNull.Value)
                         numPrice.Value = Convert.ToDecimal(row["price"]);
 
-                    string condition = row["physical_condition"]?.ToString() ?? "完好";
-                    int condIndex = cboCondition.Items.IndexOf(condition);
+                    string condition = row["physical_condition"]?.ToString() ?? "GOOD";
+                    // 显示状态转中文
+                    string displayCondition = condition == "GOOD" ? "完好" :
+                                              condition == "DAMAGED" ? "损坏" :
+                                              condition == "REPAIR" ? "严重磨损" : "完好";
+                    int condIndex = cboCondition.Items.IndexOf(displayCondition);
                     if (condIndex >= 0) cboCondition.SelectedIndex = condIndex;
 
-                    txtNote.Text = row["note"]?.ToString() ?? "";
+                    // 注意：BOOK_ITEM 表没有 note 列，清空备注字段
+                    txtNote.Clear();
                 }
             }
             catch { }
@@ -764,7 +769,7 @@ namespace BooksManagermentSysytem.Controls
             int bibId;
             if (!int.TryParse(txtBibliography.Text.Trim(), out bibId))
             {
-                MessageBox.Show("书目ID格式不正确，请点击" + "选择..." + "按钮选择书目", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("书目ID格式不正确，请点击\"选择...\"按钮选择书目", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtBibliography.Focus();
                 return;
             }
@@ -779,7 +784,13 @@ namespace BooksManagermentSysytem.Controls
             {
                 int locationId = Convert.ToInt32(((ComboItem)cboLocation.SelectedItem).Value);
                 string status = ((ComboItem)cboStatus.SelectedItem).Value;
-                string condition = cboCondition.SelectedItem?.ToString() ?? "完好";
+                
+                // 映射显示值到数据库值
+                string conditionDisplay = cboCondition.SelectedItem?.ToString() ?? "完好";
+                string condition = conditionDisplay == "完好" ? "GOOD" :
+                                   conditionDisplay == "损坏" ? "DAMAGED" :
+                                   conditionDisplay == "严重磨损" ? "REPAIR" : "GOOD";
+                
                 string operatorName = AuthenticationService.Instance.CurrentUser?.Username ?? "system";
 
                 if (isNewMode)
@@ -795,11 +806,12 @@ namespace BooksManagermentSysytem.Controls
                         return;
                     }
 
+                    // 注意：BOOK_ITEM 表没有 note 列
                     string sql = @"INSERT INTO BOOK_ITEM 
                                   (item_barcode, bibliography_id, location_id, current_status, 
-                                   acquisition_date, price, physical_condition, note, status_changed_date)
+                                   acquisition_date, price, physical_condition, status_changed_date)
                                   VALUES (@barcode, @bibId, @locId, @status, 
-                                          @acqDate, @price, @condition, @note, GETDATE())";
+                                          @acqDate, @price, @condition, GETDATE())";
 
                     DatabaseHelper.ExecuteNonQuery(sql,
                         DatabaseHelper.CreateParameter("@barcode", txtBarcode.Text.Trim()),
@@ -808,17 +820,17 @@ namespace BooksManagermentSysytem.Controls
                         DatabaseHelper.CreateParameter("@status", status),
                         DatabaseHelper.CreateParameter("@acqDate", dtpAcquisitionDate.Value.Date),
                         DatabaseHelper.CreateParameter("@price", numPrice.Value),
-                        DatabaseHelper.CreateParameter("@condition", condition),
-                        DatabaseHelper.CreateParameter("@note", txtNote.Text.Trim()));
+                        DatabaseHelper.CreateParameter("@condition", condition));
 
                     LogCatalogAction("BOOK_ITEM", txtBarcode.Text, "新增", operatorName, $"新增馆藏");
                 }
                 else
                 {
+                    // 注意：BOOK_ITEM 表没有 note 列
                     string sql = @"UPDATE BOOK_ITEM SET 
                                   bibliography_id = @bibId, location_id = @locId, current_status = @status,
                                   acquisition_date = @acqDate, price = @price, physical_condition = @condition,
-                                  note = @note, status_changed_date = GETDATE()
+                                  status_changed_date = GETDATE()
                                   WHERE item_barcode = @barcode";
 
                     DatabaseHelper.ExecuteNonQuery(sql,
@@ -828,7 +840,6 @@ namespace BooksManagermentSysytem.Controls
                         DatabaseHelper.CreateParameter("@acqDate", dtpAcquisitionDate.Value.Date),
                         DatabaseHelper.CreateParameter("@price", numPrice.Value),
                         DatabaseHelper.CreateParameter("@condition", condition),
-                        DatabaseHelper.CreateParameter("@note", txtNote.Text.Trim()),
                         DatabaseHelper.CreateParameter("@barcode", currentBarcode));
 
                     LogCatalogAction("BOOK_ITEM", currentBarcode, "更新", operatorName, $"更新馆藏信息");
