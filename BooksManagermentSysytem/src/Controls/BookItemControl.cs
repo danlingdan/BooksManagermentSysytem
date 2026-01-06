@@ -760,6 +760,15 @@ namespace BooksManagermentSysytem.Controls
                 return;
             }
 
+            // 验证书目ID是否为有效数字
+            int bibId;
+            if (!int.TryParse(txtBibliography.Text.Trim(), out bibId))
+            {
+                MessageBox.Show("书目ID格式不正确，请点击" + "选择..." + "按钮选择书目", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtBibliography.Focus();
+                return;
+            }
+
             if (cboLocation.SelectedItem == null)
             {
                 MessageBox.Show("请选择存放位置", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -768,7 +777,6 @@ namespace BooksManagermentSysytem.Controls
 
             try
             {
-                int bibId = Convert.ToInt32(txtBibliography.Text);
                 int locationId = Convert.ToInt32(((ComboItem)cboLocation.SelectedItem).Value);
                 string status = ((ComboItem)cboStatus.SelectedItem).Value;
                 string condition = cboCondition.SelectedItem?.ToString() ?? "完好";
