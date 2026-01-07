@@ -335,6 +335,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="sql\bak文件恢复数据库需要sqlserver2025版本" />
+    <None Include="sql\LibraryDB.bak" />
     <None Include="src\app.manifest" />
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +357,13 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="sql\01 database.sql" />
+    <Content Include="sql\02 schema_extensions.sql" />
+    <Content Include="sql\03 create_rules_tables.sql" />
+    <Content Include="sql\04 init_rules_data.sql" />
+    <Content Include="sql\05 renew_reservation_extensions.sql" />
+    <Content Include="sql\06 permission_system.sql" />
+    <Content Include="sql\07 notification_tables.sql" />
     <Content Include="sql\create_rules_tables.sql" />
     <Content Include="sql\database.sql" />
     <Content Include="sql\init_rules_data.sql" />
