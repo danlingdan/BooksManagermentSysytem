@@ -175,6 +175,11 @@ namespace BooksManagermentSysytem.Forms
             ShowContent("图书查询", "BookSearch");
         }
 
+        private void menuRecommendation_Click(object sender, EventArgs e)
+        {
+            ShowContent("图书推荐", "Recommendation");
+        }
+
         // 系统管理菜单
         private void menuCardManagement_Click(object sender, EventArgs e)
         {
@@ -286,6 +291,8 @@ namespace BooksManagermentSysytem.Forms
                     return new Controls.MyFinesControl();
                 case "BookSearch":
                     return new Controls.BookSearchControl();
+                case "Recommendation":
+                    return new Controls.RecommendationControl();
                 case "BorrowBook":
                     return new Controls.BorrowBookControl();
                 case "ReturnBook":

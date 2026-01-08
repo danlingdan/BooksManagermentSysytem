@@ -39,6 +39,7 @@ namespace BooksManagermentSysytem.Forms
             this.menuBookItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBookSearch = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRecommendation = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCardManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUserManagement = new System.Windows.Forms.ToolStripMenuItem();
@@ -231,7 +232,8 @@ namespace BooksManagermentSysytem.Forms
             // menuSearch
             // 
             this.menuSearch.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuBookSearch});
+            this.menuBookSearch,
+            this.menuRecommendation});
             this.menuSearch.Name = "menuSearch";
             this.menuSearch.Size = new System.Drawing.Size(76, 24);
             this.menuSearch.Text = "图书检索";
@@ -242,6 +244,13 @@ namespace BooksManagermentSysytem.Forms
             this.menuBookSearch.Size = new System.Drawing.Size(148, 24);
             this.menuBookSearch.Text = "图书查询";
             this.menuBookSearch.Click += new System.EventHandler(this.menuBookSearch_Click);
+            // 
+            // menuRecommendation
+            // 
+            this.menuRecommendation.Name = "menuRecommendation";
+            this.menuRecommendation.Size = new System.Drawing.Size(148, 24);
+            this.menuRecommendation.Text = "图书推荐";
+            this.menuRecommendation.Click += new System.EventHandler(this.menuRecommendation_Click);
             // 
             // menuAdmin
             // 
@@ -463,6 +472,7 @@ namespace BooksManagermentSysytem.Forms
         private System.Windows.Forms.ToolStripMenuItem menuBookItem;
         private System.Windows.Forms.ToolStripMenuItem menuSearch;
         private System.Windows.Forms.ToolStripMenuItem menuBookSearch;
+        private System.Windows.Forms.ToolStripMenuItem menuRecommendation;
         private System.Windows.Forms.ToolStripMenuItem menuAdmin;
         private System.Windows.Forms.ToolStripMenuItem menuCardManagement;
         private System.Windows.Forms.ToolStripMenuItem menuUserManagement;
