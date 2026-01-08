@@ -9,6 +9,7 @@ namespace RecommendationEngine
     /// <summary>
     /// 推荐引擎统一入口（门面模式）
     /// 整合热门榜、相似书推荐、个性化推荐三大功能
+    /// 支持传统协同过滤和 ML.NET 矩阵分解两种推荐模式
     /// </summary>
     public class RecommendationFacade
     {
@@ -17,6 +18,7 @@ namespace RecommendationEngine
         private readonly ContentBasedService _contentBasedService;
         private readonly PersonalizedService _personalizedService;
         private readonly SimilarityCalculationService _similarityService;
+        private readonly MatrixFactorizationService _mlService;
 
         /// <summary>
         /// 初始化推荐引擎
@@ -29,6 +31,7 @@ namespace RecommendationEngine
             _contentBasedService = new ContentBasedService(_repository);
             _personalizedService = new PersonalizedService(_repository);
             _similarityService = new SimilarityCalculationService(_repository);
+            _mlService = new MatrixFactorizationService(_repository);
         }
 
         /// <summary>
@@ -47,6 +50,7 @@ namespace RecommendationEngine
             _contentBasedService = new ContentBasedService(repository);
             _personalizedService = new PersonalizedService(repository);
             _similarityService = new SimilarityCalculationService(repository);
+            _mlService = new MatrixFactorizationService(repository);
         }
 
         #region 热门榜 (Trending/Popular)
@@ -328,6 +332,172 @@ namespace RecommendationEngine
 
         #endregion
 
+        #region ML.NET 矩阵分解推荐
+
+        /// <summary>
+        /// ML.NET 模型是否已训练
+        /// </summary>
+        public bool IsMLModelTrained => _mlService.IsModelTrained;
+
+        /// <summary>
+        /// 训练 ML.NET 矩阵分解模型
+        /// </summary>
+        /// <param name="config">训练配置</param>
+        /// <param name="progressHandler">进度回调</param>
+        /// <returns>训练结果</returns>
+        public MatrixFactorizationTrainingResult TrainMLModel(
+            MatrixFactorizationConfig config = null,
+            EventHandler<MatrixFactorizationProgressEventArgs> progressHandler = null)
+        {
+            if (progressHandler != null)
+            {
+                _mlService.ProgressChanged += progressHandler;
+            }
+
+            try
+            {
+                return _mlService.TrainModel(config);
+            }
+            finally
+            {
+                if (progressHandler != null)
+                {
+                    _mlService.ProgressChanged -= progressHandler;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取 ML.NET 个性化推荐
+        /// </summary>
+        /// <param name="cardId">读者卡号</param>
+        /// <param name="topN">返回数量</param>
+        /// <param name="excludeBorrowed">是否排除已借阅的书</param>
+        /// <returns>推荐结果列表</returns>
+        public List<RecommendationResult> GetMLRecommendations(string cardId, int topN = 10, bool excludeBorrowed = true)
+        {
+            return _mlService.GetRecommendations(cardId, topN, excludeBorrowed);
+        }
+
+        /// <summary>
+        /// 预测用户对指定书籍的评分
+        /// </summary>
+        /// <param name="cardId">读者卡号</param>
+        /// <param name="bibliographyId">书目ID</param>
+        /// <returns>预测评分</returns>
+        public float PredictRating(string cardId, int bibliographyId)
+        {
+            return _mlService.PredictRating(cardId, bibliographyId);
+        }
+
+        /// <summary>
+        /// 保存 ML.NET 模型到文件
+        /// </summary>
+        /// <param name="filePath">文件路径</param>
+        public void SaveMLModel(string filePath)
+        {
+            _mlService.SaveModel(filePath);
+        }
+
+        /// <summary>
+        /// 从文件加载 ML.NET 模型
+        /// </summary>
+        /// <param name="filePath">文件路径</param>
+        /// <returns>是否加载成功</returns>
+        public bool LoadMLModel(string filePath)
+        {
+            return _mlService.LoadModel(filePath);
+        }
+
+        /// <summary>
+        /// 获取混合推荐（结合传统协同过滤和 ML.NET）
+        /// </summary>
+        /// <param name="cardId">读者卡号</param>
+        /// <param name="topN">返回数量</param>
+        /// <param name="mlWeight">ML.NET 推荐权重（0-1）</param>
+        /// <returns>推荐结果列表</returns>
+        public List<RecommendationResult> GetHybridRecommendations(string cardId, int topN = 10, double mlWeight = 0.5)
+        {
+            var results = new Dictionary<int, RecommendationResult>();
+            double traditionalWeight = 1.0 - mlWeight;
+
+            // 获取传统协同过滤推荐
+            var traditionalRecs = _personalizedService.GetPersonalizedRecommendations(cardId, topN * 2);
+            foreach (var rec in traditionalRecs)
+            {
+                rec.Score = rec.Score * traditionalWeight;
+                results[rec.BibliographyId] = rec;
+            }
+
+            // 获取 ML.NET 推荐（如果模型已训练）
+            if (_mlService.IsModelTrained)
+            {
+                try
+                {
+                    var mlRecs = _mlService.GetRecommendations(cardId, topN * 2, true);
+                    foreach (var rec in mlRecs)
+                    {
+                        if (results.ContainsKey(rec.BibliographyId))
+                        {
+                            // 合并分数
+                            results[rec.BibliographyId].Score += rec.Score * mlWeight;
+                            results[rec.BibliographyId].Reason = "综合推荐（传统+机器学习）";
+                        }
+                        else
+                        {
+                            rec.Score = rec.Score * mlWeight;
+                            rec.Reason = "基于机器学习的个性化推荐";
+                            results[rec.BibliographyId] = rec;
+                        }
+                    }
+                }
+                catch
+                {
+                    // ML 推荐失败时，仍返回传统推荐结果
+                }
+            }
+
+            // 归一化分数并排序
+            var sortedResults = new List<RecommendationResult>(results.Values);
+            if (sortedResults.Count > 0)
+            {
+                double maxScore = 0;
+                foreach (var r in sortedResults)
+                {
+                    if (r.Score > maxScore) maxScore = r.Score;
+                }
+
+                if (maxScore > 0)
+                {
+                    foreach (var r in sortedResults)
+                    {
+                        r.Score = r.Score / maxScore;
+                    }
+                }
+            }
+
+            sortedResults.Sort((a, b) => b.Score.CompareTo(a.Score));
+
+            if (sortedResults.Count > topN)
+            {
+                sortedResults = sortedResults.GetRange(0, topN);
+            }
+
+            return sortedResults;
+        }
+
+        /// <summary>
+        /// 获取 ML 训练数据统计信息
+        /// </summary>
+        /// <param name="historyDays">历史天数</param>
+        /// <returns>统计信息：(借阅记录数, 唯一用户数, 唯一书目数)</returns>
+        public Tuple<int, int, int> GetMLTrainingDataStatistics(int historyDays = 365)
+        {
+            return _repository.GetTrainingDataStatistics(historyDays);
+        }
+
+        #endregion
+
         #region 缓存管理
 
         /// <summary>
@@ -338,6 +508,7 @@ namespace RecommendationEngine
             _trendingService.ClearCache();
             _contentBasedService.ClearCache();
             _personalizedService.ClearCache();
+            _mlService.ClearCache();
         }
 
         /// <summary>
@@ -363,6 +534,15 @@ namespace RecommendationEngine
         public void ClearPersonalizedCache(string cardId = null)
         {
             _personalizedService.ClearCache(cardId);
+        }
+
+        /// <summary>
+        /// 清除 ML 推荐缓存
+        /// </summary>
+        /// <param name="cardId">读者卡号，为空则清除所有</param>
+        public void ClearMLCache(string cardId = null)
+        {
+            _mlService.ClearCache(cardId);
         }
 
         #endregion

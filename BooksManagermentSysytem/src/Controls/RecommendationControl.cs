@@ -6,12 +6,13 @@ using System.Windows.Forms;
 using BooksManagermentSysytem.Services;
 using RecommendationEngine;
 using RecommendationEngine.Models;
+using RecommendationEngine.Services;
 
 namespace BooksManagermentSysytem.Controls
 {
     /// <summary>
     /// 图书推荐用户控件
-    /// 提供热门榜、相似书推荐、个性化推荐功能
+    /// 提供热门榜、相似书推荐、个性化推荐、ML智能推荐功能
     /// </summary>
     public class RecommendationControl : UserControl
     {
@@ -22,10 +23,12 @@ namespace BooksManagermentSysytem.Controls
         private TabPage _tabTrending;
         private TabPage _tabForYou;
         private TabPage _tabSimilar;
+        private TabPage _tabMLRecommend;
 
         private DataGridView _dgvTrending;
         private DataGridView _dgvForYou;
         private DataGridView _dgvSimilar;
+        private DataGridView _dgvMLRecommend;
 
         private ComboBox _cboTrendingPeriod;
         private TextBox _txtBookIdForSimilar;
@@ -33,6 +36,11 @@ namespace BooksManagermentSysytem.Controls
         private Button _btnRefresh;
 
         private Label _lblNoHistory;
+        private Label _lblMLStatus;
+        private Button _btnTrainModel;
+        private Button _btnLoadMLRecommend;
+        private ComboBox _cboMLMode;
+        private ProgressBar _progressML;
 
         /// <summary>
         /// 初始化推荐控件
@@ -52,6 +60,8 @@ namespace BooksManagermentSysytem.Controls
             {
                 LoadPersonalizedData();
             }
+
+            UpdateMLStatus();
         }
 
         private void InitializeComponents()
@@ -112,6 +122,11 @@ namespace BooksManagermentSysytem.Controls
             _tabForYou = new TabPage("💡 为你推荐");
             InitializeForYouTab();
             _tabControl.TabPages.Add(_tabForYou);
+
+            // ML智能推荐标签页
+            _tabMLRecommend = new TabPage("🤖 ML智能推荐");
+            InitializeMLRecommendTab();
+            _tabControl.TabPages.Add(_tabMLRecommend);
 
             // 相似书推荐标签页
             _tabSimilar = new TabPage("📖 相似书推荐");
@@ -258,6 +273,101 @@ namespace BooksManagermentSysytem.Controls
             _tabSimilar.Controls.Add(layout);
         }
 
+        /// <summary>
+        /// 初始化 ML 智能推荐标签页
+        /// </summary>
+        private void InitializeMLRecommendTab()
+        {
+            var layout = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 1,
+                RowCount = 3
+            };
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+
+            // 工具栏
+            var toolbar = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                FlowDirection = FlowDirection.LeftToRight,
+                Padding = new Padding(5)
+            };
+
+            _lblMLStatus = new Label
+            {
+                Text = "模型状态：未训练",
+                AutoSize = true,
+                ForeColor = Color.Gray,
+                Margin = new Padding(0, 8, 15, 0)
+            };
+            toolbar.Controls.Add(_lblMLStatus);
+
+            var lblMode = new Label
+            {
+                Text = "推荐模式：",
+                AutoSize = true,
+                Margin = new Padding(10, 8, 5, 0)
+            };
+            toolbar.Controls.Add(lblMode);
+
+            _cboMLMode = new ComboBox
+            {
+                Width = 150,
+                DropDownStyle = ComboBoxStyle.DropDownList
+            };
+            _cboMLMode.Items.AddRange(new object[] { "ML推荐", "混合推荐（ML+传统）", "传统推荐" });
+            _cboMLMode.SelectedIndex = 1;
+            toolbar.Controls.Add(_cboMLMode);
+
+            _btnLoadMLRecommend = new Button
+            {
+                Text = "获取推荐",
+                Width = 100,
+                Height = 28,
+                Margin = new Padding(15, 0, 0, 0)
+            };
+            _btnLoadMLRecommend.Click += BtnLoadMLRecommend_Click;
+            toolbar.Controls.Add(_btnLoadMLRecommend);
+
+            _btnTrainModel = new Button
+            {
+                Text = "训练模型",
+                Width = 100,
+                Height = 28,
+                Margin = new Padding(10, 0, 0, 0)
+            };
+            _btnTrainModel.Click += BtnTrainModel_Click;
+            toolbar.Controls.Add(_btnTrainModel);
+
+            layout.Controls.Add(toolbar, 0, 0);
+
+            // 进度条
+            var progressPanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                Padding = new Padding(5, 0, 5, 5)
+            };
+
+            _progressML = new ProgressBar
+            {
+                Dock = DockStyle.Fill,
+                Visible = false,
+                Style = ProgressBarStyle.Continuous
+            };
+            progressPanel.Controls.Add(_progressML);
+
+            layout.Controls.Add(progressPanel, 0, 1);
+
+            // 数据表格
+            _dgvMLRecommend = CreateDataGridView();
+            layout.Controls.Add(_dgvMLRecommend, 0, 2);
+
+            _tabMLRecommend.Controls.Add(layout);
+        }
+
         private DataGridView CreateDataGridView()
         {
             var dgv = new DataGridView
@@ -359,6 +469,148 @@ namespace BooksManagermentSysytem.Controls
             }
         }
 
+        /// <summary>
+        /// 更新 ML 模型状态显示
+        /// </summary>
+        private void UpdateMLStatus()
+        {
+            if (_recommendation.IsMLModelTrained)
+            {
+                _lblMLStatus.Text = "模型状态：✅ 已训练";
+                _lblMLStatus.ForeColor = Color.Green;
+            }
+            else
+            {
+                _lblMLStatus.Text = "模型状态：⚠️ 未训练";
+                _lblMLStatus.ForeColor = Color.Orange;
+            }
+        }
+
+        /// <summary>
+        /// 加载 ML 推荐数据
+        /// </summary>
+        private void LoadMLRecommendData()
+        {
+            if (string.IsNullOrEmpty(_currentCardId))
+            {
+                MessageBox.Show("请先登录！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                List<RecommendationResult> results;
+
+                switch (_cboMLMode.SelectedIndex)
+                {
+                    case 0: // ML推荐
+                        if (!_recommendation.IsMLModelTrained)
+                        {
+                            MessageBox.Show("模型尚未训练，请先点击「训练模型」！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        results = _recommendation.GetMLRecommendations(_currentCardId, 15, true);
+                        break;
+                    case 1: // 混合推荐
+                        results = _recommendation.GetHybridRecommendations(_currentCardId, 15, 0.5);
+                        break;
+                    default: // 传统推荐
+                        results = _recommendation.GetForYou(_currentCardId, 15);
+                        break;
+                }
+
+                BindDataToGrid(_dgvMLRecommend, results);
+
+                if (results.Count == 0)
+                {
+                    MessageBox.Show("暂无推荐结果，可能是借阅历史不足。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("获取ML推荐失败：" + ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// 训练 ML 模型
+        /// </summary>
+        private void TrainMLModel()
+        {
+            _btnTrainModel.Enabled = false;
+            _progressML.Visible = true;
+            _progressML.Value = 0;
+
+            // 使用 BackgroundWorker 异步训练
+            var worker = new System.ComponentModel.BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+
+            worker.DoWork += (s, e) =>
+            {
+                var config = new MatrixFactorizationConfig
+                {
+                    NumberOfIterations = 20,
+                    ApproximationRank = 8,
+                    HistoryDays = 365
+                };
+
+                var result = _recommendation.TrainMLModel(config, (sender, args) =>
+                {
+                    worker.ReportProgress(args.ProgressPercentage, args.Message);
+                });
+
+                e.Result = result;
+            };
+
+            worker.ProgressChanged += (s, e) =>
+            {
+                _progressML.Value = e.ProgressPercentage;
+                _lblMLStatus.Text = e.UserState?.ToString() ?? "";
+            };
+
+            worker.RunWorkerCompleted += (s, e) =>
+            {
+                _btnTrainModel.Enabled = true;
+                _progressML.Visible = false;
+
+                if (e.Error != null)
+                {
+                    MessageBox.Show("训练失败：" + e.Error.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (e.Result is MatrixFactorizationTrainingResult result)
+                {
+                    UpdateMLStatus();
+
+                    if (result.Success)
+                    {
+                        var msg = string.Format(
+                            "模型训练完成！\n\n" +
+                            "训练数据：{0} 条\n" +
+                            "用户数：{1}\n" +
+                            "书目数：{2}\n" +
+                            "耗时：{3} 毫秒",
+                            result.TrainingDataCount,
+                            result.UniqueUserCount,
+                            result.UniqueBookCount,
+                            result.TrainingTimeMs);
+
+                        if (result.RootMeanSquaredError.HasValue)
+                        {
+                            msg += string.Format("\nRMSE：{0:F4}", result.RootMeanSquaredError.Value);
+                        }
+
+                        MessageBox.Show(msg, "训练完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("训练失败：" + result.ErrorMessage, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            };
+
+            worker.RunWorkerAsync();
+        }
+
         private void BindDataToGrid(DataGridView dgv, List<RecommendationResult> results)
         {
             dgv.Rows.Clear();
@@ -438,6 +690,25 @@ namespace BooksManagermentSysytem.Controls
                 // 可以在这里添加跳转到书目详情的逻辑
                 MessageBox.Show(string.Format("书目ID: {0}\n\n双击可查看详情或借阅此书。", bibliographyId), 
                     "书目信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnLoadMLRecommend_Click(object sender, EventArgs e)
+        {
+            LoadMLRecommendData();
+        }
+
+        private void BtnTrainModel_Click(object sender, EventArgs e)
+        {
+            var dialogResult = MessageBox.Show(
+                "训练模型可能需要几秒到几分钟时间（取决于数据量）。\n\n确定要开始训练吗？",
+                "确认训练",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                TrainMLModel();
             }
         }
 

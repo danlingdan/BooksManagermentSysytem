@@ -6,9 +6,6 @@
   <Project Path="BooksManagermentSysytem/BooksManagermentSysytem.csproj" Id="41b6de0f-ec53-4e93-ad18-b2d0f9277b8d">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
-  <Project Path="RecommendationEngine,ML/RecommendationEngine,ML.csproj" Id="2295dda6-dfd4-4402-84b7-fa3d54d96864">
-    <Build Solution="*|x64" Project="false" />
-  </Project>
   <Project Path="RecommendationEngine/RecommendationEngine.csproj" Id="e8f2b3a1-4c5d-6e7f-8a9b-0c1d2e3f4a5b">
     <Platform Solution="*|x64" Project="x64" />
   </Project>

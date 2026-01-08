@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using RecommendationEngine.Models;
 
 namespace RecommendationEngine.Data
@@ -104,13 +105,13 @@ namespace RecommendationEngine.Data
                         {
                             results.Add(new RecommendationResult
                             {
-                                BibliographyId = reader.GetInt32(0),
+                                BibliographyId = Convert.ToInt32(reader.GetValue(0)),
                                 BookName = reader.IsDBNull(1) ? "" : reader.GetString(1),
                                 ISBN = reader.IsDBNull(2) ? "" : reader.GetString(2),
                                 Publisher = reader.IsDBNull(3) ? "" : reader.GetString(3),
                                 CategoryCode = reader.IsDBNull(4) ? "" : reader.GetString(4),
                                 CategoryName = reader.IsDBNull(5) ? "" : reader.GetString(5),
-                                BorrowCount = reader.GetInt32(6),
+                                BorrowCount = Convert.ToInt32(reader.GetValue(6)),
                                 Authors = reader.IsDBNull(7) ? "" : reader.GetString(7),
                                 Type = RecommendationType.Trending
                             });
@@ -423,9 +424,10 @@ namespace RecommendationEngine.Data
                         {
                             results.Add(new UserBehavior
                             {
-                                BehaviorId = reader.GetInt64(0),
-                                CardId = reader.GetString(1),
-                                BibliographyId = reader.GetInt32(2),
+                                // 使用 Convert 安全转换，兼容 int 和 bigint
+                                BehaviorId = Convert.ToInt64(reader.GetValue(0)),
+                                CardId = reader.IsDBNull(1) ? "" : reader.GetString(1),
+                                BibliographyId = Convert.ToInt32(reader.GetValue(2)),
                                 BehaviorTime = reader.GetDateTime(3),
                                 Type = BehaviorType.Borrow,
                                 Weight = 1.0
@@ -462,7 +464,7 @@ namespace RecommendationEngine.Data
                     {
                         while (reader.Read())
                         {
-                            ids.Add(reader.GetInt32(0));
+                            ids.Add(Convert.ToInt32(reader.GetValue(0)));
                         }
                     }
                 }
@@ -516,8 +518,8 @@ namespace RecommendationEngine.Data
                         while (reader.Read())
                         {
                             results.Add(Tuple.Create(
-                                reader.GetString(0),
-                                reader.GetDouble(1)
+                                reader.IsDBNull(0) ? "" : reader.GetString(0),
+                                Convert.ToDouble(reader.GetValue(1))
                             ));
                         }
                     }
@@ -1183,6 +1185,277 @@ namespace RecommendationEngine.Data
             results.Sort((a, b) => b.Score.CompareTo(a.Score));
 
             return results;
+        }
+
+        #endregion
+
+        #region ML.NET 训练数据相关查询
+
+        /// <summary>
+        /// 获取 ML.NET 矩阵分解训练数据
+        /// 将借阅记录转换为用户-书目隐式评分数据
+        /// </summary>
+        /// <param name="historyDays">历史数据天数</param>
+        /// <returns>训练数据列表</returns>
+        public List<BookRating> GetMLTrainingData(int historyDays = 365)
+        {
+            var results = new List<BookRating>();
+            var cutoffDate = DateTime.Now.AddDays(-historyDays);
+
+            // 获取借阅记录，将其转换为隐式评分
+            // 借阅次数越多，评分越高（隐式反馈）
+            string sql = @"
+                SELECT 
+                    bb.cardID,
+                    bi.bibliography_id,
+                    COUNT(*) AS borrow_count
+                FROM bookborrow bb
+                INNER JOIN BOOK_ITEM bi ON bb.bookID = bi.item_barcode
+                WHERE bb.borrowdate >= @cutoffDate
+                GROUP BY bb.cardID, bi.bibliography_id";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@cutoffDate", cutoffDate);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string cardId = reader.GetString(0);
+                            int bibId = reader.GetInt32(1);
+                            int borrowCount = reader.GetInt32(2);
+
+                            // 将借阅次数转换为 1-5 的评分范围
+                            // 1次借阅 = 1分，2次 = 2分，...，5次及以上 = 5分
+                            float rating = Math.Min(borrowCount, 5);
+
+                            results.Add(new BookRating
+                            {
+                                UserId = cardId,
+                                BibliographyId = (uint)bibId,
+                                Label = rating
+                            });
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// 获取 ML.NET 训练数据（带负样本）
+        /// 用于更精确的矩阵分解训练
+        /// </summary>
+        /// <param name="historyDays">历史数据天数</param>
+        /// <param name="negativeSampleRatio">负样本比例（相对于正样本）</param>
+        /// <returns>训练数据列表</returns>
+        public List<BookRating> GetMLTrainingDataWithNegativeSamples(int historyDays = 365, double negativeSampleRatio = 0.5)
+        {
+            var positiveData = GetMLTrainingData(historyDays);
+            
+            if (positiveData.Count == 0)
+            {
+                return positiveData;
+            }
+
+            // 获取所有书目ID
+            var allBibIds = GetAllBibliographyIds().Select(id => (uint)id).ToHashSet();
+            
+            // 构建用户已借阅书籍映射
+            var userBorrowedBooks = new Dictionary<string, HashSet<uint>>();
+            foreach (var data in positiveData)
+            {
+                if (!userBorrowedBooks.ContainsKey(data.UserId))
+                {
+                    userBorrowedBooks[data.UserId] = new HashSet<uint>();
+                }
+                userBorrowedBooks[data.UserId].Add(data.BibliographyId);
+            }
+
+            // 生成负样本
+            var random = new Random();
+            var negativeCount = (int)(positiveData.Count * negativeSampleRatio);
+            var users = userBorrowedBooks.Keys.ToList();
+
+            for (int i = 0; i < negativeCount; i++)
+            {
+                var userId = users[random.Next(users.Count)];
+                var borrowedBooks = userBorrowedBooks[userId];
+                var unborrowed = allBibIds.Except(borrowedBooks).ToList();
+
+                if (unborrowed.Count > 0)
+                {
+                    var bibId = unborrowed[random.Next(unborrowed.Count)];
+                    positiveData.Add(new BookRating
+                    {
+                        UserId = userId,
+                        BibliographyId = bibId,
+                        Label = 0 // 未借阅 = 0 分
+                    });
+                }
+            }
+
+            return positiveData;
+        }
+
+        /// <summary>
+        /// 根据书目ID列表获取书目详情
+        /// </summary>
+        /// <param name="bibliographyIds">书目ID列表</param>
+        /// <returns>推荐结果列表</returns>
+        public List<RecommendationResult> GetBibliographyDetails(List<int> bibliographyIds)
+        {
+            var results = new List<RecommendationResult>();
+
+            if (bibliographyIds == null || bibliographyIds.Count == 0)
+            {
+                return results;
+            }
+
+            var idParams = new List<string>();
+            for (int i = 0; i < bibliographyIds.Count; i++)
+            {
+                idParams.Add(string.Format("@id{0}", i));
+            }
+
+            string sql = string.Format(@"
+                SELECT 
+                    b.bibliography_id,
+                    b.bibliography_name,
+                    b.ISBN,
+                    b.publish,
+                    c.category_code,
+                    c.category_name,
+                    (SELECT COUNT(*) FROM bookborrow bb 
+                     INNER JOIN BOOK_ITEM bi ON bb.bookID = bi.item_barcode
+                     WHERE bi.bibliography_id = b.bibliography_id) AS borrow_count,
+                    (SELECT STRING_AGG(a.author_name, ', ') WITHIN GROUP (ORDER BY ba.author_order)
+                     FROM BIBLIO_AUTHOR ba 
+                     INNER JOIN AUTHOR a ON a.author_id = ba.author_id
+                     WHERE ba.bibliography_id = b.bibliography_id) AS authors
+                FROM BIBLIOGRAPHY b
+                LEFT JOIN BOOK_CATEGORY c ON c.category_id = b.category_id
+                WHERE b.bibliography_id IN ({0})", string.Join(",", idParams));
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    for (int i = 0; i < bibliographyIds.Count; i++)
+                    {
+                        cmd.Parameters.AddWithValue(string.Format("@id{0}", i), bibliographyIds[i]);
+                    }
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            results.Add(new RecommendationResult
+                            {
+                                BibliographyId = reader.GetInt32(0),
+                                BookName = reader.IsDBNull(1) ? "" : reader.GetString(1),
+                                ISBN = reader.IsDBNull(2) ? "" : reader.GetString(2),
+                                Publisher = reader.IsDBNull(3) ? "" : reader.GetString(3),
+                                CategoryCode = reader.IsDBNull(4) ? "" : reader.GetString(4),
+                                CategoryName = reader.IsDBNull(5) ? "" : reader.GetString(5),
+                                BorrowCount = reader.GetInt32(6),
+                                Authors = reader.IsDBNull(7) ? "" : reader.GetString(7)
+                            });
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// 获取活跃用户列表（用于 ML 推荐）
+        /// </summary>
+        /// <param name="minBorrowCount">最小借阅次数</param>
+        /// <param name="historyDays">历史天数</param>
+        /// <returns>用户ID列表</returns>
+        public List<string> GetActiveUsers(int minBorrowCount = 3, int historyDays = 365)
+        {
+            var users = new List<string>();
+            var cutoffDate = DateTime.Now.AddDays(-historyDays);
+
+            string sql = @"
+                SELECT bb.cardID, COUNT(DISTINCT bi.bibliography_id) AS book_count
+                FROM bookborrow bb
+                INNER JOIN BOOK_ITEM bi ON bb.bookID = bi.item_barcode
+                WHERE bb.borrowdate >= @cutoffDate
+                GROUP BY bb.cardID
+                HAVING COUNT(DISTINCT bi.bibliography_id) >= @minBorrowCount
+                ORDER BY book_count DESC";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@cutoffDate", cutoffDate);
+                    cmd.Parameters.AddWithValue("@minBorrowCount", minBorrowCount);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            users.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+
+            return users;
+        }
+
+        /// <summary>
+        /// 获取训练数据统计信息
+        /// </summary>
+        /// <param name="historyDays">历史天数</param>
+        /// <returns>统计信息元组：(借阅记录数, 唯一用户数, 唯一书目数)</returns>
+        public Tuple<int, int, int> GetTrainingDataStatistics(int historyDays = 365)
+        {
+            var cutoffDate = DateTime.Now.AddDays(-historyDays);
+
+            string sql = @"
+                SELECT 
+                    COUNT(*) AS total_records,
+                    COUNT(DISTINCT bb.cardID) AS unique_users,
+                    COUNT(DISTINCT bi.bibliography_id) AS unique_books
+                FROM bookborrow bb
+                INNER JOIN BOOK_ITEM bi ON bb.bookID = bi.item_barcode
+                WHERE bb.borrowdate >= @cutoffDate";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@cutoffDate", cutoffDate);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return Tuple.Create(
+                                reader.GetInt32(0),
+                                reader.GetInt32(1),
+                                reader.GetInt32(2)
+                            );
+                        }
+                    }
+                }
+            }
+
+            return Tuple.Create(0, 0, 0);
         }
 
         #endregion

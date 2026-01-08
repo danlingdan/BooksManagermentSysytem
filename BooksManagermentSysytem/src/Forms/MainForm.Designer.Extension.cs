@@ -4,47 +4,31 @@ using System.Windows.Forms;
 namespace BooksManagermentSysytem.Forms
 {
     /// <summary>
-    /// MainForm Designer 扩展部分
-    /// 用于添加角色权限管理和批量角色分配菜单项
+    /// MainForm Designer 扩展说明
+    /// 本文件提供添加新菜单项的指导说明
     /// </summary>
     /// <remarks>
-    /// 请在MainForm.Designer.cs的InitializeComponent方法中手动添加以下代码
+    /// 若要添加 ML 模型管理菜单项，请按以下步骤在 MainForm.Designer.cs 中修改：
+    /// 
+    /// 1. 在字段声明区域添加：
+    ///    private System.Windows.Forms.ToolStripMenuItem menuMLModelManagement;
+    /// 
+    /// 2. 在 InitializeComponent 方法中实例化：
+    ///    this.menuMLModelManagement = new System.Windows.Forms.ToolStripMenuItem();
+    /// 
+    /// 3. 配置菜单项：
+    ///    this.menuMLModelManagement.Name = "menuMLModelManagement";
+    ///    this.menuMLModelManagement.Size = new System.Drawing.Size(148, 24);
+    ///    this.menuMLModelManagement.Text = "ML模型管理";
+    ///    this.menuMLModelManagement.Click += new System.EventHandler(this.menuMLModelManagement_Click);
+    /// 
+    /// 4. 将菜单项添加到 menuAdmin.DropDownItems 中
+    /// 
+    /// 或者：直接使用图书推荐控件中的 ML 标签页（已集成）
     /// </remarks>
     public partial class MainForm
     {
-        // 在字段声明区域添加（文件末尾，#endregion之前）：
-        // private System.Windows.Forms.ToolStripMenuItem menuPermissionManagement;
-        // private System.Windows.Forms.ToolStripMenuItem menuBatchRoleAssignment;
-
-        // 在InitializeComponent方法开始处添加（在其他菜单项实例化之后）：
-        private void InitializeNewMenuItems()
-        {
-            this.menuPermissionManagement = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBatchRoleAssignment = new System.Windows.Forms.ToolStripMenuItem();
-        }
-
-        // 在InitializeComponent方法中，配置menuPermissionManagement（在menuUserManagement之后）：
-        private void ConfigurePermissionManagementMenu()
-        {
-            // 
-            // menuPermissionManagement
-            // 
-            this.menuPermissionManagement.Name = "menuPermissionManagement";
-            this.menuPermissionManagement.Size = new System.Drawing.Size(180, 24);
-            this.menuPermissionManagement.Text = "角色权限管理";
-            this.menuPermissionManagement.Click += new System.EventHandler(this.menuPermissionManagement_Click);
-        }
-
-        // 配置menuBatchRoleAssignment：
-        private void ConfigureBatchRoleAssignmentMenu()
-        {
-            // 
-            // menuBatchRoleAssignment
-            // 
-            this.menuBatchRoleAssignment.Name = "menuBatchRoleAssignment";
-            this.menuBatchRoleAssignment.Size = new System.Drawing.Size(180, 24);
-            this.menuBatchRoleAssignment.Text = "批量角色分配";
-            this.menuBatchRoleAssignment.Click += new System.EventHandler(this.menuBatchRoleAssignment_Click);
-        }
+        // 此文件仅提供说明，无需编译代码
+        // 实际 ML 推荐功能已集成到 RecommendationControl 的 ML智能推荐 标签页中
     }
 }
